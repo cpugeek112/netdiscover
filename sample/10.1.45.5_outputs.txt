@@ -1,0 +1,642 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 14436 bytes
+!
+! No configuration change since last restart
+! NVRAM config last updated at 10:32:19 edt Tue Jun 16 2020 by unicom
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service sequence-numbers
+!
+hostname Bridge-MDF-2960-48
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$BJwN$UXeNQaEIvVSG2VfxXB4BB.
+!
+username mamckenna password 7 050609083440
+username phunter password 7 1308161E070D162E
+username pmusto privilege 15 password 7 06361D70424D0C0A16
+username ccs24x7 password 7 0477581E5E2F1A5A2617
+username rjusta privilege 15 password 7 03100A52350A371D1F59
+username unicom privilege 15 password 7 0028161E550D5953
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 053C200537666D51535C330B180F0C
+username Advizex privilege 15 password 7 143B17131E01271B36276165734A
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+system mtu routing 1500
+!
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 2 4
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1 0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+mls qos srr-queue output dscp-map queue 2 threshold 2 34
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1 0 10
+mls qos
+!
+crypto pki trustpoint TP-self-signed-1546714368
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1546714368
+ revocation-check none
+ rsakeypair TP-self-signed-1546714368
+!
+!
+crypto pki certificate chain TP-self-signed-1546714368
+ certificate self-signed 01
+  3082024B 308201B4 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31353436 37313433 3638301E 170D3933 30333031 30303032 
+  30305A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 35343637 
+  31343336 3830819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100B36E 1338F071 03B6BB9A 55040E09 5491572A 543E3036 8DA99BEF BA90E70F 
+  438A972B D52719E4 964D0376 CFD20B84 4A4398A8 642E6A58 B6BFE802 2FDFFB7C 
+  FE795085 A0980B19 51CA8B13 7B7E6A17 18A7505E 015028B8 5431303C 4E5A417C 
+  767763F4 7BD0FC05 DDC3504A 2F55AA99 F27E2DAE 30A3738A 7D6891A8 45D9A78E 
+  39A50203 010001A3 73307130 0F060355 1D130101 FF040530 030101FF 301E0603 
+  551D1104 17301582 13427269 6467652D 4D44462D 32393630 2D34382E 301F0603 
+  551D2304 18301680 143AF9A7 7C7E351C 9ED93004 8BE37BEE AC1FA6D6 B3301D06 
+  03551D0E 04160414 3AF9A77C 7E351C9E D930048B E37BEEAC 1FA6D6B3 300D0609 
+  2A864886 F70D0101 04050003 8181009B 9847195B EE624C05 C74B54A4 38523D9A 
+  BD78BD8E 65EF97C4 A8E9E6EB 3B7C01B5 B59A5170 70430200 6960016B C16C08A5 
+  5198D45A 207B0371 23457C4B 656F2481 1680FD7B 8B48C4D2 DBC9719E 78C23D77 
+  18582FF0 33EDA939 36AE4CBF F68D8CB9 237D61A8 EC01824F 9FC5B163 BD4AB1F2 
+  939E88EA 3D4505B3 4D07DA0A AC1D0A
+  quit
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+no spanning-tree vlan 13,110,208-210,998-999
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ description Time Clock
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/9
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/10
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/13
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/14
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/15
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/16
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/17
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/18
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/19
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/20
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/22
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/23
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/24
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/25
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/26
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/27
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/28
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/29
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/30
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/31
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/32
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/33
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/34
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/35
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/36
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/37
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/38
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/39
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/40
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/41
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/42
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/43
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/44
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/45
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/46
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/47
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface FastEthernet0/48
+ description Desktops and IP Phones
+ switchport access vlan 45
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 10.1.45.5 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip http server
+ip http secure-server
+logging trap notifications
+logging 10.1.254.10
+snmp-server community 20lexccs09$ RO 90
+snmp-server community r3D5ox RO
+!
+line con 0
+ password 7 105D0C09114643
+ login
+line vty 0 4
+ login local
+ length 0
+line vty 5 15
+ login
+!
+ntp clock-period 36029102
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: Bridge-MDF-2960-01
+Entry address(es): 
+  IP address: 10.1.45.2
+Platform: cisco WS-C2960-48TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/2,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 121 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 20:06 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001FC9D49A80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.45.2
+
+-------------------------
+Device ID: Bridge-MDF-3750-01
+Entry address(es): 
+  IP address: 10.1.45.1
+Platform: cisco WS-C3750-48TS,  Capabilities: Router Switch IGMP 
+Interface: GigabitEthernet0/1,  Port ID (outgoing port): GigabitEthernet1/0/4
+Holdtime : 120 sec
+
+Version :
+Cisco IOS Software, C3750 Software (C3750-IPBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 19:15 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001F9E4E7C00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.45.1
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:24:23 est Feb 28 1993
+Key name: TP-self-signed-1546714368
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00B36E13 
+  38F07103 B6BB9A55 040E0954 91572A54 3E30368D A99BEFBA 90E70F43 8A972BD5 
+  2719E496 4D0376CF D20B844A 4398A864 2E6A58B6 BFE8022F DFFB7CFE 795085A0 
+  980B1951 CA8B137B 7E6A1718 A7505E01 5028B854 31303C4E 5A417C76 7763F47B 
+  D0FC05DD C3504A2F 55AA99F2 7E2DAE30 A3738A7D 6891A845 D9A78E39 A5020301 0001
+% Key pair was generated at: 13:55:42 edt Jul 5 2020
+Key name: TP-self-signed-1546714368.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00D1645F 4B47090A 
+  B04C5650 CFD244C0 9D08A3A5 9255C129 F72E54C3 F1D72E9F B3CBF74A B4586674 
+  5995FB5C EF2A677E F30E621A E3814839 BBD47740 CFD14868 E3200FBB A961C4BD 
+  A5BF6EE9 6B807B8B 82B70A61 D9D5F2BC AB6320EC D0CDBF5B 97020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C2960-48TC-L"
+PID: WS-C2960-48TC-L   , VID: V10  , SN: FCQ1708Y6ZR
+
+
+

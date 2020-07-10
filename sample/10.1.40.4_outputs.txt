@@ -1,0 +1,622 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 8909 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service sequence-numbers
+!
+hostname Bowman-MDF-3560
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$BJwN$UXeNQaEIvVSG2VfxXB4BB.
+!
+username ccs24x7 password 7 0477581E5E2F1A5A2617
+username rjusta privilege 15 password 7 03100A52350A371D1F59
+username unicom privilege 15 password 7 1235000F435D5E51
+username phunter password 7 0722014042080B014645
+username pmusto privilege 15 password 7 11390B5419110E1F17
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 08166A441F33264F5852281D39282C
+username Advizex privilege 15 password 7 153E0E14162F26143A3C6772425E
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+system mtu routing 1500
+!
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue input cos-map queue 1 threshold 2 3 6 7
+mls qos srr-queue input cos-map queue 2 threshold 3 5
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 2 4
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1 0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+mls qos srr-queue output dscp-map queue 2 threshold 2 34
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1 0 10
+mls qos
+!
+crypto pki trustpoint TP-self-signed-1949912320
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1949912320
+ revocation-check none
+ rsakeypair TP-self-signed-1949912320
+!
+!
+crypto pki certificate chain TP-self-signed-1949912320
+ certificate self-signed 01
+  30820248 308201B1 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31393439 39313233 3230301E 170D3933 30333031 30303031 
+  31325A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 39343939 
+  31323332 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100C30F 0BF16F68 93CDCB4C 4FD5E715 141FF440 1C6D6BBF A395E1BB CDEDDC99 
+  85C80B03 E9A85C60 AAA30968 155299DF DF6383D2 05613F93 21072FF5 8BA12CCF 
+  A96AD685 0AE370E1 04E443B4 AAE36F86 0F8FDE4B 7033B25A F4E35E5C 4C413F87 
+  CE8735CE 8D898A3B 87FA3B08 A3578DF7 213D029F AD047B4B EDACC9F6 333C03CC 
+  BFFD0203 010001A3 70306E30 0F060355 1D130101 FF040530 030101FF 301B0603 
+  551D1104 14301282 10426F77 6D616E2D 4D44462D 33353630 2E301F06 03551D23 
+  04183016 8014EBD2 087CB5D2 44524FE8 34388C08 01DFCA15 4750301D 0603551D 
+  0E041604 14EBD208 7CB5D244 524FE834 388C0801 DFCA1547 50300D06 092A8648 
+  86F70D01 01040500 03818100 8D640D24 98D2E137 E40CF497 9341CA18 F9F5DC55 
+  70AB0D78 9BB4B913 98FBC58C 1CBEFF89 39439807 44B3A871 830B415C 94A206C3 
+  FD05E8B2 8F089E41 9AA3B710 48C9AA87 D68527E3 3973586F BED9B26D D20299E1 
+  2C040944 C21B2BB1 B6530197 9E1ACEEA 124556D9 6276751D 851B6972 C163F746 
+  DACF08B0 94D5CB19 4A807294
+  quit
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+no spanning-tree vlan 13,195,198,600,990,998-999
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/1
+ description Bowman-WAP06
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ description Bowman-WAP10
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ description Bowman-WAP08
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ description Bowman-WAP07
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ description Bowman-WAP09
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ description Bowman-WAP18
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ description Bowman-WAP04
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ description Bowman-WAP14
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ description Bowman-WAP01
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ description Bowman-WAP28
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ description Bowman-WAP17
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ description Bowman-WAP03
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ description Bowman-WAP11
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ description Bowman-WAP13
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ description Bowman-WAP05
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/18
+ description Bowman-WAP12
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/19
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/22
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/23
+ switchport access vlan 190
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/24
+ description Bowman-IDF-2960-48
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet1/1
+!
+interface GigabitEthernet1/2
+!
+interface GigabitEthernet1/3
+!
+interface GigabitEthernet1/4
+!
+interface TenGigabitEthernet1/1
+!
+interface TenGigabitEthernet1/2
+!
+interface Vlan1
+ ip address 10.1.40.4 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip classless
+ip http server
+ip http secure-server
+!
+logging trap notifications
+logging 10.1.254.10
+snmp-server community 20lexccs09$ RO 90
+snmp-server community r3D5ox RO
+snmp-server enable traps license
+!
+!
+line con 0
+ password 7 105D0C09114643
+ login
+line vty 0 4
+ login local
+ length 0
+line vty 5 15
+ login
+!
+ntp clock-period 36026739
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: Bowman-WAP03
+Entry address(es): 
+  IP address: 10.190.3.224
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/13,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 124 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 37659, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.224
+
+-------------------------
+Device ID: Bowman-WAP12
+Entry address(es): 
+  IP address: 10.190.3.184
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/18,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 174 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 11405, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.184
+
+-------------------------
+Device ID: Bowman-WAP30
+Entry address(es): 
+  IP address: 10.190.3.169
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/17,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 125 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 31148, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.169
+
+-------------------------
+Device ID: Bowman-WAP13
+Entry address(es): 
+  IP address: 10.190.3.88
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/15,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 162 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 35410, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.88
+
+-------------------------
+Device ID: Bowman-WAP02
+Entry address(es): 
+  IP address: 10.190.3.62
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/11,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 135 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 35576, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.62
+
+-------------------------
+Device ID: Bowman-WAP11
+Entry address(es): 
+  IP address: 10.190.3.63
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/14,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 158 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 19262, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.63
+
+-------------------------
+Device ID: Bowman-WAP17
+Entry address(es): 
+  IP address: 10.190.3.237
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/12,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 171 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 10666, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.237
+
+-------------------------
+Device ID: Bowman-WAP05
+Entry address(es): 
+  IP address: 10.190.3.90
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/16,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 154 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 51268, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.90
+
+-------------------------
+Device ID: Bowman-WAP09
+Entry address(es): 
+  IP address: 10.190.3.215
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/5,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 169 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 19807, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.215
+
+-------------------------
+Device ID: Bowman-WAP18
+Entry address(es): 
+  IP address: 10.190.3.58
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/6,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 149 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 60579, Power management id: 3
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.58
+
+-------------------------
+Device ID: Bowman-MDF-2960-48
+Entry address(es): 
+  IP address: 10.1.40.5
+Platform: cisco WS-C2960-48TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/24,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 152 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2012 by Cisco Systems, Inc.
+Compiled Thu 09-Feb-12 19:11 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000070105C31A300FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.40.5
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:07:22 est Feb 28 1993
+Key name: TP-self-signed-1949912320
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00C30F0B 
+  F16F6893 CDCB4C4F D5E71514 1FF4401C 6D6BBFA3 95E1BBCD EDDC9985 C80B03E9 
+  A85C60AA A3096815 5299DFDF 6383D205 613F9321 072FF58B A12CCFA9 6AD6850A 
+  E370E104 E443B4AA E36F860F 8FDE4B70 33B25AF4 E35E5C4C 413F87CE 8735CE8D 
+  898A3B87 FA3B08A3 578DF721 3D029FAD 047B4BED ACC9F633 3C03CCBF FD020301 0001
+% Key pair was generated at: 13:35:53 edt Jul 5 2020
+Key name: TP-self-signed-1949912320.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00B78752 CA5EF2A3 
+  60D26665 49865D5A 6C69CD29 B4DB477E 9481F460 45FC1507 8B452FDB 4FA93272 
+  677970FD 21707DF1 0D51870E 389A5B8F 40C09F2D 7CD8B6CA 72DF84B4 D0AFF6BD 
+  61A5A2D8 BBAB8BAE 63E9EAFE 560FBFAA 129AF237 78C54F28 67020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C3560X-24P"
+PID: WS-C3560X-24P-S   , VID: V04  , SN: FDO1709R0T7
+
+NAME: "Power Supply 0", DESCR: "FRU Power Supply"
+PID: C3KX-PWR-715WAC   , VID: V02  , SN: LIT1704008D
+
+
+

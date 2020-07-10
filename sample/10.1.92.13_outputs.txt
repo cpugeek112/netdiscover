@@ -1,0 +1,292 @@
+method: TELNET
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 5386 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname LEX-HARRINGTON-IDF196-PoE-SW04
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$7xtM$mQQYKcTmPK3ZizRgfX4iX1
+!
+username custom password 7 110716111F1B050B502C39212D
+username rjusta privilege 15 password 7 0010425F375E1D575E71
+username unicom privilege 15 password 7 062A0A391D185B4C
+username ccs24x7 privilege 15 password 7 022A57435A0859356340
+username phunter password 7 143A32070005382F757F
+username pmusto privilege 15 password 7 053B145E2F4F4B1A0A
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 097B68030F2F344A41552033382720
+username Advizex privilege 15 password 7 022A0143190302115E415B49544E
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+system mtu routing 1500
+ip subnet-zero
+no ip domain-lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+no spanning-tree vlan 536,566,600,990,998-999
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface GigabitEthernet0/1
+ description Harrington-WAP01
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/2
+ description Harrington-WAP05
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/3
+ description Harrington-WAP03
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/4
+ description Harrington-WAP04
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/5
+ description Harrington-WAP02
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/6
+ description Harrington-WAP06
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/7
+ description Harrington-WAP07
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/8
+ description Harrington-WAP09
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/9
+ description Harrington-WAP08
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/10
+ description Harrington-WAP12
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/11
+ description Harrington-WAP26
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/12
+ description Harrington-WAP27
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/13
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/14
+ description Harrington-WAP31
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/15
+ description Harrington-WAP30
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/16
+ description Harrington-WAP29
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/17
+ description Harrington-WAP32
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/18
+ switchport access vlan 192
+ switchport mode access
+!
+interface GigabitEthernet0/19
+ switchport access vlan 192
+ switchport mode access
+!
+interface GigabitEthernet0/20
+ description Harrington-WAP
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/21
+ description Harrington-WAP28
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/22
+ description Harrington-WAP
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/23
+ description Harrington-WAP
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/24
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/25
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/26
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/27
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/28
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Vlan1
+ ip address 10.1.92.13 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip classless
+ip http server
+!
+logging trap warnings
+logging facility local6
+logging 10.8.7.3
+access-list 50 permit 10.254.190.254
+access-list 50 permit 10.8.16.227
+access-list 50 permit 10.8.16.230
+access-list 50 permit 10.8.16.237
+access-list 50 permit 206.28.209.32 0.0.0.15
+access-list 50 permit 10.1.0.0 0.0.255.255
+access-list 50 permit 10.8.254.0 0.0.0.255
+access-list 50 permit 10.191.0.0 0.0.255.255
+access-list 80 permit 206.28.209.32 0.0.0.15
+access-list 85 permit 10.8.7.3
+snmp-server engineID local 0000000902000004DDE6AD80
+snmp-server community !tol# RO 85
+snmp-server community !atr3tol RO 80
+snmp-server community r3D5ox RO
+!
+control-plane
+!
+banner motd ^CCC
+
+
+                *** YOU ARE ATTEMPTING TO ACCESS A   ***
+                *** SECURE AREA.  ALL UNAUTHORIZED   ***
+                *** USERS MUST LOG OFF NOW.          ***
+                *** TOWN OF LEXINGTON MIS STAFF ONLY ***
+
+^C
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ login local
+line vty 5 15
+ access-class 50 in
+ exec-timeout 15 0
+ login
+!
+ntp clock-period 36029087
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX-HARRINGTON-IDF196-SW03
+Entry address(es): 
+  IP address: 10.1.92.12
+Platform: cisco WS-C2950T-24,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/25,  Port ID (outgoing port): GigabitEthernet0/2
+Holdtime : 124 sec
+
+Version :
+Cisco Internetwork Operating System Software 
+IOS (tm) C2950 Software (C2950-I6Q4L2-M), Version 12.1(22)EA1, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2004 by cisco Systems, Inc.
+Compiled Mon 12-Jul-04 08:18 by madison
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF0000000000000012D9A60200FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.92.12
+
+-------------------------
+Device ID: LEX-HARRINGTON-IDF196-2960X-AP
+Entry address(es): 
+  IP address: 10.1.92.14
+Platform: cisco WS-C2960X-24PD-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/24,  Port ID (outgoing port): GigabitEthernet1/0/24
+Holdtime : 131 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.2(2)E6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Fri 16-Dec-16 21:27 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000188B45E63300FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.92.14
+
+

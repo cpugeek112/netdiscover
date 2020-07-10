@@ -1,0 +1,533 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 12693 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname LEX-ClarkeMS-IDF1-SW08
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$/ioS$WQjHT2RQL9oD4HqdUYWko.
+!
+username ccs24x7 password 7 153E581455247D30073D
+username rjusta privilege 15 password 7 105A58403612045A5D54
+username unicom privilege 15 password 7 080D4956584F5742
+username phunter password 7 03297B070A0E33481F5E
+username pmusto privilege 15 password 7 097C5C581706120118
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 03337D011025021404503D1C041103
+username Advizex privilege 15 password 7 080D49561B1C082700045E547B72
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+system mtu routing 1500
+ip subnet-zero
+no ip domain-lookup
+!
+!
+!
+mls qos map cos-dscp 0 8 16 24 32 46 48 56
+mls qos srr-queue input bandwidth 90 10
+mls qos srr-queue input threshold 1 8 16
+mls qos srr-queue input threshold 2 34 66
+mls qos srr-queue input buffers 67 33 
+mls qos srr-queue input cos-map queue 1 threshold 2 1
+mls qos srr-queue input cos-map queue 1 threshold 3 0
+mls qos srr-queue input cos-map queue 2 threshold 1 2
+mls qos srr-queue input cos-map queue 2 threshold 2 4 6 7
+mls qos srr-queue input cos-map queue 2 threshold 3 3 5
+mls qos srr-queue input dscp-map queue 1 threshold 2 9 10 11 12 13 14 15
+mls qos srr-queue input dscp-map queue 1 threshold 3 0 1 2 3 4 5 6 7
+mls qos srr-queue input dscp-map queue 1 threshold 3 32
+mls qos srr-queue input dscp-map queue 2 threshold 1 16 17 18 19 20 21 22 23
+mls qos srr-queue input dscp-map queue 2 threshold 2 33 34 35 36 37 38 39 48
+mls qos srr-queue input dscp-map queue 2 threshold 2 49 50 51 52 53 54 55 56
+mls qos srr-queue input dscp-map queue 2 threshold 2 57 58 59 60 61 62 63
+mls qos srr-queue input dscp-map queue 2 threshold 3 24 25 26 27 28 29 30 31
+mls qos srr-queue input dscp-map queue 2 threshold 3 40 41 42 43 44 45 46 47
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 3 threshold 3 2 4
+mls qos srr-queue output cos-map queue 4 threshold 2 1
+mls qos srr-queue output cos-map queue 4 threshold 3 0
+mls qos srr-queue output dscp-map queue 1 threshold 3 40 41 42 43 44 45 46 47
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 25 26 27 28 29 30 31
+mls qos srr-queue output dscp-map queue 2 threshold 3 48 49 50 51 52 53 54 55
+mls qos srr-queue output dscp-map queue 2 threshold 3 56 57 58 59 60 61 62 63
+mls qos srr-queue output dscp-map queue 3 threshold 3 16 17 18 19 20 21 22 23
+mls qos srr-queue output dscp-map queue 3 threshold 3 32 33 34 35 36 37 38 39
+mls qos srr-queue output dscp-map queue 4 threshold 1 8
+mls qos srr-queue output dscp-map queue 4 threshold 2 9 10 11 12 13 14 15
+mls qos srr-queue output dscp-map queue 4 threshold 3 0 1 2 3 4 5 6 7
+mls qos queue-set output 1 threshold 1 138 138 92 138
+mls qos queue-set output 1 threshold 2 138 138 92 400
+mls qos queue-set output 1 threshold 3 36 77 100 318
+mls qos queue-set output 1 threshold 4 20 50 67 400
+mls qos queue-set output 2 threshold 1 149 149 100 149
+mls qos queue-set output 2 threshold 2 118 118 100 235
+mls qos queue-set output 2 threshold 3 41 68 100 272
+mls qos queue-set output 2 threshold 4 42 72 100 242
+mls qos queue-set output 1 buffers 10 10 26 54
+mls qos queue-set output 2 buffers 16 6 17 61
+mls qos
+!
+crypto pki trustpoint TP-self-signed-522394496
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-522394496
+ revocation-check none
+ rsakeypair TP-self-signed-522394496
+!
+!
+crypto pki certificate chain TP-self-signed-522394496
+ certificate self-signed 01
+  3082024D 308201B6 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 35323233 39343439 36301E17 0D393330 33303130 30303131 
+  325A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3532 32333934 
+  34393630 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  9C6FFDC5 F66E14C2 63DE3909 72D37762 272CE7C7 3CCDBF21 8A2922AD 7BAD009C 
+  4401037F 43D4F811 C391957A 15F4A69A 971B9079 45685CBD 9D16C8FD 966735EE 
+  D31CAE8F AAAA8F0A 92B7DD3D D5576C10 31FA3739 956EF548 929A44DD 5A5F5A4F 
+  60F6B040 8A4B02AA 3C574DE4 11EF282B 89218B30 FFB603BC 611BAC13 79864A5D 
+  02030100 01A37730 75300F06 03551D13 0101FF04 05300301 01FF3022 0603551D 
+  11041B30 1982174C 45582D43 6C61726B 654D532D 49444631 2D535730 382E301F 
+  0603551D 23041830 1680141D 05D299A9 764D52A8 7CECDBDC 29D46D6D A7B2C930 
+  1D060355 1D0E0416 04141D05 D299A976 4D52A87C ECDBDC29 D46D6DA7 B2C9300D 
+  06092A86 4886F70D 01010405 00038181 0042931D 8F7735FE 1B8CA30B D98AE5E6 
+  C0A7691F 5F24A75F E33FEB1D 5AB5F39D 2ED9071F C75F7310 3729D80E A973BE29 
+  DE11EDE7 D3292B28 11844179 CDA37B82 D715D7A1 922720CB 9F776E83 2FB76DBA 
+  96C3D339 BC8B9E75 393442C7 386C4567 C9C7CB81 47787C3C BECE94B8 2B21EA0A 
+  1F704069 D48C2AFF 5DCBB6C3 54637ADC 7D
+  quit
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+no spanning-tree vlan 13,536,566,600,990,998-999
+spanning-tree vlan 55-56,156 priority 8192
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ description AP20 Room 303
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ description AP21 Room 311
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ description AP22 Room 315
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+ description AP23 Room 317
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ description AP24 Room 323
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ description AP25 Teachers WKRM
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ description AP26 Room 318
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ description AP27 Room 325
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/9
+ description AP28 Room 331 WKRM
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/10
+ description AP29 Room 332
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+ description AP30 IMC
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+ description AP31 Room 370
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/13
+ description AP32 Room 367
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/14
+ description AP33 Room 355
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/15
+ description AP34 Room 348
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/16
+ description AP35 Room 345
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/17
+ description AP36 Room 335
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/18
+ description AP37 Room 364
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/19
+ description AP38 Room 360
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/20
+ description AP39 Room 338
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+ description AP40 Room 342
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/22
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/23
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface FastEthernet0/24
+ switchport access vlan 156
+ switchport mode access
+ srr-queue bandwidth share 10 10 60 20
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ srr-queue bandwidth share 10 10 60 20
+ queue-set 2
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+!
+interface GigabitEthernet0/2
+ switchport access vlan 55
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ srr-queue bandwidth share 10 10 60 20
+ queue-set 2
+ priority-queue out 
+ mls qos trust cos
+ auto qos voip trust 
+!
+interface Vlan1
+ ip address 10.1.56.17 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip classless
+ip http server
+ip http secure-server
+!
+logging trap warnings
+logging facility local6
+logging 10.8.7.3
+access-list 50 permit 10.8.16.227
+access-list 50 permit 10.8.16.230
+access-list 50 permit 10.8.16.237
+access-list 50 permit 206.28.209.32 0.0.0.15
+access-list 50 permit 10.1.0.0 0.0.255.255
+access-list 50 permit 10.8.254.0 0.0.0.255
+access-list 50 permit 10.156.0.0 0.0.255.255
+access-list 80 permit 206.28.209.32 0.0.0.15
+access-list 85 permit 10.8.7.3
+snmp-server engineID local 0000000902000004DDE6AD80
+snmp-server community !tol# RO 85
+snmp-server community !atr3tol RO 80
+snmp-server community r3D5ox RO
+!
+control-plane
+!
+banner motd ^C
+
+
+                *** YOU ARE ATTEMPTING TO ACCESS A   ***
+                *** SECURE AREA.  ALL UNAUTHORIZED   ***
+                *** USERS MUST LOG OFF NOW.          ***
+                *** TOWN OF LEXINGTON MIS STAFF ONLY ***
+
+^C
+!
+line con 0
+ password 7 08096C5C1B480B10065B02
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ password 7 062A2A195E411C0D0005
+ login local
+line vty 5 15
+ access-class 50 in
+ exec-timeout 15 0
+ password 7 0527233733435B1D1C17
+ login
+!
+ntp clock-period 36029150
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX-ClarkeMS-IDF1-SW06
+Entry address(es): 
+  IP address: 10.1.56.15
+Platform: cisco WS-C2960-48TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/1,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 174 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)SEE3, RELEASE SOFTWARE (fc2)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 22-Feb-07 13:57 by myl
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001C0E0AF100FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.56.15
+
+-------------------------
+Device ID: LEX-ClarkeMS-IDF1-SW03
+Entry address(es): 
+  IP address: 10.1.56.12
+Platform: cisco WS-C2960-48TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/2,  Port ID (outgoing port): GigabitEthernet0/2
+Holdtime : 151 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)SEE3, RELEASE SOFTWARE (fc2)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 22-Feb-07 13:57 by myl
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001C0E0AC400FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.56.12
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:01:10 est Feb 28 1993
+Key name: TP-self-signed-522394496
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 009C6FFD 
+  C5F66E14 C263DE39 0972D377 62272CE7 C73CCDBF 218A2922 AD7BAD00 9C440103 
+  7F43D4F8 11C39195 7A15F4A6 9A971B90 7945685C BD9D16C8 FD966735 EED31CAE 
+  8FAAAA8F 0A92B7DD 3DD5576C 1031FA37 39956EF5 48929A44 DD5A5F5A 4F60F6B0 
+  408A4B02 AA3C574D E411EF28 2B89218B 30FFB603 BC611BAC 1379864A 5D020301 0001
+% Key pair was generated at: 13:54:47 edt Jul 5 2020
+Key name: TP-self-signed-522394496.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00C9B371 689E8D41 
+  1DDD7F02 4DAC4CC1 A95332D0 56108D34 452689EE AA6EB9DE FB30168E 2DB3A6E3 
+  B4A5D62B A0835B88 144740E5 494083FE CD21DE39 8FDF4962 28D1DAC9 56277D6F 
+  98EFD385 FDB02D5B 309594EE 4E737488 D38DD35F 45DEF2B2 2D020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C3560V2-24PS"
+PID: WS-C3560V2-24PS-S , VID: V06, SN: FDO1525X09B
+
+NAME: "GigabitEthernet0/1", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-T               , VID:     , SN: 00000MTC145002ZR
+
+NAME: "GigabitEthernet0/2", DESCR: "10/100/1000BaseTX SFP"
+PID:                     , VID:     , SN: MTB239421       
+
+
+

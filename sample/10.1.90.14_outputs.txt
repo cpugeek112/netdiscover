@@ -1,0 +1,5152 @@
+method: SSH
+
+###show running-config all
+
+Building configuration...
+
+Current configuration with default configurations exposed : 125288 bytes
+!
+! Last configuration change at 06:55:46 est Sun Jan 5 2020
+!
+version 15.2
+parser cache
+parser config partition
+parser command serializer
+parser maximum utilization 100
+parser maximum latency 40
+downward-compatible-config 15.2
+no service log backtrace
+no service config
+no service exec-callback
+no service nagle
+service slave-log
+no service slave-coredump
+no service pad to-xot
+no service pad from-xot
+no service pad cmns
+no service pad
+no service telnet-zeroidle
+no service tcp-keepalives-in
+no service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime localtime
+no service password-encryption
+no service exec-wait
+no service linenumber
+no service internal
+no service scripting
+no service compress-config
+service prompt config
+no service old-slip-prompts
+no service pt-vty-logging
+no service disable-ip-fast-frag
+no service sequence-numbers
+service counters max age 0
+no service call-home
+service dhcp
+!
+hostname LEX-HARRINGTON-MDF-VOIP
+!
+boot-start-marker
+boot config 
+boot-end-marker
+!
+shell processing
+no logging discriminator
+logging exception 4096
+no logging count
+no logging message-counter log
+no logging message-counter debug
+logging message-counter syslog
+no logging snmp-authfail
+no logging userinfo
+logging buginf
+logging queue-limit 100
+logging queue-limit esm 0
+logging queue-limit trap 100
+logging buffered 4096 debugging
+logging reload message-limit 1000 notifications
+no logging persistent
+logging console guaranteed
+logging console debugging
+logging monitor debugging
+logging cns-events informational
+logging on
+!
+username ccs24x7 password 7 022A57435A0859356340
+username rjusta privilege 15 password 0 t19Sev110
+username unicom privilege 15 password 0 Lex1625
+username phunter password 0 M@llard17
+username pmusto privilege 15 password 0 Pr1ncess
+username PresidioNOC privilege 15 password 0 WFjvJC8*9Dysch
+username Advizex privilege 15 password 0 LexremPro2019
+username eborden password 7 013D55145A1F155D711D19
+spd extended-headroom 10
+spd headroom 100
+spd enable
+no aaa new-model
+ipc holdq threshold upper 0
+ipc holdq threshold lower 0
+ipc header-cache permanent 1000 100
+ipc buffers max-free 500
+ipc buffers min-free 150
+ipc buffers permanent 300
+process cpu extended history 12
+process cpu autoprofile hog
+clock timezone est -5 0
+clock summer-time edt recurring 60
+clock save interval 0
+clock initialize nvram
+cef table consistency-check IPv4 type lc-detect count 71 period 60
+cef table consistency-check IPv4 type scan-lc-rp count 71 period 60
+cef table consistency-check IPv4 type scan-rp-lc count 71 period 60
+cef table consistency-check IPv4 type scan-rib-ios count 1000 period 60
+cef table consistency-check IPv4 type scan-ios-rib count 1000 period 60
+no cef table consistency-check IPv4 data-checking
+no cef table consistency-check IPv4 error-message
+cef table consistency-check IPv4 auto-repair delay 10 holddown 300
+cef table consistency-check IPv6 type lc-detect count 26 period 60
+cef table consistency-check IPv6 type scan-lc-rp count 26 period 60
+cef table consistency-check IPv6 type scan-rp-lc count 26 period 60
+cef table consistency-check IPv6 type scan-ios-rib count 1000 period 60
+no cef table consistency-check IPv6 data-checking
+no cef table consistency-check IPv6 error-message
+cef table consistency-check IPv6 auto-repair delay 10 holddown 300
+cef table vrf tree IPv4 type MTRIE short-mask-protection 4 stride-pattern 8-8-8-8 hardware-api-notify off
+cef table vrf tree IPv6 type RTREE
+cef table output-chain build favor default
+cef table rate-monitor-period 5
+cef table download recursive-dependents priority 1
+cef table download default-route priority 1
+cef table download connected-route priority 2
+cef table download receive-route priority 2
+cef table download route-in-vrf priority 3
+cef table download catch-all priority 4
+boot auto-copy-sw
+psp arp pps 0
+psp dhcp pps 0
+psp igmp pps 0
+switch 1 provision ws-c2960x-24ps-l
+switch 2 provision ws-c2960x-48fps-l
+system cpu-hol enable
+call-home
+ alert-group configuration
+ alert-group diagnostic
+ alert-group environment
+ alert-group inventory
+ alert-group syslog
+ rate-limit 20
+ profile "CiscoTAC-1"
+  no active
+  destination preferred-msg-format xml
+  destination message-size-limit 3145728
+  no destination transport-method http
+  destination transport-method email
+  destination address email callhome@cisco.com 
+  destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService 
+  subscribe-to-alert-group diagnostic severity minor 
+  subscribe-to-alert-group environment severity warning 
+  subscribe-to-alert-group inventory
+  subscribe-to-alert-group syslog severity major pattern ".*"
+  subscribe-to-alert-group configuration periodic monthly 24 16:50
+  subscribe-to-alert-group inventory periodic monthly 24 16:35
+no cisp enable
+device-sensor notify new-tlvs
+ip subnet-zero
+ip source-route
+ip arp poll queue 1000
+ip arp poll rate 1000
+no ip arp proxy disable
+ip arp gleaning tftp
+ip arp gleaning udp
+ip arp inspection log-buffer entries 32
+ip arp inspection log-buffer logs 5 interval 1
+ip sticky-arp
+ip gratuitous-arps non-local
+ip icmp redirect subnet
+ip spd queue max-threshold 74
+ip spd queue min-threshold 73
+ip cef optimize neighbor resolution
+no ip cef accounting 
+ip cef load-sharing algorithm universal 6E47ED16
+ip dhcp relay information policy replace
+ip dhcp relay information check
+ip dhcp relay override giaddr link-selection
+ip dhcp use class
+ip dhcp use vrf connected
+ip dhcp binding cleanup interval 120
+ip dhcp conflict logging
+ip dhcp ping packets 2
+ip dhcp ping timeout 500
+!
+!
+no ip dhcp snooping information option allow-untrusted
+ip dhcp snooping information option
+no ip dhcp snooping database 
+ip dhcp snooping database write-delay 300
+ip dhcp snooping database timeout 300
+ip dhcp snooping verify mac-address
+ip dhcp snooping verify no-relay-agent-address
+no ip dhcp snooping wireless bootp-broadcast enable
+ip flow-cache entries 4096
+ip flow-cache timeout inactive 15
+ip flow-cache timeout active 30
+no  ip domain round-robin
+ip domain multicast in-addr.arpa
+ip domain-lookup
+ip domain-lookup nsap
+no ip hostname strict
+ ip dhcp-client broadcast-flag
+ip dhcp-client default-router distance 254
+ip device tracking probe count 3
+ip device tracking probe interval 30
+ip device tracking probe delay 0
+ip device tracking trace-buffer
+ip accounting-threshold 512
+ip admission ratelimit 100
+no ip admission watch-list enable
+ip admission watch-list expiry-time 10
+ip admission max-login-attempts 5
+ip admission init-state-time 2
+no ip admission auth-proxy-audit
+ip admission inactivity-timer 60
+ip admission absolute-timer 0
+ip igmp snooping report-suppression
+no ip igmp snooping tcn query solicit
+ip igmp snooping tcn flood query count 2
+ip igmp snooping robustness-variable 2
+ip igmp snooping last-member-query-count 2
+ip igmp snooping last-member-query-interval 1000
+ip igmp snooping querier version 2
+ip igmp snooping querier query-interval 60
+ip igmp snooping querier max-response-time 10
+ip igmp snooping querier timer expiry 120
+ip igmp snooping querier tcn query count 2
+ip igmp snooping querier tcn query interval 10
+no ip igmp snooping querier
+ip igmp snooping
+ipv6 hop-limit 64
+ipv6 icmp error-interval 100 10
+ipv6 nd cache expire
+no ipv6 nd ra solicited unicast
+ipv6 nd nsf convergence 120
+ipv6 nd nsf throttle 512
+ipv6 nd nsf dad suppress 60
+ipv6 nd nud limit 256 refresh 10
+ipv6 nd reachable-time 0
+ipv6 nd ns-interval 0
+ipv6 nd resolution data limit 16
+ipv6 nd dad time 0
+ipv6 nsf-converge 10
+ipv6 traffic interface-statistics
+no ipv6 snooping logging packet drop
+no ipv6 snooping logging resolution-veto
+ipv6 mld snooping listener-message-suppression
+no ipv6 mld snooping tcn query solicit
+ipv6 mld snooping tcn flood query count 2
+ipv6 mld snooping robustness-variable 2
+ipv6 mld snooping last-listener-query-count 2
+ipv6 mld snooping last-listener-query-interval 1000
+no ipv6 mld snooping
+ipv6 multicast multipath
+ipv6 multicast rpf use-bgp
+ipv6 cef optimize neighbor resolution
+ipv6 cef load-sharing algorithm universal 6E47ED16
+ntp max-associations 100
+location prefer static weight 0
+location prefer lldp-med weight 2
+!
+!
+!
+!
+!
+nmsp notification interval attachment 30
+nmsp notification interval location 30
+authentication mac-move deny
+no authentication logging verbose
+authentication critical recovery delay 100
+authentication command bounce-port ignore
+authentication command disable-port ignore
+no access-session interface-template sticky
+access-session vlan-assignment ignore-errors
+ cluster run
+!
+no cts logging verbose
+no cts sxp enable
+cts sxp retry period 120
+cts sxp reconciliation period 120
+no cts sxp log binding-changes
+cts sxp mapping network-map 0
+
+cts sxp speaker hold-time 120
+
+
+cts sxp listener hold-time 90 180
+
+cts sxp node-id 0
+no mab request format attribute 1
+no mab request format attribute 2
+no mab request format attribute 32
+no mab logging verbose
+vmps reconfirm 60
+vmps retry 3
+l2 traceroute
+mls qos map cos-dscp 0 8 16 24 32 46 48 56
+mls qos srr-queue output cos-map queue 1 threshold 3 4 5
+mls qos srr-queue output cos-map queue 2 threshold 1 2
+mls qos srr-queue output cos-map queue 2 threshold 2 3
+mls qos srr-queue output cos-map queue 2 threshold 3 6 7
+mls qos srr-queue output cos-map queue 3 threshold 3 0
+mls qos srr-queue output cos-map queue 4 threshold 3 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 32 33 40 41 42 43 44 45
+mls qos srr-queue output dscp-map queue 1 threshold 3 46 47
+mls qos srr-queue output dscp-map queue 2 threshold 1 16 17 18 19 20 21 22 23
+mls qos srr-queue output dscp-map queue 2 threshold 1 26 27 28 29 30 31 34 35
+mls qos srr-queue output dscp-map queue 2 threshold 1 36 37 38 39
+mls qos srr-queue output dscp-map queue 2 threshold 2 24
+mls qos srr-queue output dscp-map queue 2 threshold 3 48 49 50 51 52 53 54 55
+mls qos srr-queue output dscp-map queue 2 threshold 3 56 57 58 59 60 61 62 63
+mls qos srr-queue output dscp-map queue 3 threshold 3 0 1 2 3 4 5 6 7
+mls qos srr-queue output dscp-map queue 4 threshold 1 8 9 11 13 15
+mls qos srr-queue output dscp-map queue 4 threshold 2 10 12 14
+mls qos queue-set output 1 threshold 1 100 100 50 200
+mls qos queue-set output 1 threshold 2 125 125 100 400
+mls qos queue-set output 1 threshold 3 100 100 100 400
+mls qos queue-set output 1 threshold 4 60 150 50 200
+mls qos queue-set output 1 buffers 15 25 40 20
+mls qos rewrite ip dscp
+mls qos
+mvr vlan 1
+mvr querytime 5
+mvr mode compatible
+setup express
+scripting tcl low-memory 91516220
+!
+crypto pki trustpoint TP-self-signed-1400329472
+ enrollment retry count 999
+ enrollment retry period 1
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1400329472
+ revocation-check none
+ rsakeypair TP-self-signed-1400329472
+ hash sha1
+!
+crypto pki crl cache size 64
+!
+crypto pki certificate chain TP-self-signed-1400329472
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31343030 33323934 3732301E 170D3137 31303233 31363130 
+  35315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 34303033 
+  32393437 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100B6F0 827F74F0 40085F9A 78B4C4D6 75BF130E 4D24215F 1AE84256 E8FBB9E0 
+  03675DAB 582B1304 C341CBDE 55264BAA B005B0A6 1E01215A CED1BA78 23AC1611 
+  C4489C70 97DC99B5 FDA0917F 4AE23784 2E590498 00AD047D D0FA72B8 BCBDFE33 
+  8978D287 581A2FBB CF7B2082 DD952B8D 21EF2AD9 1DB7AD6B 9194BF47 583EFE54 
+  06CB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 149A64CD 20DDC306 2886B681 58CFA209 4ADE1BFE 5E301D06 
+  03551D0E 04160414 9A64CD20 DDC30628 86B68158 CFA2094A DE1BFE5E 300D0609 
+  2A864886 F70D0101 05050003 8181004C ED9D721F CDC5CDB2 9BFA0057 B6A86800 
+  FA66AFD2 E4B2EBC8 CAF0CD0F 824DF50E 2D92ED08 6A8856DC 9234F0B6 05908C38 
+  6D20C977 A418A1D8 FC1EFD21 482864F9 1BB77F30 76C8FD24 FC6BB351 DC1F6C16 
+  03FA496E BA8A20A5 FABC3E97 B4D81C03 5A7F2661 8CE3072E 7B1FE2A2 B56873E6 
+  BD5B6668 55B56E04 85BCD9E2 E13C72
+  	quit
+memory check-interval 60
+memory statistics history table 24
+memory validate-checksum 60
+memory lite
+memory chunk siblings threshold 10000
+dot1x system-auth-control
+no dot1x logging verbose
+dot1x auth-fail eapol
+dot1x guest-vlan supplicant
+dot1x supplicant force-multicast
+dot1x supplicant controlled transient
+no dot1x critical eapol
+no dot1x critical eapol block
+no file verify auto
+!
+spanning-tree mode pvst
+no spanning-tree dispute
+spanning-tree transmit hold-count 6
+spanning-tree optimize bpdu transmission
+spanning-tree queue maxsize 12288
+spanning-tree etherchannel guard misconfig
+spanning-tree extend system-id
+spanning-tree uplinkfast max-update-rate 167
+spanning-tree pathcost method short
+no spanning-tree vlan 13,536,566,600,990,998-999
+power inline consumption default 15400
+power inline logging global
+auto qos srnd4
+lacp system-priority 32768
+no diagnostic monitor syslog
+port-channel load-balance src-mac
+no device classifier
+crypto ikev2 authorization policy default
+ route set interface
+ route accept any
+!
+crypto ikev2 proposal default
+ encryption aes-cbc-256 aes-cbc-192 aes-cbc-128
+ integrity sha512 sha384 sha256 sha1 md5
+ group 5 2
+!
+crypto ikev2 policy default
+ match fvrf any
+ proposal default
+!
+crypto ikev2 nat keepalive 0
+crypto ikev2 diagnose error 50
+crypto ikev2 dpd 0 0 periodic
+crypto ikev2 limit max-in-negotation-sa 40
+crypto ikev2 limit max-sa 0
+crypto ikev2 window 5
+crypto ikev2 fragmentation mtu 576
+crypto engine software ipsec
+no crypto engine software isakmp
+!
+process-max-time 50
+!
+vlan internal allocation policy ascending
+cdp advertise-v2
+cdp timer 60
+cdp holdtime 180
+cdp run
+cdp tlv location
+cdp tlv app
+!
+no ip finger 
+no ip tcp ecn
+no ip tcp selective-ack
+no ip tcp timestamp
+ip tcp delayed-ack
+ip tcp chunk-size 0
+ip tcp mss 0
+ip tcp keepalive retries 4
+ip tcp keepalive interval 60
+ip tcp window-size 4128
+ip tcp queuemax 20
+ip tcp synwait-time 30
+no ip tcp path-mtu-discovery
+no ip tcp async-mobility server
+ip tcp RST-count 10 RST-window 5000
+ip telnet tos C0
+no ip telnet quiet
+no ip telnet hidden hostnames
+no ip telnet hidden addresses
+ip telnet comport enable
+ip telnet comport flow level 16
+ip telnet comport receive window 4128
+ip telnet comport disconnect delay 0
+ip ftp passive
+ip tftp min-timeout 4
+no ip tftp claim-netascii
+ip tftp blocksize 512
+!
+! 
+crypto isakmp aggressive-mode disable
+crypto isakmp diagnose error 50
+crypto ipsec optional retry 300
+!
+crypto ipsec security-association lifetime kilobytes 4608000
+crypto ipsec security-association lifetime seconds 3600
+no crypto ipsec security-association replay disable
+crypto ipsec security-association replay window-size 64
+crypto ipsec security-association dummy
+!
+crypto ipsec transform-set default esp-aes esp-sha-hmac 
+ mode transport
+crypto ipsec nat-transparency udp-encapsulation
+!
+crypto ipsec profile default
+ set security-association lifetime kilobytes 4608000
+ set security-association lifetime seconds 3600
+ no set security-association idle-time
+ no set security-association replay window-size 
+ set security-association dummy
+!
+!
+crypto call admission limit ike sa 0
+crypto call admission limit ike in-negotiation-sa 1000
+crypto call admission limit ipsec sa 0
+crypto mib ipsec flowmib history tunnel size 200
+crypto mib ipsec flowmib history failure size 200
+buffers element permanent 1000
+buffers element minimum 100
+buffers small permanent 50
+buffers small max-free 150
+buffers small min-free 20
+buffers small initial 0
+buffers middle permanent 25
+buffers middle max-free 150
+buffers middle min-free 10
+buffers middle initial 0
+buffers big permanent 50
+buffers big max-free 150
+buffers big min-free 5
+buffers big initial 0
+buffers verybig permanent 10
+buffers verybig max-free 100
+buffers verybig min-free 0
+buffers verybig initial 0
+buffers large permanent 0
+buffers large max-free 10
+buffers large min-free 0
+buffers large initial 0
+buffers huge permanent 0
+buffers huge max-free 4
+buffers huge min-free 0
+buffers huge size 18024
+buffers huge initial 0
+no buffers tune automatic
+!
+no autoconf enable
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip route-cache cef
+ ip route-cache
+ load-interval 300
+ carrier-delay 2
+ shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface GigabitEthernet1/0/1
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/2
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/3
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/4
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/5
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/6
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/7
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/8
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/9
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/10
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/11
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/12
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/13
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/14
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/15
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/16
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/17
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/18
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/19
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/20
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/21
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/22
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/23
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/24
+ description ***Uplink VOIP Controller***
+ switchport
+ switchport access vlan 192
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/25
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/26
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/27
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/28
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/1
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/2
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/3
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/4
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/5
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/6
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/7
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/8
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/9
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/10
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/11
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/12
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/13
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/14
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/15
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/16
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/17
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/18
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/19
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/20
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/21
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/22
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/23
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/24
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/25
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/26
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/27
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/28
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/29
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/30
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/31
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/32
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/33
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/34
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/35
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/36
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/37
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/38
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/39
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/40
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/41
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/42
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/43
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/44
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/45
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/46
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/47
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/48
+ switchport
+ switchport access vlan 90
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 192
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ srr-queue bandwidth share 1 30 35 5
+ priority-queue out 
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/49
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/50
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/51
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet2/0/52
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ tx-ring-limit 0
+ tx-queue-limit 0
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ mls qos trust cos
+ mls qos dscp-mutation Default DSCP Mutation Map
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+!
+interface Vlan1
+ ip address 10.1.90.14 255.255.0.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip route-cache cef
+ ip route-cache
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+!
+ip default-gateway 10.1.254.254
+ip nsf-converge 10
+ip http server
+ip http port 80
+ip http authentication enable
+ip http secure-server
+ip http secure-port 443
+ip http secure-active-session-modules all
+ip http max-connections 16
+ip http timeout-policy idle 180 life 180 requests 25 
+ip http session-idle-timeout 180 
+ip http active-session-modules all
+ip http client cache memory pool 100
+ip http client cache memory file 2
+ip http client cache ager interval 5
+ip http client connection timeout 10
+ip http client connection retry 1
+ip http client connection idle timeout 30
+ip http client response timeout 30
+ip http path flash:/c2960x-universalk9-mz.152-2.E6/html
+!
+ip route static adjust-time 60
+ip route static inter-vrf
+ip ssh time-out 120
+ip ssh authentication-retries 3
+ip ssh break-string ~break
+ip ssh dh min size 1024
+no ip ssh rekey time
+no ip ssh rekey volume
+ip ssh server authenticate user publickey
+ip ssh server authenticate user keyboard
+ip ssh server authenticate user password
+ip ssh server algorithm mac hmac-sha1 hmac-sha1-96
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr aes128-cbc 3des-cbc aes192-cbc aes256-cbc
+ip ssh client algorithm mac hmac-sha1 hmac-sha1-96
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr aes128-cbc 3des-cbc aes192-cbc aes256-cbc
+!
+no ip access-list helper egress check
+logging esm config
+logging history size 1
+logging history warnings
+logging trap informational
+logging delimiter tcp
+no logging origin-id
+logging facility local7
+no logging source-interface
+logging server-arp
+!
+ ipv6 prefix-list sequence-number
+ipv6 neighbor binding reachable-lifetime 300 stale-lifetime  86400 down-lifetime 86400
+no ipv6 neighbor binding logging
+no route-tag notation dotted-decimal
+snmp-server view v1default iso included
+snmp-server view v1default internet included
+snmp-server view v1default snmpUsmMIB excluded
+snmp-server view v1default snmpVacmMIB excluded
+snmp-server view v1default snmpCommunityMIB excluded
+snmp-server view v1default ciscoMgmt.252 excluded
+snmp-server community 20lexccs09$v1default RO 90
+snmp-server community r3D5oxv1default RO
+snmp-server priority normal
+no snmp-server trap link ietf
+no snmp-server trap link switchover
+snmp-server trap authentication vrf
+snmp-server trap authentication acl-failure
+snmp-server trap authentication unknown-context
+snmp-server trap retry 3
+snmp-server trap timeout 30
+snmp-server packetsize 1500
+snmp-server queue-length 10
+snmp-server spi get timeout 10000
+snmp-server spi set timeout 10000
+snmp-server chassis-id FOC2132T2JG
+no snmp-server enable traps call-home
+no snmp-server enable traps trustsec-sxp
+no snmp-server enable traps power-ethernet
+no snmp-server enable traps storm-control
+no snmp-server enable traps bridge
+no snmp-server enable traps stpx
+no snmp-server enable traps syslog
+no snmp-server enable traps vtp
+no snmp-server enable traps vlancreate
+no snmp-server enable traps vlandelete
+no snmp-server enable traps port-security
+snmp-server enable traps port-security trap-rate 0
+no snmp-server enable traps errdisable
+snmp-server enable traps errdisable notification-rate 0
+no snmp-server enable traps mac-notification
+snmp-server inform retries 3 timeout 15 pending 25
+snmp mib notification-log globalsize 500
+snmp mib notification-log globalageout 15
+snmp mib community-map 20lexccs09$ engineid 800000090300701F53775501
+snmp mib community-map r3D5ox engineid 800000090300701F53775501
+tacacs-server cache expiry 24 enforce hours
+ipv6 access-list log-update threshold 2147483647
+!
+vstack join-window mode auto
+alias exec h help
+alias exec lo logout
+alias exec p ping
+alias exec r resume
+alias exec s show
+alias exec u undebug
+alias exec un undebug
+alias exec w where
+no configuration mode exclusive
+default-value exec-character-bits 7
+default-value special-character-bits 7
+default-value data-character-bits 8
+!
+line con 0
+ motd-banner
+ exec-banner
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ password 7 105D0C09114643
+ no media-type rj45
+ login
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ exec
+ length 24
+ width 80
+ history size 20
+ history
+  editing
+ monitor
+ escape-character soft DEFAULT
+ escape-character DEFAULT
+ databits 8
+ stopbits 2
+ start-character 17
+ stop-character 19
+ speed 9600
+line vty 0 4
+ motd-banner
+ exec-banner
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ login local
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ exec
+ length 0
+ width 80
+ history size 20
+ history
+  editing
+ monitor
+ escape-character soft DEFAULT
+ escape-character DEFAULT
+ start-character 17
+ stop-character 19
+line vty 5 15
+ motd-banner
+ exec-banner
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ login
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ exec
+ length 24
+ width 80
+ history size 20
+ history
+  editing
+ monitor
+ escape-character soft DEFAULT
+ escape-character DEFAULT
+ start-character 17
+ stop-character 19
+!
+exception-slave core-file LEX-HARRINGTON-MDF-VOIP-core
+exception-slave protocol tftp
+exception protocol tftp
+exception region-size 131072
+exception data-corruption buffer truncate
+exception data-corruption buffer log
+monitor event-trace stacktrace
+no monitor event-trace sequence-number
+monitor event-trace timestamps datetime msec
+scheduler max-task-time 2000
+scheduler process-watchdog normal
+ntp allow mode control 3
+ntp leap-handle
+ntp mindistance 1
+ntp maxdistance 8
+ntp server 216.239.35.0 maxpoll 10 minpoll 6 version 4 burst iburst
+ntp server 10.80.6.25 maxpoll 10 minpoll 6 version 4 burst iburst
+cns id hostname 
+cns id hostname event
+cns id hostname image
+cns image retry 60
+mac address-table notification change interval 1
+mac address-table notification change history-size 1
+mac address-table notification change
+netconf max-sessions 4
+netconf lock-time 10
+netconf max-message 0
+wsma id hostname
+xmpp id hostname
+bulkstat resource limit memory 95
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: SEP64167f053a2d
+Entry address(es): 
+  IP address: 10.192.0.19
+Platform: Polycom SoundStation IP 6000,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/32,  Port ID (outgoing port): Port 1
+Holdtime : 143 sec
+
+Version :
+Updater: 5.0.8, App: 4.0.8
+
+advertisement version: 2
+Duplex: full
+Power drawn: 9.800 Watts
+
+-------------------------
+Device ID: SEP08000FBB69BE
+Entry address(es): 
+  IP address: 10.192.0.25
+Platform: Mitel 5304IP,DN 63335    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/14,  Port ID (outgoing port): Port 1
+Holdtime : 141 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB69BD
+Entry address(es): 
+  IP address: 10.192.0.33
+Platform: Mitel 5304IP,DN 63354    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/14,  Port ID (outgoing port): Port 1
+Holdtime : 149 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB69AD
+Entry address(es): 
+  IP address: 10.192.0.30
+Platform: Mitel 5304IP,DN 63142    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/9,  Port ID (outgoing port): Port 1
+Holdtime : 132 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB69EF
+Entry address(es): 
+  IP address: 10.192.0.67
+Platform: Mitel 5304IP,DN 63241    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/6,  Port ID (outgoing port): Port 1
+Holdtime : 175 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB69FD
+Entry address(es): 
+  IP address: 10.192.0.29
+Platform: Mitel 5304IP,DN 63136    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/13,  Port ID (outgoing port): Port 1
+Holdtime : 154 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBF5CB0
+Entry address(es): 
+  IP address: 10.192.0.85
+Platform: Mitel 5330e,DN 63271     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/40,  Port ID (outgoing port): Port 1
+Holdtime : 169 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC15A
+Entry address(es): 
+  IP address: 10.192.0.31
+Platform: Mitel 5330e,DN 63143     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/2,  Port ID (outgoing port): Port 1
+Holdtime : 158 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBF5C7D
+Entry address(es): 
+  IP address: 10.192.0.69
+Platform: Mitel 5330e,DN 63251     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/30,  Port ID (outgoing port): Port 1
+Holdtime : 140 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBF5113
+Entry address(es): 
+  IP address: 10.192.0.81
+Platform: Mitel 5330e,DN 63268     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/41,  Port ID (outgoing port): Port 1
+Holdtime : 156 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC26B
+Entry address(es): 
+  IP address: 10.192.0.27
+Platform: Mitel 5330e,DN 63135     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/19,  Port ID (outgoing port): Port 1
+Holdtime : 179 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC27C
+Entry address(es): 
+  IP address: 10.192.0.72
+Platform: Mitel 5330e,DN 63246     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/2,  Port ID (outgoing port): Port 1
+Holdtime : 129 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC15E
+Entry address(es): 
+  IP address: 10.192.0.35
+Platform: Mitel 5330e,DN 63356     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/3,  Port ID (outgoing port): Port 1
+Holdtime : 160 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC13C
+Entry address(es): 
+  IP address: 10.192.0.23
+Platform: Mitel 5330e,DN 63156     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/19,  Port ID (outgoing port): Port 1
+Holdtime : 134 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBB4BF4
+Entry address(es): 
+  IP address: 10.192.0.75
+Platform: Mitel 5304IP,DN 63258    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/20,  Port ID (outgoing port): Port 1
+Holdtime : 144 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB6A1B
+Entry address(es): 
+  IP address: 10.192.0.36
+Platform: Mitel 5304IP,DN 63336    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/31,  Port ID (outgoing port): Port 1
+Holdtime : 144 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBDC14E
+Entry address(es): 
+  IP address: 10.192.0.26
+Platform: Mitel 5330e,DN 63456     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/11,  Port ID (outgoing port): Port 1
+Holdtime : 133 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBB5DA5
+Entry address(es): 
+  IP address: 10.192.0.78
+Platform: Mitel 5304IP,DN 63445    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/8,  Port ID (outgoing port): Port 1
+Holdtime : 139 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBDC1F4
+Entry address(es): 
+  IP address: 10.192.0.84
+Platform: Mitel 5330e,DN 63266     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/44,  Port ID (outgoing port): Port 1
+Holdtime : 174 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC159
+Entry address(es): 
+  IP address: 10.192.0.71
+Platform: Mitel 5330e,DN 63145     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/18,  Port ID (outgoing port): Port 1
+Holdtime : 173 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBB69A6
+Entry address(es): 
+  IP address: 10.192.0.32
+Platform: Mitel 5304IP,DN 63144    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/45,  Port ID (outgoing port): Port 1
+Holdtime : 171 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: LEX-HARRINGTON-3850
+Entry address(es): 
+  IP address: 10.1.90.16
+Platform: cisco WS-C3850-48P,  Capabilities: Router Switch IGMP 
+Interface: GigabitEthernet1/0/27,  Port ID (outgoing port): GigabitEthernet1/0/1
+Holdtime : 165 sec
+
+Version :
+Cisco IOS Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 15.2(2)E4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Sat 13-Feb-16 03:45 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.90.16
+
+-------------------------
+Device ID: SEP08000FBF5C86
+Entry address(es): 
+  IP address: 10.192.0.20
+Platform: Mitel 5330e,DN 63157     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/3,  Port ID (outgoing port): Port 1
+Holdtime : 124 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC282
+Entry address(es): 
+  IP address: 10.192.0.22
+Platform: Mitel 5330e,DN 63159     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/48,  Port ID (outgoing port): Port 1
+Holdtime : 121 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBB6A28
+Entry address(es): 
+  IP address: 10.192.0.28
+Platform: Mitel 5304IP,DN 63137    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/1,  Port ID (outgoing port): Port 1
+Holdtime : 172 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBDC281
+Entry address(es): 
+  IP address: 10.192.0.79
+Platform: Mitel 5330e,DN 63158     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/25,  Port ID (outgoing port): Port 1
+Holdtime : 150 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBDC209
+Entry address(es): 
+  IP address: 10.192.0.66
+Platform: Mitel 5330e,DN 63250     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/22,  Port ID (outgoing port): Port 1
+Holdtime : 126 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+
+-------------------------
+Device ID: SEP08000FBB49F9
+Entry address(es): 
+  IP address: 10.192.0.68
+Platform: Mitel 5304IP,DN 63254    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/23,  Port ID (outgoing port): Port 1
+Holdtime : 148 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB5CFC
+Entry address(es): 
+  IP address: 10.192.0.21
+Platform: Mitel 5304IP,DN 63262    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/35,  Port ID (outgoing port): Port 1
+Holdtime : 124 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB6A21
+Entry address(es): 
+  IP address: 10.192.0.70
+Platform: Mitel 5304IP,DN 63242    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/7,  Port ID (outgoing port): Port 1
+Holdtime : 160 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+-------------------------
+Device ID: SEP08000FBB69A8
+Entry address(es): 
+  IP address: 10.192.0.73
+Platform: Mitel 5304IP,DN 63245    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/12,  Port ID (outgoing port): Port 1
+Holdtime : 144 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+
+
+Total cdp entries displayed : 31
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication methods:publickey,keyboard-interactive,password
+Encryption Algorithms:aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc
+MAC Algorithms:hmac-sha1,hmac-sha1-96
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 1024 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded):
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQC28IJ/dPBACF+aeLTE1nW/Ew5NJCFfGuhCVuj7ueAD
+Z12rWCsTBMNBy95VJkuqsAWwph4BIVrO0bp4I6wWEcRInHCX3Jm1/aCRf0riN4QuWQSYAK0EfdD6cri8
+vf4ziXjSh1gaL7vPeyCC3ZUrjSHvKtkdt61rkZS/R1g+/lQGyw==                            
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 12:10:51 edt Oct 23 2017
+Key name: TP-self-signed-1400329472
+Key type: RSA KEYS
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable. Redundancy enabled.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00B6F082 
+  7F74F040 085F9A78 B4C4D675 BF130E4D 24215F1A E84256E8 FBB9E003 675DAB58 
+  2B1304C3 41CBDE55 264BAAB0 05B0A61E 01215ACE D1BA7823 AC1611C4 489C7097 
+  DC99B5FD A0917F4A E237842E 59049800 AD047DD0 FA72B8BC BDFE3389 78D28758 
+  1A2FBBCF 7B2082DD 952B8D21 EF2AD91D B7AD6B91 94BF4758 3EFE5406 CB020301 0001
+% Key pair was generated at: 14:49:07 edt Jul 5 2020
+Key name: TP-self-signed-1400329472.server
+Key type: RSA KEYS
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable. Redundancy enabled.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00E76155 5B0884EC 
+  A01B4581 96D7FA42 70DD5C61 38EF73A2 AEE4FE3C FF75B2B6 5B4EA617 81B11468 
+  6D503587 DCAB7D79 8AA7FBAA 11393B50 EEC97672 0F7CFA0F FD1F7354 1E72A74F 
+  25EA814A 5AA2271D E4F1476E 868951BC EB06A4AA E54E9126 43020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C2960X-24PS-L"
+PID: WS-C2960X-24PS-L  , VID: V05  , SN: FOC2132T2JG
+
+NAME: "Switch 1 - FlexStackPlus Module", DESCR: "Stacking Module"
+PID: C2960X-STACK      , VID: V02  , SN: FOC21214DAN
+
+NAME: "GigabitEthernet1/0/27", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-TE              , VID: V01  , SN: AVC21262AD0     
+
+NAME: "2", DESCR: "WS-C2960X-48FPS-L"
+PID: WS-C2960X-48FPS-L , VID: V06  , SN: FOC2133S1Q6
+
+NAME: "Switch 2 - FlexStackPlus Module", DESCR: "Stacking Module"
+PID: C2960X-STACK      , VID: V02  , SN: FOC212148SQ
+
+
+

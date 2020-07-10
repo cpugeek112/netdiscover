@@ -1,0 +1,676 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 8886 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname LEX_LHS_Music_PoE-SW01
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$V8PF$5ijiMY8i30OXpc7oQ.Fus0
+!
+username ccs24x7 password 7 1329440A5A02523E042A
+username rjusta privilege 15 password 7 06125E787F4B1F485447
+username unicom privilege 15 password 7 022A01435A505D74
+username phunter password 0 M@llard17
+username pmusto privilege 15 password 0 Pr1ncess
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 0 WFjvJC8*9Dysch
+username Advizex privilege 15 password 0 LexremPro2019
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+switch 1 provision ws-c2960s-24ps-l
+!
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 2 4
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1 0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+mls qos srr-queue output dscp-map queue 2 threshold 2 34
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1 0 10
+mls qos
+!
+crypto pki trustpoint TP-self-signed-540956672
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-540956672
+ revocation-check none
+ rsakeypair TP-self-signed-540956672
+!
+!
+crypto pki certificate chain TP-self-signed-540956672
+ certificate self-signed 01
+  3082024D 308201B6 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 35343039 35363637 32301E17 0D393330 33303130 30313430 
+  335A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3534 30393536 
+  36373230 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  C12ABB59 54EDF0EC BC9F5F9F A1695F0A E4BBB8B3 085EAA06 43DB04C5 2A4E399D 
+  3F311397 C3634676 0FA6A29B 3D4EAD05 6684CA90 EDEA161A 626355F1 0E2AE5E8 
+  29150C0A 00DEB94A C61607A8 C0DABCD8 0469460F A21CBEFA 274A0A04 B1BCCF28 
+  863F0ECC 5D17B89D A8516151 EB917098 C9B49449 1BE85D54 F5068718 9E1505DD 
+  02030100 01A37730 75300F06 03551D13 0101FF04 05300301 01FF3022 0603551D 
+  11041B30 1982174C 45585F4C 48535F4D 75736963 5F506F45 2D535730 312E301F 
+  0603551D 23041830 16801431 4B807F6F 1E33447D 91D0A4C2 CFF64DC4 3A3D2030 
+  1D060355 1D0E0416 0414314B 807F6F1E 33447D91 D0A4C2CF F64DC43A 3D20300D 
+  06092A86 4886F70D 01010405 00038181 00BB6ADE AD3A64F0 86A2996E C8CD7886 
+  990160FF D5474745 F3EFCE37 2CF59C40 264AEB51 BF8BFB29 C351AAB0 90222AC0 
+  9425139C A5D3534E C6C815E3 7C3CEDEF 5D82DDF2 B531B57C 02E9F119 D716E48D 
+  F572A6D5 AB95AC3E 16C53563 A64BAE31 50BB457D A28D3261 1DC90E8F E50E561E 
+  11FF0E2A CE6CD3BE 2B60E6E6 B67B9FE2 71
+  quit
+!
+spanning-tree mode pvst
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+no spanning-tree vlan 13,195,198,600,990,998-999
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 160
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 160
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 160
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 160
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/25
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/26
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/27
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/28
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface Vlan1
+ ip address 10.1.60.14 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip http server
+ip http secure-server
+!
+line con 0
+line vty 0 4
+ login local
+line vty 5 15
+ login
+!
+ntp clock-period 22518494
+ntp server 216.239.35.0
+end
+
+
+###show snmp user
+
+%SNMP agent not enabled
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: SEP08000F888F1F
+Entry address(es): 
+  IP address: 10.161.0.135
+Platform: Mitel 5304IP,DN 69132    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/7,  Port ID (outgoing port): Port 1
+Holdtime : 152 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F888A3C
+Entry address(es): 
+  IP address: 10.161.0.124
+Platform: Mitel 5304IP,DN 69133    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/5,  Port ID (outgoing port): Port 1
+Holdtime : 140 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F768083
+Entry address(es): 
+  IP address: 10.161.0.13
+Platform: Mitel 5320IP,DN 69107    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/2,  Port ID (outgoing port): Port 1
+Holdtime : 176 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F888785
+Entry address(es): 
+  IP address: 10.161.0.43
+Platform: Mitel 5304IP,DN 69108    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/4,  Port ID (outgoing port): Port 1
+Holdtime : 171 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8889AE
+Entry address(es): 
+  IP address: 10.161.0.45
+Platform: Mitel 5304IP,DN 69110    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/11,  Port ID (outgoing port): Port 1
+Holdtime : 169 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8C86F4
+Entry address(es): 
+  IP address: 10.161.0.115
+Platform: Mitel 5304IP,DN 69109    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/10,  Port ID (outgoing port): Port 1
+Holdtime : 164 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: LHS-AP-61
+Entry address(es): 
+  IP address: 10.160.0.61
+  IPv6 address: FE80::DAB1:90FF:FE0E:57A8  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/17,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 128 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 7947, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Management address(es): 
+  IP address: 10.160.0.61
+
+-------------------------
+Device ID: LHS-AP-62
+Entry address(es): 
+  IP address: 10.160.0.62
+  IPv6 address: FE80::DAB1:90FF:FE42:68B4  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/19,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 169 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 59871, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Management address(es): 
+  IP address: 10.160.0.62
+
+-------------------------
+Device ID: SEP08000F86AFA2
+Entry address(es): 
+  IP address: 10.161.0.131
+Platform: Mitel 5304IP,DN 69131    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/1,  Port ID (outgoing port): Port 1
+Holdtime : 123 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: LHS-AP-63
+Entry address(es): 
+  IP address: 10.160.0.63
+  IPv6 address: FE80::DAB1:90FF:FE47:3990  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/18,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 177 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 28179, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Management address(es): 
+  IP address: 10.160.0.63
+
+-------------------------
+Device ID: SEP08000F8889E5
+Entry address(es): 
+  IP address: 10.161.0.12
+Platform: Mitel 5304IP,DN 69115    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/8,  Port ID (outgoing port): Port 1
+Holdtime : 150 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: LHS-AP-59
+Entry address(es): 
+  IP address: 10.160.0.59
+  IPv6 address: FE80::DAB1:90FF:FE47:21A4  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/13,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 151 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 38453, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Management address(es): 
+  IP address: 10.160.0.59
+
+-------------------------
+Device ID: LEX_LHS_Music_2960X
+Entry address(es): 
+  IP address: 10.1.60.13
+Platform: cisco WS-C2960X-48FPD-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet1/0/25,  Port ID (outgoing port): GigabitEthernet1/0/48
+Holdtime : 132 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.0(2a)EX5, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2015 by Cisco Systems, Inc.
+Compiled Mon 16-Feb-15 08:16 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000038ED18427380FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.60.13
+
+-------------------------
+Device ID: LHS-AP-143
+Entry address(es): 
+  IP address: 10.160.0.143
+  IPv6 address: FE80::A66C:2AFF:FEF5:9B48  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/16,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 125 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 24265, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Management address(es): 
+  IP address: 10.160.0.143
+
+-------------------------
+Device ID: LHS-AP-195
+Entry address(es): 
+  IP address: 10.160.0.195
+  IPv6 address: FE80::A293:51FF:FEEC:B26A  (link-local)
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet1/0/20,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 155 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.5.151.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 41969, Power management id: 2
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.160.0.195
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:14:03 est Feb 28 1993
+Key name: TP-self-signed-540956672
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00C12ABB 
+  5954EDF0 ECBC9F5F 9FA1695F 0AE4BBB8 B3085EAA 0643DB04 C52A4E39 9D3F3113 
+  97C36346 760FA6A2 9B3D4EAD 056684CA 90EDEA16 1A626355 F10E2AE5 E829150C 
+  0A00DEB9 4AC61607 A8C0DABC D8046946 0FA21CBE FA274A0A 04B1BCCF 28863F0E 
+  CC5D17B8 9DA85161 51EB9170 98C9B494 491BE85D 54F50687 189E1505 DD020301 0001
+% Key pair was generated at: 13:45:08 edt Jul 5 2020
+Key name: TP-self-signed-540956672.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00C8D1AB 32CF61B1 
+  431DB54D FA3ED02A D949AA65 9A4B244C 64CB0DDA D4F45CCD A6E966E6 A1B2ED85 
+  DF4A998F 29F629FE FEA5F64F 68670D92 88586C21 F409EDCD FC8C3EE5 2049BE83 
+  8B624BF6 8D282EA6 1A4AF60A 9C67351C 90291FA4 6C493716 BF020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C2960S-24PS-L"
+PID: WS-C2960S-24PS-L  , VID: V04  , SN: FOC1802S1EA
+
+NAME: "GigabitEthernet1/0/25", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-T               , VID:      , SN: MTC181504EL     
+
+
+

@@ -1,0 +1,3913 @@
+method: SSH
+
+###show running-config all
+
+Building configuration...
+
+Current configuration with default configurations exposed : 85660 bytes
+!
+! Last configuration change at 12:46:04 edt Mon Jun 22 2020 by pmusto
+!
+version 15.0
+parser cache
+parser config partition
+parser command serializer
+parser maximum utilization 100
+parser maximum latency 40
+downward-compatible-config 15.0
+no service log backtrace
+no service config
+no service exec-callback
+no service nagle
+service slave-log
+no service slave-coredump
+no service pad to-xot
+no service pad from-xot
+no service pad cmns
+no service pad
+no service telnet-zeroidle
+no service tcp-keepalives-in
+no service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+no service exec-wait
+no service linenumber
+no service internal
+no service scripting
+no service compress-config
+service prompt config
+no service old-slip-prompts
+no service pt-vty-logging
+no service disable-ip-fast-frag
+no service sequence-numbers
+service counters max age 0
+no service call-home
+service dhcp
+!
+hostname LEX-LHS-ForeignLanguage-2960X
+!
+boot-start-marker
+boot-end-marker
+!
+shell processing
+no logging discriminator
+logging exception 4096
+no logging count
+no logging message-counter log
+no logging message-counter debug
+logging message-counter syslog
+no logging snmp-authfail
+no logging userinfo
+logging buginf
+logging queue-limit 100
+logging queue-limit esm 0
+logging queue-limit trap 100
+logging buffered 4096 debugging
+logging reload message-limit 1000 notifications
+no logging persistent
+logging console guaranteed
+logging console debugging
+logging monitor debugging
+logging cns-events informational
+logging on
+enable secret 5 $1$E.ZG$SASW43ferijhmG3GHPJq70
+!
+username jcomey password 7 07052243430C0054
+username ccs24x7 password 7 0477581E5E2F1A5A2617
+username rjusta privilege 15 password 7 0010425F375E1D575E71
+username unicom privilege 15 password 7 11251C1D46445959
+username phunter password 0 M@llard17
+username pmusto privilege 15 password 0 Pr1ncess
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 0 WFjvJC8*9Dysch
+username Advizex privilege 15 password 0 LexremPro2019
+spd extended-headroom 10
+spd headroom 100
+spd enable
+no aaa new-model
+ipc holdq threshold upper 0
+ipc holdq threshold lower 0
+ipc header-cache permanent 1000 100
+ipc buffers max-free 500
+ipc buffers min-free 150
+ipc buffers permanent 300
+process cpu extended history 12
+process cpu autoprofile hog
+clock timezone est -5 0
+clock summer-time edt recurring 60
+clock save interval 0
+clock initialize nvram
+boot auto-copy-sw
+psp arp pps 0
+psp dhcp pps 0
+psp igmp pps 0
+switch 1 provision ws-c2960x-48fpd-l
+authentication mac-move deny
+authentication logging verbose
+authentication command bounce-port ignore
+authentication command disable-port ignore
+authentication critical recovery delay 100
+call-home
+ alert-group configuration
+ alert-group diagnostic
+ alert-group environment
+ alert-group inventory
+ alert-group syslog
+ rate-limit 20
+ profile "CiscoTAC-1"
+  no active
+  destination preferred-msg-format xml
+  destination message-size-limit 3145728
+  no destination transport-method http
+  destination transport-method email
+  destination address email callhome@cisco.com 
+  destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService 
+  subscribe-to-alert-group diagnostic severity minor 
+  subscribe-to-alert-group environment severity warning 
+  subscribe-to-alert-group inventory
+  subscribe-to-alert-group syslog severity major pattern ".*"
+  subscribe-to-alert-group configuration periodic monthly 7 15:33
+  subscribe-to-alert-group inventory periodic monthly 7 15:18
+no cisp enable
+ip subnet-zero
+ip source-route
+ip arp poll queue 1000
+ip arp poll rate 1000
+no ip arp proxy disable
+ip arp gleaning tftp
+ip arp gleaning udp
+ip arp incomplete retry 20
+ip arp incomplete entries 5000
+ip arp incomplete enable
+ip arp inspection log-buffer entries 32
+ip arp inspection log-buffer logs 5 interval 1
+ip sticky-arp
+ip gratuitous-arps non-local
+ip icmp redirect subnet
+ip spd queue max-threshold 74
+ip spd queue min-threshold 73
+ip dhcp relay information policy replace
+ip dhcp relay information check
+ip dhcp relay override giaddr link-selection
+ip dhcp use class
+ip dhcp use vrf connected
+ip dhcp binding cleanup interval 120
+ip dhcp conflict logging
+ip dhcp ping packets 2
+ip dhcp ping timeout 500
+!
+!
+no ip dhcp snooping information option allow-untrusted
+ip dhcp snooping information option
+no ip dhcp snooping database 
+ip dhcp snooping database write-delay 300
+ip dhcp snooping database timeout 300
+ip dhcp snooping verify mac-address
+ip dhcp snooping verify no-relay-agent-address
+ip flow-cache entries 4096
+ip flow-cache timeout inactive 15
+ip flow-cache timeout active 30
+no ip domain-lookup
+ ip dhcp-client broadcast-flag
+ip dhcp-client default-router distance 254
+ip device tracking probe count 3
+ip device tracking probe interval 30
+ip device tracking probe use-svi
+ip device tracking probe delay 0
+no ip device tracking
+ip accounting-threshold 512
+ip igmp snooping report-suppression
+no ip igmp snooping tcn query solicit
+ip igmp snooping tcn flood query count 2
+ip igmp snooping robustness-variable 2
+ip igmp snooping last-member-query-count 2
+ip igmp snooping last-member-query-interval 1000
+ip igmp snooping querier version 2
+ip igmp snooping querier query-interval 60
+ip igmp snooping querier max-response-time 10
+ip igmp snooping querier timer expiry 120
+ip igmp snooping querier tcn query count 2
+ip igmp snooping querier tcn query interval 10
+no ip igmp snooping querier
+ip igmp snooping
+ipv6 hop-limit 64
+ipv6 icmp error-interval 100 10
+ipv6 nd cache expire 14400
+ipv6 nd nsf convergence 120
+ipv6 nd nsf throttle 512
+ipv6 nd nsf dad suppress 60
+ipv6 nd nud limit 256
+ipv6 nd reachable-time 0
+ipv6 nd ns-interval 0
+ipv6 nd resolution data limit 16
+ipv6 nd dad time 0
+ipv6 nsf-converge 10
+ipv6 traffic interface-statistics
+ipv6 cef optimize neighbor resolution
+ipv6 cef load-sharing algorithm universal 7517B1C8
+no ipv6 snooping logging packet drop
+ipv6 mld snooping listener-message-suppression
+no ipv6 mld snooping tcn query solicit
+ipv6 mld snooping tcn flood query count 2
+ipv6 mld snooping robustness-variable 2
+ipv6 mld snooping last-listener-query-count 2
+ipv6 mld snooping last-listener-query-interval 1000
+no ipv6 mld snooping
+ntp max-associations 100
+nmsp notification interval attachment 30
+nmsp notification interval location 30
+ cluster run
+!
+no cts sxp enable
+cts sxp retry period 120
+cts sxp reconciliation period 120
+no cts sxp log binding-changes
+cts sxp mapping network-map 0
+device-sensor notify new-tlvs
+no mab request format attribute 1
+no mab request format attribute 2
+no mab request format attribute 32
+ ^C^L
+vmps reconfirm 60
+vmps retry 3
+mls qos rewrite ip dscp
+mvr vlan 1
+mvr querytime 5
+mvr mode compatible
+setup express
+scripting tcl low-memory 98249379
+!
+crypto pki crl cache size 64
+!
+archive
+ log config
+  no record rc
+  logging enable
+  no logging persistent reload
+  no logging persistent 
+  logging size 1000
+  notify syslog contenttype plaintext
+  no notify syslog contenttype xml
+  no hidekeys
+ path tftp://10.8.6.125/Switch/School/HighSchool/Cfg-$h
+ maximum 10
+ no rollback filter adaptive
+ rollback retry timeout 0
+ write-memory
+ time-period 1440
+memory check-interval 60
+memory statistics history table 24
+memory validate-checksum 60
+memory lite
+memory chunk siblings threshold 10000
+dot1x system-auth-control
+dot1x logging verbose
+no dot1x supplicant force-multicast
+no dot1x supplicant controlled
+no dot1x critical eapol
+file verify auto
+!
+spanning-tree mode pvst
+no spanning-tree dispute
+spanning-tree transmit hold-count 6
+spanning-tree optimize bpdu transmission
+spanning-tree queue maxsize 12288
+spanning-tree etherchannel guard misconfig
+spanning-tree extend system-id
+spanning-tree uplinkfast max-update-rate 88
+spanning-tree pathcost method short
+no spanning-tree vlan 13,110,195,198,208-210
+power inline consumption default 15400
+lacp system-priority 32768
+location prefer static weight 0
+location prefer lldp-med weight 2
+location prefer cdp weight 1
+!
+!
+!
+!
+!
+no diagnostic monitor syslog
+port-channel load-balance src-mac
+!
+process-max-time 50
+!
+vlan internal allocation policy ascending
+!
+no ip finger 
+no ip tcp selective-ack
+no ip tcp timestamp
+ip tcp delayed-ack
+ip tcp chunk-size 0
+ip tcp mss 0
+ip tcp window-size 4128
+ip tcp queuemax 20
+ip tcp synwait-time 30
+no ip tcp path-mtu-discovery
+ip tcp async-mobility server
+ip telnet tos C0
+ip telnet quiet
+ip telnet hidden hostnames
+ip telnet hidden addresses
+no ip telnet comport enable
+ip telnet comport flow level 16
+ip telnet comport receive window 4128
+ip telnet comport disconnect delay 0
+ip ftp passive
+no ip tftp claim-netascii
+ip ssh time-out 120
+ip ssh authentication-retries 3
+ip ssh break-string ~break
+ip ssh dh min size 1024
+no ip ssh rekey time
+no ip ssh rekey volume
+!
+buffers element permanent 500
+buffers element minimum 100
+buffers small permanent 50
+buffers small max-free 150
+buffers small min-free 20
+buffers small initial 0
+buffers middle permanent 25
+buffers middle max-free 150
+buffers middle min-free 10
+buffers middle initial 0
+buffers big permanent 50
+buffers big max-free 150
+buffers big min-free 5
+buffers big initial 0
+buffers verybig permanent 10
+buffers verybig max-free 100
+buffers verybig min-free 0
+buffers verybig initial 0
+buffers large permanent 0
+buffers large max-free 10
+buffers large min-free 0
+buffers large initial 0
+buffers huge permanent 0
+buffers huge max-free 4
+buffers huge min-free 0
+buffers huge size 18024
+buffers huge initial 0
+no buffers tune automatic
+!
+!
+!
+macro auto monitor
+!
+interface FastEthernet0
+ no ip address
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip route-cache cef
+ ip route-cache
+ load-interval 300
+ shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface GigabitEthernet1/0/1
+ description AP#127 Room 503
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/2
+ description AP#129 Room 510
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/3
+ description AP#130 Room 512
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/4
+ description AP#132 Room 515
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/5
+ description AP#133 Room 516
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/6
+ description AP#135 Room 518
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/7
+ description AP#138 Room 634
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/8
+ description AP#174 Room 632
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/9
+ description AP#140 Room 604
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/10
+ description AP#177 Room 605
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/11
+ description AP#175 Room 628
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/12
+ description AP#145 Room 627
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/13
+ description AP#147 Room 625
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/14
+ description AP#152 Room 613
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/15
+ description AP#149 Room 624
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/16
+ description AP#155 Room 616
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/17
+ description AP#156 Room 615
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/18
+ description LHS-AP-113
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/19
+ description LHS-AP-136
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/20
+ description LHS-AP-131
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/21
+ description LHS-AP-139
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/22
+ description LHS-AP-134
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/23
+ description LHS-AP-137
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/24
+ description LHS-AP-141
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/25
+ description LHS-AP-126
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/26
+ description LHS-AP-144
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/27
+ description LHS-AP-150
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/28
+ description LHS-AP-128
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/29
+ description LHS-AP-125
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/30
+ description LHS-AP-153
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/31
+ description LHS-AP-151
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/32
+ description LHS-AP-154
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/33
+ description LHS-AP-146
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/34
+ description LHS-AP-176
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/35
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/36
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/37
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/38
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/39
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/40
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/41
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/42
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/43
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/44
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/45
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/46
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/47
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/48
+ description Uplink 3560 POE
+ switchport
+ switchport access vlan 160
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/49
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet1/0/50
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface TenGigabitEthernet1/0/1
+ description Uplink to 6509
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ ipv6 mld snooping tcn flood
+ no mab
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface TenGigabitEthernet1/0/2
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ no switchport port-security
+ switchport port-security aging time 0
+ switchport port-security violation shutdown
+ switchport port-security aging type absolute
+ switchport port-security limit rate invalid-source-mac 10
+ no switchport port-security mac-address sticky
+ no switchport port-security aging static
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ ipv6 mld snooping tcn flood
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ mls qos cos 0
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface Vlan1
+ description ****SWITCH MANAGEMENT****
+ ip address 10.1.65.1 255.255.0.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip route-cache cef
+ ip route-cache
+ load-interval 300
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+ip default-gateway 10.1.254.254
+ip nsf-converge 10
+ip http server
+ip http port 80
+ip http authentication enable
+ip http secure-server
+ip http secure-port 443
+ip http secure-active-session-modules all
+ip http max-connections 16
+ip http timeout-policy idle 180 life 180 requests 25
+ip http active-session-modules all
+ip http client cache memory pool 100
+ip http client cache memory file 2
+ip http client cache ager interval 5
+ip http client connection timeout 10
+ip http client connection retry 1
+ip http client connection idle timeout 30
+ip http client response timeout 30
+ip http path flash:/c2960x-universalk9-mz.150-2.EX5/html
+!
+ip route static adjust-time 60
+ip route static inter-vrf
+logging esm config
+logging history size 1
+logging history warnings
+logging trap informational
+logging delimiter tcp
+no logging origin-id
+logging facility local7
+no logging source-interface
+logging server-arp
+cdp run
+cdp tlv location
+cdp tlv app
+!
+ ipv6 prefix-list sequence-number
+ipv6 neighbor binding reachable-lifetime 300 stale-lifetime  86400 down-lifetime 86400
+no ipv6 neighbor binding logging
+snmp-server view v1default iso included
+snmp-server view v1default internet included
+snmp-server view v1default snmpUsmMIB excluded
+snmp-server view v1default snmpVacmMIB excluded
+snmp-server view v1default snmpCommunityMIB excluded
+snmp-server view v1default ciscoMgmt.252 excluded
+snmp-server view *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF7F iso included
+snmp-server view *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF7F iso.2.840.10036 included
+snmp-server community $lhsv1default RO
+snmp-server community tol#v1default RO 85
+snmp-server community atr3tolv1default RO 80
+snmp-server community 20lexccs09$v1default RO 90
+snmp-server community r3D5oxv1default RO
+snmp-server community s3ntryschoolv1default RO
+snmp-server priority normal
+no snmp-server trap link ietf
+no snmp-server trap link switchover
+snmp-server trap authentication vrf
+snmp-server trap authentication acl-failure
+snmp-server trap authentication unknown-context
+snmp-server trap retry 3
+snmp-server trap timeout 30
+snmp-server packetsize 1500
+snmp-server queue-length 10
+snmp-server spi get timeout 10000
+snmp-server spi set timeout 10000
+snmp-server chassis-id FCW1909A40N
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps transceiver all
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps tty
+snmp-server enable traps license
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps cluster
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+snmp-server enable traps energywise
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps event-manager
+snmp-server enable traps power-ethernet group 1
+snmp-server enable traps power-ethernet police
+snmp-server enable traps cpu threshold
+snmp-server enable traps rep
+snmp-server enable traps vstack
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps stackwise
+snmp-server enable traps errdisable
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server host 10.1.1.105 traps version 2c s3ntryschool udp-port 162 
+snmp-server inform retries 3 timeout 15 pending 25
+snmp mib notification-log globalsize 500
+snmp mib notification-log globalageout 15
+snmp mib community-map $lhs engineid 80000009030040A6E8454A81
+snmp mib community-map 20lexccs09$ engineid 80000009030040A6E8454A81
+snmp mib community-map atr3tol engineid 80000009030040A6E8454A81
+snmp mib community-map r3D5ox engineid 80000009030040A6E8454A81
+snmp mib community-map s3ntryschool engineid 80000009030040A6E8454A81
+snmp mib community-map tol# engineid 80000009030040A6E8454A81
+tacacs-server cache expiry 24 enforce hours
+ipv6 access-list log-update threshold 2147483647
+!
+vstack join-window mode auto
+banner motd ^CC
+
+
+                *** YOU ARE ATTEMPTING TO ACCESS A   ***
+                *** SECURE AREA.  ALL UNAUTHORIZED   ***
+                *** USERS MUST LOG OFF NOW.          ***
+                *** TOWN OF LEXINGTON MIS STAFF ONLY ***
+
+^C
+alias exec h help
+alias exec lo logout
+alias exec p ping
+alias exec r resume
+alias exec s show
+alias exec u undebug
+alias exec un undebug
+alias exec w where
+default-value exec-character-bits 7
+default-value special-character-bits 7
+default-value data-character-bits 8
+!
+line con 0
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ password 7 10622C211718071F0916
+ no media-type rj45
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ length 24
+ width 80
+ history size 20
+ monitor
+ databits 8
+ stopbits 2
+ start-character 17
+ stop-character 19
+ speed 9600
+line vty 0 4
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ password 7 04772E3E1D2E595A0C0B
+ login local
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ length 24
+ width 80
+ history size 20
+ monitor
+ start-character 17
+ stop-character 19
+line vty 5 15
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ password 7 11253C3D051D1E180138
+ login
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ length 24
+ width 80
+ history size 20
+ monitor
+ start-character 17
+ stop-character 19
+!
+exception-slave core-file LEX-LHS-ForeignLanguage-2960X-core
+exception-slave protocol tftp
+exception protocol tftp
+exception region-size 131072
+monitor event-trace stacktrace
+no monitor event-trace sequence-number
+monitor event-trace timestamps datetime msec
+scheduler max-task-time 2000
+scheduler process-watchdog normal
+ntp maxdistance 8
+ntp broadcastdelay 0
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+cns id hostname 
+cns id hostname event
+cns id hostname image
+cns image retry 60
+mac address-table notification change interval 1
+mac address-table notification change history-size 1
+mac address-table notification change
+netconf max-sessions 4
+netconf lock-time 10
+netconf max-message 0
+wsma id hostname
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: Lexington-6509Core.ci.lexington.ma.us
+Entry address(es): 
+  IP address: 10.1.254.254
+Platform: cisco WS-C6509-E,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet1/0/1,  Port ID (outgoing port): TenGigabitEthernet4/3
+Holdtime : 158 sec
+
+Version :
+Cisco IOS Software, s72033_rp Software (s72033_rp-ADVENTERPRISEK9_WAN-M), Version 12.2(33)SXJ6, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Fri 19-Jul-13 03:29 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.1.254.254
+
+-------------------------
+Device ID: LEX_LHS_H_3560PoE-SW01
+Entry address(es): 
+  IP address: 10.1.65.8
+Platform: cisco WS-C3560G-24PS,  Capabilities: Router Switch IGMP 
+Interface: GigabitEthernet1/0/48,  Port ID (outgoing port): GigabitEthernet0/25
+Holdtime : 124 sec
+
+Version :
+Cisco IOS Software, C3560 Software (C3560-IPBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 18:15 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000081FF366D500FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Power Available TLV:
+
+    Power request id: 0, Power management id: 1, Power available: 0, Power management level: -1
+Management address(es): 
+  IP address: 10.1.65.8
+
+-------------------------
+Device ID: LHS-AP-152
+Entry address(es): 
+  IP address: 10.160.0.152
+  IPv6 address: FE80::EA65:49FF:FEB5:5058  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/14,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 177 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 23585, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.152
+
+-------------------------
+Device ID: LHS-AP-125
+Entry address(es): 
+  IP address: 10.160.0.125
+  IPv6 address: FE80::DAB1:90FF:FE47:3BA4  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/29,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 155 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 17030, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.125
+
+-------------------------
+Device ID: LHS-AP-134
+Entry address(es): 
+  IP address: 10.160.0.134
+  IPv6 address: FE80::DAB1:90FF:FE47:3A08  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/22,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 178 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 18518, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.134
+
+-------------------------
+Device ID: LHS-AP-153
+Entry address(es): 
+  IP address: 10.160.0.153
+  IPv6 address: FE80::DAB1:90FF:FE0E:58D4  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/30,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 151 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 35378, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.153
+
+-------------------------
+Device ID: LHS-AP-135
+Entry address(es): 
+  IP address: 10.160.0.135
+  IPv6 address: FE80::A66C:2AFF:FEF5:A504  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/6,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 140 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 10215, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.135
+
+-------------------------
+Device ID: LHS-AP-127
+Entry address(es): 
+  IP address: 10.160.0.127
+  IPv6 address: FE80::DAB1:90FF:FE16:1760  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/1,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 127 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 4996, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.127
+
+-------------------------
+Device ID: LHS-AP-150
+Entry address(es): 
+  IP address: 10.160.0.150
+  IPv6 address: FE80::A66C:2AFF:FEF5:9B54  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/27,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 137 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 26826, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.150
+
+-------------------------
+Device ID: LHS-AP-141
+Entry address(es): 
+  IP address: 10.160.0.141
+  IPv6 address: FE80::A66C:2AFF:FEF5:9B10  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/24,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 157 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 44570, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.141
+
+-------------------------
+Device ID: LHS-AP-136
+Entry address(es): 
+  IP address: 10.160.0.136
+  IPv6 address: FE80::EA65:49FF:FEF9:6648  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/19,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 163 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 10757, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.136
+
+-------------------------
+Device ID: LHS-AP-140
+Entry address(es): 
+  IP address: 10.160.0.140
+  IPv6 address: FE80::DAB1:90FF:FE47:1F8C  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/9,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 162 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 57626, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.140
+
+-------------------------
+Device ID: LHS-AP-126
+Entry address(es): 
+  IP address: 10.160.0.126
+  IPv6 address: FE80::DAB1:90FF:FE42:64F0  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/25,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 157 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 63932, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.126
+
+-------------------------
+Device ID: LHS-AP-151
+Entry address(es): 
+  IP address: 10.160.0.151
+  IPv6 address: FE80::DAB1:90FF:FE0E:5170  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/31,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 169 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 63999, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.151
+
+-------------------------
+Device ID: LHS-AP-137
+Entry address(es): 
+  IP address: 10.160.0.137
+  IPv6 address: FE80::A66C:2AFF:FEF5:9B84  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/23,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 138 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 63355, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.137
+
+-------------------------
+Device ID: LHS-AP-147
+Entry address(es): 
+  IP address: 10.160.0.147
+  IPv6 address: FE80::DAB1:90FF:FE42:4CCC  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/13,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 146 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 28275, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.147
+
+-------------------------
+Device ID: LHS-AP-174
+Entry address(es): 
+  IP address: 10.160.0.174
+  IPv6 address: FE80::DAB1:90FF:FE47:3308  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/8,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 173 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 36930, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.174
+
+-------------------------
+Device ID: LHS-AP-130
+Entry address(es): 
+  IP address: 10.160.0.130
+  IPv6 address: FE80::EA65:49FF:FEF9:7FBC  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/3,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 157 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 31226, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.130
+
+-------------------------
+Device ID: LHS-AP-156
+Entry address(es): 
+  IP address: 10.160.0.156
+  IPv6 address: FE80::A66C:2AFF:FEF5:9C10  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/17,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 161 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 2637, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.156
+
+-------------------------
+Device ID: LHS-AP-175
+Entry address(es): 
+  IP address: 10.160.0.175
+  IPv6 address: FE80::EA65:49FF:FEF9:7D90  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/11,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 139 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 38577, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.175
+
+-------------------------
+Device ID: LHS-AP-113
+Entry address(es): 
+  IP address: 10.160.0.113
+  IPv6 address: FE80::DAB1:90FF:FE42:4D08  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/18,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 178 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 34758, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.113
+
+-------------------------
+Device ID: LHS-AP-131
+Entry address(es): 
+  IP address: 10.160.0.131
+  IPv6 address: FE80::DAB1:90FF:FE16:1528  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/20,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 147 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 14693, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.131
+
+-------------------------
+Device ID: LHS-AP-145
+Entry address(es): 
+  IP address: 10.160.0.145
+  IPv6 address: FE80::A66C:2AFF:FEF5:9984  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/12,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 155 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 44725, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.145
+
+-------------------------
+Device ID: LHS-AP-154
+Entry address(es): 
+  IP address: 10.160.0.154
+  IPv6 address: FE80::DAB1:90FF:FE0E:55C8  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/32,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 151 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 46750, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.154
+
+-------------------------
+Device ID: LHS-AP-132
+Entry address(es): 
+  IP address: 10.160.0.132
+  IPv6 address: FE80::DAB1:90FF:FE42:5FD4  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/4,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 134 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 22154, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.132
+
+-------------------------
+Device ID: LHS-AP-155
+Entry address(es): 
+  IP address: 10.160.0.155
+  IPv6 address: FE80::EA65:49FF:FEB5:563C  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/16,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 154 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 57687, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.155
+
+-------------------------
+Device ID: LHS-AP-177
+Entry address(es): 
+  IP address: 10.160.0.177
+  IPv6 address: FE80::EA65:49FF:FEB5:3D20  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/10,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 157 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 21481, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.177
+
+-------------------------
+Device ID: LHS-AP-133
+Entry address(es): 
+  IP address: 10.160.0.133
+  IPv6 address: FE80::DAB1:90FF:FE42:642C  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/5,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 166 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 36224, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.133
+
+-------------------------
+Device ID: LHS-AP-144
+Entry address(es): 
+  IP address: 10.160.0.144
+  IPv6 address: FE80::DAB1:90FF:FE16:418  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/26,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 177 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 6914, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.144
+
+-------------------------
+Device ID: LHS-AP-149
+Entry address(es): 
+  IP address: 10.160.0.149
+  IPv6 address: FE80::EA65:49FF:FEF9:6620  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/15,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 153 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 23565, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.149
+
+-------------------------
+Device ID: LHS-AP-192
+Entry address(es): 
+  IP address: 10.160.0.192
+  IPv6 address: FE80::522F:A8FF:FEDF:617E  (link-local)
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet1/0/44,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 174 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.5.151.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 15074, Power management id: 2
+Power request levels are:30000 15400 0 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.192
+
+-------------------------
+Device ID: LHS-AP-138
+Entry address(es): 
+  IP address: 10.160.0.138
+  IPv6 address: FE80::A66C:2AFF:FEF5:9AC4  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/7,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 158 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 24281, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.138
+
+-------------------------
+Device ID: LHS-AP-129
+Entry address(es): 
+  IP address: 10.160.0.129
+  IPv6 address: FE80::DAB1:90FF:FE47:3A2C  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/2,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 154 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 49861, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.129
+
+-------------------------
+Device ID: LHS-AP-128
+Entry address(es): 
+  IP address: 10.160.0.128
+  IPv6 address: FE80::DAB1:90FF:FE47:39B4  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/28,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 146 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 44590, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.128
+
+-------------------------
+Device ID: LHS-AP-139
+Entry address(es): 
+  IP address: 10.160.0.139
+  IPv6 address: FE80::A66C:2AFF:FEF5:9A8C  (link-local)
+Platform: cisco AIR-CAP2702I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/21,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 143 sec
+
+Version :
+Cisco IOS Software, C2700 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 18:51 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 16.800 Watts
+Power request id: 23525, Power management id: 2
+Power request levels are:16800 15400 13000 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.139
+
+-------------------------
+Device ID: LHS-AP-190
+Entry address(es): 
+  IP address: 10.160.0.190
+  IPv6 address: FE80::7279:B3FF:FE62:B63C  (link-local)
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet1/0/42,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 168 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.5.151.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 40380, Power management id: 2
+Power request levels are:30000 15400 0 0 0 
+Power Available TLV:
+
+    Power request id: 0, Power management id: 0, Power available: 0, Power management level: 0
+Management address(es): 
+  IP address: 10.160.0.190
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 1024 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded):
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDStK02E4HvoT6wz9ls9Z6P99V7h98IFqdzHcO6x4ek
+yypeRG2/YZqDV4tf8CLEwT1BRs+n+kzL+mASYgj9ekuwOqbAhF5awj4b/Tmvpxa5w7tNq0wFNB4xB3Tz
+uw+6e6t1YwZ9EFW98AIaLjphm61mQC+JmYT4MuonHJ/V0UUr4w==                            
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 01:03:15 edt Jun 8 2016
+Key name: TP-self-signed-3896855168
+Key type: RSA KEYS
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00D2B4AD 
+  361381EF A13EB0CF D96CF59E 8FF7D57B 87DF0816 A7731DC3 BAC787A4 CB2A5E44 
+  6DBF619A 83578B5F F022C4C1 3D4146CF A7FA4CCB FA601262 08FD7A4B B03AA6C0 
+  845E5AC2 3E1BFD39 AFA716B9 C3BB4DAB 4C05341E 310774F3 BB0FBA7B AB756306 
+  7D1055BD F0021A2E 3A619BAD 66402F89 9984F832 EA271C9F D5D1452B E3020301 0001
+% Key pair was generated at: 13:46:32 edt Jul 5 2020
+Key name: TP-self-signed-3896855168.server
+Key type: RSA KEYS
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00BE18B4 E42EC522 
+  B9788699 DFFBEB92 D137CD5E 541162B8 373696DE 9F2E783F EB9F569C 764C2CA8 
+  6838F129 D07ADD35 C5E185D3 2C0FA2FC 6E220E33 5CC6CB43 6CA3A92E ED6BE861 
+  911F9849 2B1AC926 C50151C0 34C198E8 9E65B6FE 077D3C6D CF020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C2960X-48FPD-L"
+PID: WS-C2960X-48FPD-L , VID: V02  , SN: FCW1909A40N
+
+NAME: "TenGigabitEthernet1/0/1", DESCR: "SFP-10GBase-LR"
+PID: SFP-10G-LR          , VID: V02  , SN: SPC190405ED     
+
+
+

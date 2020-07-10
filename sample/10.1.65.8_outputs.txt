@@ -1,0 +1,367 @@
+method: TELNET
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 5900 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname LEX_LHS_H_3560PoE-SW01
+!
+enable secret 5 $1$/ioS$WQjHT2RQL9oD4HqdUYWko.
+!
+username jcomey password 7 07052243430C0054
+username ccs24x7 password 7 072372541F074F11381C
+username rjusta privilege 15 password 7 08351D173A1C1346435B
+username unicom privilege 15 password 7 013F031C0A5D545A
+username phunter password 7 022B245707071D251D19
+username pmusto privilege 15 password 7 012314555508031C32
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 08166A441F33264F5852281D39282C
+username Advizex privilege 15 password 7 05270317334943390B0A45425A55
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+system mtu routing 1500
+ip subnet-zero
+ip routing
+no ip domain-lookup
+!
+!
+!
+!
+no file verify auto
+!
+spanning-tree mode pvst
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+no spanning-tree vlan 13,110,195,198,208-210
+spanning-tree vlan 165 priority 4096
+!
+vlan internal allocation policy ascending
+!
+interface GigabitEthernet0/1
+ description AP#136 Room 520
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ description AP#139 Room 601
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ description AP#134 Room 517
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ description AP#141 Room 633
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ description AP#137 Room 513
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ description AP#144 Room 607
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ description AP#131 Room 514
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ description AP#150 Room 612
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ description AP#126 Room 502
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ description AP#128 Room 505
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ description AP#125 Room 500
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ description AP#153 Room 617
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ description AP#154 Room 614
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/18
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/19
+ description AP#151 Room 618
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ description AP#146 Room 610
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/22
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/23
+ description AP#176 Room 626
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/24
+ switchport access vlan 65
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/25
+ description ***UPLINK TO TOWN 6509 7/3****
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/26
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/27
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet0/28
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Vlan1
+ ip address 10.1.65.8 255.255.0.0
+!
+interface Vlan165
+ description VOICE
+ ip address 10.165.0.254 255.255.255.0
+ ip helper-address 10.161.0.2
+!
+ip default-gateway 10.1.254.254
+ip classless
+ip route 0.0.0.0 0.0.0.0 10.1.254.254
+ip http server
+!
+logging trap notifications
+logging facility local6
+logging 10.80.7.4
+logging 10.1.254.10
+access-list 90 permit 10.8.6.106
+access-list 90 permit 10.8.6.125
+snmp-server engineID local 00000009020000308513BB00
+snmp-server community $lhs! RO
+snmp-server community !tol# RO 85
+snmp-server community !atr3tol RO 80
+snmp-server community 20lexccs09$ RO 90
+snmp-server community r3D5ox RO
+!
+control-plane
+!
+banner motd ^C
+
+          
+
+                *** YOU ARE ATTEMPTING TO ACCESS A   ***
+                *** SECURE AREA.  ALL UNAUTHORIZED   ***
+                *** USERS MUST LOG OFF NOW.          ***
+                *** TOWN OF LEXINGTON MIS STAFF ONLY ***
+
+
+
+LHS H HOUSE 2960
+
+^C
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ password 7 04772E3E1D2E595A0C0B
+ login local
+ length 0
+line vty 5 15
+ password 7 10622C211718071F0916
+ login
+!
+ntp clock-period 36028975
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX-LHS-ForeignLanguage-2960X
+Entry address(es): 
+  IP address: 10.1.65.1
+Platform: cisco WS-C2960X-48FPD-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/25,  Port ID (outgoing port): GigabitEthernet1/0/48
+Holdtime : 147 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.0(2)EX5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Fri 21-Feb-14 05:54 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000040A6E8454A80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.65.1
+
+-------------------------
+Device ID: LEX_LHS_H_2960
+Entry address(es): 
+  IP address: 10.1.65.4
+Platform: cisco WS-C2960-48TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/26,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 129 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)SEE3, RELEASE SOFTWARE (fc2)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 22-Feb-07 13:57 by myl
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001C0F147400FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.65.4
+
+-------------------------
+Device ID: LEX_LHS_H__2960TT_L_24-SW05
+Entry address(es): 
+  IP address: 10.1.65.5
+Platform: cisco WS-C2960-48TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/28,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 131 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(44)SE6, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2009 by Cisco Systems, Inc.
+Compiled Mon 09-Mar-09 18:10 by gereddy
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000DC7B9480DE80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.65.5
+
+
+###show ip ssh
+
+^
+% Invalid input detected at '^' marker.
+
+
+###show crypto key mypubkey rsa
+
+^
+% Invalid input detected at '^' marker.
+
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C3560G-24PS"
+PID: WS-C3560G-24PS-S  , VID: V06, SN: FOC1410W0BA
+
+NAME: "GigabitEthernet0/25", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-T               , VID: V04 , SN: MTC19220AVL     
+
+NAME: "GigabitEthernet0/26", DESCR: "10/100/1000BaseTX SFP"
+PID:                     , VID:     , SN: MTB236918       
+
+NAME: "GigabitEthernet0/27", DESCR: "10/100/1000BaseTX SFP"
+PID:                     , VID:     , SN: AGM18102257     
+
+NAME: "GigabitEthernet0/28", DESCR: "10/100/1000BaseTX SFP"
+PID:                     , VID:     , SN: MTD610713       
+
+
+

@@ -1,0 +1,366 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 7502 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+!
+hostname LEX_LHS_JHouse_3560
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$/ioS$WQjHT2RQL9oD4HqdUYWko.
+!
+username jcomey password 7 07052243430C0054
+username ccs24x7 password 7 10625A015419441F230A
+username rjusta privilege 15 password 7 02125502380319701D1E
+username unicom privilege 15 password 7 080D4956584F5742
+username phunter password 7 112439091B131908557D
+username pmusto privilege 15 password 7 046B19570122495D1A
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 133231181D262772617D0C2A26211B
+username Advizex privilege 15 password 7 080D49561B1C082700045E547B72
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+system mtu routing 1500
+ip routing
+no ip domain-lookup
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-83965056
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-83965056
+ revocation-check none
+ rsakeypair TP-self-signed-83965056
+!
+!
+crypto pki certificate chain TP-self-signed-83965056
+ certificate self-signed 01
+  30820248 308201B1 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  2F312D30 2B060355 04031324 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 38333936 35303536 301E170D 39333033 30313030 30313337 
+  5A170D32 30303130 31303030 3030305A 302F312D 302B0603 55040313 24494F53 
+  2D53656C 662D5369 676E6564 2D436572 74696669 63617465 2D383339 36353035 
+  3630819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 8100A4EC 
+  0E47C7D4 84C44899 6A67ED86 8CCB1FA5 1AC78387 C90E89FF F9AF9256 0C1463CA 
+  CB8929D9 F6FFB474 982C1BA6 C90DE1B0 EA9A80DB 413EEBDF 3D44F4BB 14297D54 
+  A8E0699C FAD7F83A C4A10636 280C2BD9 D9519464 5F4442E5 F981660A 77FDC2E6 
+  002DCF44 A1CBA6E6 B15F5F67 F8FCBD46 ED425785 107AEE37 7EC5D82E 6D050203 
+  010001A3 74307230 0F060355 1D130101 FF040530 030101FF 301F0603 551D1104 
+  18301682 144C4558 5F4C4853 5F4A486F 7573655F 33353630 2E301F06 03551D23 
+  04183016 8014E0A4 8A96CCAA D3D64750 2415CC6B 2BF15EFB 028B301D 0603551D 
+  0E041604 14E0A48A 96CCAAD3 D6475024 15CC6B2B F15EFB02 8B300D06 092A8648 
+  86F70D01 01040500 03818100 5C6AAF40 423C152F A76DAB39 E3C03BF9 FF877B7A 
+  1DB71062 934EEF45 A7D91D92 C2BD8017 CE4BE25B 05BE4A74 A23B8B5C 90B0A239 
+  B72F856C 93B451E1 78D58D4E B87B71E3 078EB5B7 02581531 5C31B7B6 A65CB25C 
+  96C20868 0DDB8302 E18E0415 DAE99A41 12A4520C C68CA5DB 9E13A57B 60E187DB 
+  E4AD7228 A6FB08A1 29EDCF20
+  quit
+!
+!
+!
+!
+spanning-tree mode pvst
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+no spanning-tree vlan 13,195,198,600,990,998-999
+spanning-tree vlan 170 priority 4096
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface GigabitEthernet0/1
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ description not used
+ switchport access vlan 70
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ description not used
+ switchport access vlan 70
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ description not used
+ switchport access vlan 70
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ description not used
+!
+interface GigabitEthernet0/18
+ description not used
+ switchport access vlan 70
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/19
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ description not used
+ switchport access vlan 70
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/22
+ description not used
+ switchport access vlan 70
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/23
+ description not used
+ switchport access vlan 160
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/24
+ switchport access vlan 70
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/25
+ description ***UPLINK TO TOWN 6509 7/4****
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/26
+ description Uplink to 2960
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/27
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/28
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Vlan1
+ ip address 10.1.70.7 255.255.0.0
+!
+interface Vlan170
+ ip address 10.170.0.254 255.255.255.0
+ ip helper-address 10.161.0.2
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 10.1.254.254
+ip http server
+ip http secure-server
+!
+logging trap debugging
+logging facility local6
+logging host 10.8.6.125 transport udp port 714
+access-list 90 permit 10.8.6.106
+access-list 90 permit 10.8.6.125
+snmp-server engineID local 00000009020000308513BB00
+snmp-server community !tol# RO 85
+snmp-server community $lhs! RO
+snmp-server community !atr3tol RO 80
+snmp-server community 20lexccs09$ RO 90
+snmp-server community r3D5ox RO
+!
+banner motd ^CC
+                *** YOU ARE ATTEMPTING TO ACCESS A   ***
+                *** SECURE AREA.  ALL UNAUTHORIZED   ***
+                *** USERS MUST LOG OFF NOW.          ***
+                *** TOWN OF LEXINGTON MIS STAFF ONLY ***
+LHS J HOUSE 2960
+^C
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ password 7 04772E3E1D2E595A0C0B
+ login local
+ length 0
+line vty 5 15
+ password 7 10622C211718071F0916
+ login
+!
+ntp clock-period 36029003
+ntp server 216.239.35.0
+ntp server 129.6.15.30
+ntp server 129.6.15.29
+ntp server 129.6.15.28
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX-LHS-J-2960X
+Entry address(es): 
+  IP address: 10.1.70.1
+Platform: cisco WS-C2960X-48FPD-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/25,  Port ID (outgoing port): GigabitEthernet1/0/44
+Holdtime : 172 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.0(2)EX5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Fri 21-Feb-14 05:54 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000040A6E8454600FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.70.1
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:01:36 est Feb 28 1993
+Key name: TP-self-signed-83965056
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00A4EC0E 
+  47C7D484 C448996A 67ED868C CB1FA51A C78387C9 0E89FFF9 AF92560C 1463CACB 
+  8929D9F6 FFB47498 2C1BA6C9 0DE1B0EA 9A80DB41 3EEBDF3D 44F4BB14 297D54A8 
+  E0699CFA D7F83AC4 A1063628 0C2BD9D9 5194645F 4442E5F9 81660A77 FDC2E600 
+  2DCF44A1 CBA6E6B1 5F5F67F8 FCBD46ED 42578510 7AEE377E C5D82E6D 05020301 0001
+% Key pair was generated at: 14:38:01 edt Jul 5 2020
+Key name: TP-self-signed-83965056.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00C7E35F 45E60E74 
+  D9BB49B1 011C6EB1 3A12ADCB 5867877D F5AE934E 51F70196 CDDE5548 75F1DF8A 
+  3382DB2D 0A4F817C BFC515A4 109A09A9 A225AFCD FBDE1830 9543F7B8 23418C72 
+  7FC2C594 1FACDDCC D3A5D8CB 320B3286 34C34F26 A87CF6C0 CB020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C3560G-24PS"
+PID: WS-C3560G-24PS-S  , VID: V08  , SN: FOC1233W5L6
+
+NAME: "GigabitEthernet0/25", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-T               , VID: V04  , SN: MTC19220A3K     
+
+NAME: "GigabitEthernet0/26", DESCR: "10/100/1000BaseTX SFP"
+PID: Unspecified       , VID:      , SN: MTC009202       
+
+
+

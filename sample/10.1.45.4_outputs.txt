@@ -1,0 +1,549 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 8814 bytes
+!
+! No configuration change since last restart
+! NVRAM config last updated at 09:31:52 EST Tue Jun 16 2020
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service sequence-numbers
+!
+hostname Bridge-MDF-3560X-24
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$BJwN$UXeNQaEIvVSG2VfxXB4BB.
+!
+username ccs24x7 password 7 0477581E5E2F1A5A2617
+username rjusta privilege 15 password 7 0107575D680E105E701C
+username unicom privilege 15 password 7 0028161E550D5953
+username phunter password 7 03297B070A0E33481F5E
+username pmusto privilege 15 password 7 0236160A05050A325F
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 122E231D04212F5C6072003120362A
+username Advizex privilege 15 password 7 153E0E14162F26143A3C6772425E
+!
+!
+no aaa new-model
+clock timezone EST -5
+clock summer-time EDT date Mar 10 2013 2:00 Nov 3 2013 2:00
+system mtu routing 1500
+!
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 2 4
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1 0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+mls qos srr-queue output dscp-map queue 2 threshold 2 34
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1 0 10
+mls qos
+!
+crypto pki trustpoint TP-self-signed-1958704000
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1958704000
+ revocation-check none
+ rsakeypair TP-self-signed-1958704000
+!
+!
+crypto pki certificate chain TP-self-signed-1958704000
+ certificate self-signed 01
+  3082024C 308201B5 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31393538 37303430 3030301E 170D3933 30333031 30303031 
+  31335A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 39353837 
+  30343030 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100CB7A 5BB29E51 A1BAC0CC D3ED8806 69EBCDBF A5036A30 077E6F1E 64455D7A 
+  097C1597 18D3E627 3279D144 01EB3948 5C91A5CB BEFB7DB3 AAB5A2B4 7DFD8512 
+  B769F6D1 AF4DA959 FC347173 7D39D89A CFD573DF 5F68C0B1 F22759A6 041C6494 
+  E7306D65 C1988894 22CE0C8E FA31F567 DBA0A734 8A0FB05E 01E1235A F2B7FEB4 
+  7CB70203 010001A3 74307230 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D1104 18301682 14427269 6467652D 4D44462D 33353630 582D3234 2E301F06 
+  03551D23 04183016 8014722B D22C7D48 495FE25E 9058F135 AB3B5599 C2F9301D 
+  0603551D 0E041604 14722BD2 2C7D4849 5FE25E90 58F135AB 3B5599C2 F9300D06 
+  092A8648 86F70D01 01040500 03818100 AE2B314D 909BB9FF EEE4D117 E73F8CB8 
+  410EF8C3 06D92160 45D349C4 0A791762 FC98FAF9 4401D339 2F07C053 59503AA0 
+  4D82C176 273FD1AC 97ABB420 2F3A76AD E1947F1F 79827410 123A3400 5759AE5A 
+  08FE2702 96705620 BF151AD7 B24B02FD 4B28EBBD 84491733 7E454EE2 CB33C326 
+  C8BD52B4 0612A60F 0DF6E635 3030B7D8
+  quit
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+no spanning-tree vlan 13,536,566,600,990,998-999
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/1
+ description Bridge-WAP04
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ description Bridge-WAP06
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ description Bridge-WAP07
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ description Bridge-WAP10
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ description Bridge-WAP12
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ description Bridge-WAP09
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ description Bridge-WAP08
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ description Bridge-WAP01
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ description Bridge-WAP14
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ description Bridge-WAP13
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ description Bridge-WAP02
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ description Bridge-WAP03
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/18
+ description Bridge-WAP11
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/19
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ description Bridge-WAP05
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ description Bridge-WAP18
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/22
+ description Bridge-WAP16
+ switchport access vlan 190
+ switchport voice vlan 145
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/23
+ description Bridge-WAP17
+ switchport access vlan 190
+!
+interface GigabitEthernet0/24
+ description Bridge2960-POE
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet1/1
+!
+interface GigabitEthernet1/2
+!
+interface GigabitEthernet1/3
+!
+interface GigabitEthernet1/4
+!
+interface TenGigabitEthernet1/1
+!
+interface TenGigabitEthernet1/2
+!
+interface Vlan1
+ ip address 10.1.45.4 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip classless
+ip http server
+ip http secure-server
+!
+logging trap notifications
+logging 10.1.254.10
+snmp-server community 20lexccs09$ RO 90
+snmp-server community r3D5ox RO
+snmp-server enable traps license
+!
+!
+line con 0
+ password 7 105D0C09114643
+ login
+line vty 0 4
+ login local
+ length 0
+line vty 5 15
+ login
+!
+ntp clock-period 36026847
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: SEP08000F7C70E8
+Entry address(es): 
+  IP address: 10.145.0.146
+Platform: Mitel 5330e,DN 61204     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet0/19,  Port ID (outgoing port): Port 1
+Holdtime : 166 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: Bridge-MDF-2960-01
+Entry address(es): 
+  IP address: 10.1.45.2
+Platform: cisco WS-C2960-48TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/24,  Port ID (outgoing port): GigabitEthernet0/2
+Holdtime : 149 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 20:06 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001FC9D49A80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.45.2
+
+-------------------------
+Device ID: Bridge-WAP17
+Entry address(es): 
+  IP address: 10.190.3.208
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/23,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 123 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 11295, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.208
+
+-------------------------
+Device ID: Bridge-WAP16
+Entry address(es): 
+  IP address: 10.190.3.70
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/22,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 123 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 6748, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.70
+
+-------------------------
+Device ID: Bridge-WAP11
+Entry address(es): 
+  IP address: 10.190.3.55
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/18,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 132 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 49506, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.55
+
+-------------------------
+Device ID: Bridge-WAP02
+Entry address(es): 
+  IP address: 10.190.3.54
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/16,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 170 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 48372, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.54
+
+-------------------------
+Device ID: Bridge-WAP03
+Entry address(es): 
+  IP address: 10.190.3.51
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/17,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 160 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 21682, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.51
+
+-------------------------
+Device ID: Bridge-WAP18
+Entry address(es): 
+  IP address: 10.190.3.56
+Platform: cisco AIR-AP3802I-B-K9,  Capabilities: Router Trans-Bridge 
+Interface: GigabitEthernet0/21,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 158 sec
+
+Version :
+Cisco AP Software, ap3g3-k9w8 Version: 8.3.112.0
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 2014-2015 by Cisco Systems, Inc.
+
+advertisement version: 2
+Duplex: full
+Power drawn: 30.000 Watts
+Power request id: 40362, Power management id: 4
+Power request levels are:30000 15400 0 0 0 
+Management address(es): 
+  IP address: 10.190.3.56
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:15:38 EST Feb 28 1993
+Key name: TP-self-signed-1958704000
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00CB7A5B 
+  B29E51A1 BAC0CCD3 ED880669 EBCDBFA5 036A3007 7E6F1E64 455D7A09 7C159718 
+  D3E62732 79D14401 EB39485C 91A5CBBE FB7DB3AA B5A2B47D FD8512B7 69F6D1AF 
+  4DA959FC 3471737D 39D89ACF D573DF5F 68C0B1F2 2759A604 1C6494E7 306D65C1 
+  98889422 CE0C8EFA 31F567DB A0A7348A 0FB05E01 E1235AF2 B7FEB47C B7020301 0001
+% Key pair was generated at: 12:55:04 EST Jul 5 2020
+Key name: TP-self-signed-1958704000.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00BE5795 BBCD867C 
+  C6A70EE3 96FC509D 0BFE7461 055CCC04 9E44168A 1C11AEB5 03B78883 CC0D37A5 
+  4F98D0CD 1EBC17E6 32518419 CE1D2C7E 1E189C9F C7A9FFF4 48F94AD3 9B49A5CE 
+  8B7A0D05 BF364AE0 9C1580C6 12FCFE54 715D1F9E E79B4DAB 07020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C3560X-24P"
+PID: WS-C3560X-24P-S   , VID: V04  , SN: FDO1710R15S
+
+NAME: "Power Supply 0", DESCR: "FRU Power Supply"
+PID: C3KX-PWR-715WAC   , VID: V02  , SN: LIT17040VGE
+
+
+

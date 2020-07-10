@@ -1,0 +1,376 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 7222 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname LHS_Foreign_Language_Lab
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$BJwN$UXeNQaEIvVSG2VfxXB4BB.
+!
+username ccs24x7 password 7 10625A015419441F230A
+username rjusta privilege 15 password 7 111D485C24171D5D557A
+username unicom privilege 15 password 7 10620C015441405E
+username phunter password 7 052626032D4D5C0D4852
+username pmusto privilege 15 password 7 0236160A05050A325F
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 053C200537666D51535C330B180F0C
+username Advizex privilege 15 password 7 072324545C0C1435051D595C5573
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+!
+!
+vtp domain Lexington
+vtp mode transparent
+!
+!
+crypto pki trustpoint TP-self-signed-1742820352
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1742820352
+ revocation-check none
+ rsakeypair TP-self-signed-1742820352
+!
+!
+crypto pki certificate chain TP-self-signed-1742820352
+ certificate self-signed 01
+  30820251 308201BA A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 31373432 38323033 3532301E 170D3933 30333031 30303031 
+  33385A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 37343238 
+  32303335 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100D13D B0DFA329 FE8FD112 CFD31AFE B806B65D CB5D6400 51DEFB38 7D06BA5D 
+  C9EC78A9 FC7AEF45 6A29F189 D2CAFCBE E83686FC CBF5D9A9 B5ED2238 E94C374F 
+  AB08C7E2 CF39287C E95CBD8D 54AE9689 0ECCEF70 B1D71551 865739C7 E895CF96 
+  38C56DE2 9558E0D7 C5466F4A EF523499 1FC08315 B7E15B80 F8C6576D 2BEF2BF3 
+  884F0203 010001A3 79307730 0F060355 1D130101 FF040530 030101FF 30240603 
+  551D1104 1D301B82 194C4853 5F466F72 6569676E 5F4C616E 67756167 655F4C61 
+  622E301F 0603551D 23041830 168014E8 40D45567 1DDDA1FF 9D5CF4C3 6A6416FD 
+  E749AA30 1D060355 1D0E0416 0414E840 D455671D DDA1FF9D 5CF4C36A 6416FDE7 
+  49AA300D 06092A86 4886F70D 01010405 00038181 0065C6DC C5B52AE9 F1D2D1CD 
+  5CE19CEE BA0F6248 88335231 E7EEA9E7 84B8E50C A65229A8 4C3B0CDF EFC6F033 
+  6FAF3C3D E2FCA2B6 3C8B5F67 D6AAF02B F4ECC2D7 14DD4A3E D312768E 592112FD 
+  126B7FC4 74682966 FC781AB5 D15CC387 6F8B0B2C 72736728 77B34F61 DF6EB4A5 
+  A8177B2B 4DEAAFC3 8F57D0FC 440A9A94 D0054F5F E0
+  quit
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 65
+ name LHS_H
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ switchport access vlan 65
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/18
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/19
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/22
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/23
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/24
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/25
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/26
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/27
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/28
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/29
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/30
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/31
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/32
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/33
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/34
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/35
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/36
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/37
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/38
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/39
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/40
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/41
+ description Dill Server
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/42
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/43
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/44
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/45
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/46
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/47
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/48
+ switchport access vlan 65
+ spanning-tree portfast
+!
+interface GigabitEthernet0/49
+ switchport mode trunk
+!
+interface GigabitEthernet0/50
+ switchport mode trunk
+!
+interface Vlan1
+ ip address 10.1.65.6 255.255.0.0
+ no ip route-cache
+!
+ip default-gateway 10.1.254.254
+ip http server
+ip http secure-server
+!
+line con 0
+ password 7 105D0C09114643
+ login
+line vty 0 4
+ login local
+line vty 5 15
+ login
+!
+ntp clock-period 22519149
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+%SNMP agent not enabled
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX_LHS_H__2960TT_L_24-SW05
+Entry address(es): 
+  IP address: 10.1.65.5
+Platform: cisco WS-C2960-48TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/49,  Port ID (outgoing port): GigabitEthernet0/2
+Holdtime : 168 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(44)SE6, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2009 by Cisco Systems, Inc.
+Compiled Mon 09-Mar-09 18:10 by gereddy
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000DC7B9480DE80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.65.5
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:01:37 est Feb 28 1993
+Key name: TP-self-signed-1742820352
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00D13DB0 
+  DFA329FE 8FD112CF D31AFEB8 06B65DCB 5D640051 DEFB387D 06BA5DC9 EC78A9FC 
+  7AEF456A 29F189D2 CAFCBEE8 3686FCCB F5D9A9B5 ED2238E9 4C374FAB 08C7E2CF 
+  39287CE9 5CBD8D54 AE96890E CCEF70B1 D7155186 5739C7E8 95CF9638 C56DE295 
+  58E0D7C5 466F4AEF 5234991F C08315B7 E15B80F8 C6576D2B EF2BF388 4F020301 0001
+% Key pair was generated at: 13:49:11 edt Jul 5 2020
+Key name: TP-self-signed-1742820352.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00CD1519 81CAC10F 
+  B2822AA4 1294742B B68611CA F1BF5688 E7ABF3BD EC090D53 2FB2820A CEDC6061 
+  8AAC4D78 D664A10A 65BC8D04 4FEDE75D E6EC477F 9CA7AAC8 5753A807 4C018BF3 
+  2B39DAE2 5E9400EB EC91D0A4 42AC016E 1F0BE9C8 015FED9C 97020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C2960S-48TS-S"
+PID: WS-C2960S-48TS-S  , VID: V05  , SN: FOC1614W2P4
+
+NAME: "GigabitEthernet0/49", DESCR: "10/100/1000BaseTX SFP"
+PID: Unspecified       , VID:      , SN: AGM152822JE     
+
+
+

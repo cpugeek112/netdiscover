@@ -1,0 +1,1101 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 19766 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname LEX_LHS_FL_PoE-STACK01
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$V8PF$5ijiMY8i30OXpc7oQ.Fus0
+!
+username ccs24x7 password 7 1329440A5A02523E042A
+username rjusta privilege 15 password 7 06125E787F4B1F485447
+username unicom privilege 15 password 7 022A01435A505D74
+username phunter password 0 M@llard17
+username pmusto privilege 15 password 0 Pr1ncess
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 0 WFjvJC8*9Dysch
+username Advizex privilege 15 password 0 LexremPro2019
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+switch 1 provision ws-c2960s-24ps-l
+switch 2 provision ws-c2960s-24ps-l
+switch 3 provision ws-c2960s-24ps-l
+!
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 2 4
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1 0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+mls qos srr-queue output dscp-map queue 2 threshold 2 34
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1 0 10
+mls qos
+!
+crypto pki trustpoint TP-self-signed-3215055872
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3215055872
+ revocation-check none
+ rsakeypair TP-self-signed-3215055872
+!
+!
+crypto pki certificate chain TP-self-signed-3215055872
+ certificate self-signed 01
+  3082024F 308201B8 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33323135 30353538 3732301E 170D3933 30333031 30313138 
+  31365A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 32313530 
+  35353837 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100EAC2 0C190491 F7282A93 D6305412 C00E10C7 C9F92345 30E942A1 1F789574 
+  99D3AB94 CA770AD5 434D1DFB 7F29F93F E7BB9BD5 9099A153 4D4FFA38 F4E60CA8 
+  A4BBC186 478DF83A FE3B7AED A61F2B18 A79121D6 FE0EA03E 0B301E00 143213CD 
+  D151ABE2 CDB3C8D9 16F502DE 0A43F011 27D09727 8C1D3A50 8C711430 37DF1A38 
+  05910203 010001A3 77307530 0F060355 1D130101 FF040530 030101FF 30220603 
+  551D1104 1B301982 174C4558 5F4C4853 5F464C5F 506F452D 53544143 4B30312E 
+  301F0603 551D2304 18301680 14CE80FB 19378438 F0F22C15 65CCA959 A9FB2963 
+  23301D06 03551D0E 04160414 CE80FB19 378438F0 F22C1565 CCA959A9 FB296323 
+  300D0609 2A864886 F70D0101 04050003 8181001F 91272EE4 195CE8A3 47099389 
+  E1DDEF74 D9B76C7F 2E8640BB EB928881 3AA52890 B1F80F12 F7528A9A 08B472F6 
+  4868CFDB D53AD07E 69342694 BA15DCD5 DE305DD0 6A4FDEBA 369FFB76 E56EC599 
+  CA02BA7F 2F0255D5 82F56D7B 994BA87A D2DEE7F9 D50838E6 1CD970F2 B7F2AF38 
+  FD9CADDA D0845E10 09F86D6B E6F838A9 644C82
+  quit
+spanning-tree mode pvst
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/25
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/26
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/27
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/28
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet2/0/1
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/2
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/3
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/4
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/5
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/6
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/7
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/8
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/9
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/10
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/11
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/12
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/13
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/14
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/15
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/16
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/17
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/18
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/19
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/20
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/21
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/22
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/23
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/24
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/25
+!
+interface GigabitEthernet2/0/26
+!
+interface GigabitEthernet2/0/27
+!
+interface GigabitEthernet2/0/28
+!
+interface GigabitEthernet3/0/1
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/2
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/3
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/4
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/5
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/6
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/7
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/8
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/9
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/10
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/11
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/12
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/13
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/14
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/15
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/16
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/17
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/18
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/19
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/20
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/21
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/22
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/23
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/24
+ switchport access vlan 65
+ switchport mode access
+ switchport voice vlan 165
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/25
+!
+interface GigabitEthernet3/0/26
+!
+interface GigabitEthernet3/0/27
+!
+interface GigabitEthernet3/0/28
+!
+interface Vlan1
+ ip address 10.1.65.7 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip http server
+ip http secure-server
+!
+line con 0
+line vty 0 4
+ exec-timeout 0 0
+ login local
+line vty 5 15
+ login
+!
+ntp clock-period 22518602
+ntp server 216.239.35.0
+end
+
+
+###show snmp user
+
+%SNMP agent not enabled
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: SEP08000F888857
+Entry address(es): 
+  IP address: 10.165.0.43
+Platform: Mitel 5304IP,DN 69505    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/22,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F888784
+Entry address(es): 
+  IP address: 10.165.0.55
+Platform: Mitel 5304IP,DN 69604    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/19,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F865638
+Entry address(es): 
+  IP address: 10.65.20.8
+Platform: Mitel 5304IP,DN 69501    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/20,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8889C9
+Entry address(es): 
+  IP address: 10.165.0.42
+Platform: Mitel 5304IP,DN 69500    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/1,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: LEX_LHS_H_3560PoE-SW01
+Entry address(es): 
+  IP address: 10.1.65.8
+Platform: cisco WS-C3560G-24PS,  Capabilities: Router Switch IGMP 
+Interface: GigabitEthernet3/0/25,  Port ID (outgoing port): GigabitEthernet0/27
+Holdtime : 0 sec
+
+Version :
+Cisco IOS Software, C3560 Software (C3560-IPBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 18:15 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000081FF366D500FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.65.8
+
+-------------------------
+Device ID: SEP08000F8B9B8E
+Entry address(es): 
+  IP address: 10.165.0.20
+Platform: Mitel 5330e,DN 69530     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/2,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F888A15
+Entry address(es): 
+  IP address: 10.165.0.30
+Platform: Mitel 5304IP,DN 69516    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/14,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000FB72A8A
+Entry address(es): 
+  IP address: 10.165.0.45
+Platform: Mitel 5304IP,DN 69532    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/12,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8887A1
+Entry address(es): 
+  IP address: 10.165.0.44
+Platform: Mitel 5304IP,DN 69519    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/17,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8874C0
+Entry address(es): 
+  IP address: 10.65.20.6
+Platform: Mitel 5304IP,DN 69613    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/4,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8873E1
+Entry address(es): 
+  IP address: 10.65.20.2
+Platform: Mitel 5304IP,DN 69614    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/5,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F88896C
+Entry address(es): 
+  IP address: 10.165.0.35
+Platform: Mitel 5304IP,DN 69533    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/6,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8B9987
+Entry address(es): 
+  IP address: 10.65.20.4
+Platform: Mitel 5330e,DN 69531     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/17,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F88882D
+Entry address(es): 
+  IP address: 10.165.0.56
+Platform: Mitel 5304IP,DN 69507    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/5,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F8873A2
+Entry address(es): 
+  IP address: 10.165.0.14
+Platform: Mitel 5304IP,DN 69612    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/21,  Port ID (outgoing port): Port 1
+Holdtime : 0 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 20:18:15 est Feb 28 1993
+Key name: TP-self-signed-3215055872
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00EAC20C 
+  190491F7 282A93D6 305412C0 0E10C7C9 F9234530 E942A11F 78957499 D3AB94CA 
+  770AD543 4D1DFB7F 29F93FE7 BB9BD590 99A1534D 4FFA38F4 E60CA8A4 BBC18647 
+  8DF83AFE 3B7AEDA6 1F2B18A7 9121D6FE 0EA03E0B 301E0014 3213CDD1 51ABE2CD 
+  B3C8D916 F502DE0A 43F01127 D097278C 1D3A508C 71143037 DF1A3805 91020301 0001
+% Key pair was generated at: 13:47:15 edt Jul 5 2020
+Key name: TP-self-signed-3215055872.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00DF5040 90817A3A 
+  577D9F04 EDD19EC3 2A715FF8 E8E2A772 BBFF3BEB AECC15DC EE8B10DD 6EE8642D 
+  B768F2AD 3772029E 1402C0FE 9DC5C34B 6873F179 7C18196F 38E55C50 55266E80 
+  DDA33EEA EE4B80AF FA7695B8 C8D7CCEC B5BC4993 9057C719 BB020301 0001
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C2960S-24PS-L"
+PID: WS-C2960S-24PS-L  , VID: V04  , SN: FOC1802Z13N
+
+NAME: "2", DESCR: "WS-C2960S-24PS-L"
+PID: WS-C2960S-24PS-L  , VID: V04  , SN: FOC1802Z178
+
+NAME: "3", DESCR: "WS-C2960S-24PS-L"
+PID: WS-C2960S-24PS-L  , VID: V04  , SN: FOC1802Z18F
+
+NAME: "GigabitEthernet3/0/25", DESCR: "10/100/1000BaseTX SFP"
+PID: Unspecified       , VID:      , SN: AGM181020KN     
+
+
+

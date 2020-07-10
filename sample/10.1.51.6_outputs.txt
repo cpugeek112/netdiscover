@@ -1,0 +1,1785 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 25975 bytes
+!
+! No configuration change since last restart
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Estabrook-IDF3-Stack02
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$v2E2$cg8KoxvY2UhQdAMay34BM/
+!
+username ccs24x7 password 7 1329440A5A02523E042A
+username rjusta privilege 15 password 7 06125E787F4B1F485447
+username unicom privilege 15 password 7 022A01435A505D74
+username phunter password 0 M@llard17
+username pmusto privilege 15 password 0 Pr1ncess
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 0 WFjvJC8*9Dysch
+username Advizex privilege 15 password 0 LexremPro2019
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+switch 1 provision ws-c2960s-24pd-l
+switch 2 provision ws-c2960s-24pd-l
+switch 3 provision ws-c2960s-24pd-l
+switch 4 provision ws-c2960s-24pd-l
+!
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 2 4
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1 0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+mls qos srr-queue output dscp-map queue 2 threshold 2 34
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1 0 10
+mls qos
+!
+crypto pki trustpoint TP-self-signed-4083873152
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4083873152
+ revocation-check none
+ rsakeypair TP-self-signed-4083873152
+!
+!
+crypto pki certificate chain TP-self-signed-4083873152
+ certificate self-signed 01
+  3082024F 308201B8 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34303833 38373331 3532301E 170D3933 30333031 30303032 
+  35395A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 30383338 
+  37333135 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100A0D0 71B9BD16 ACB1060F 01BA31C9 6750868C 6F753F95 19F6DEB0 C7FB436B 
+  F15C316C E9FD09D2 CACB7A1F DF038227 0E1D0499 F90AC570 E821B2BE 27D7C863 
+  695337B6 6F68B0BD 26E009F1 77C2EE55 C354B505 1A7F1511 11FA0170 49D86AB3 
+  C80640EE 52609514 866AF8CC 7D647EFE C65C1602 B917E562 E60F7BC0 04103627 
+  E8B50203 010001A3 77307530 0F060355 1D130101 FF040530 030101FF 30220603 
+  551D1104 1B301982 17457374 6162726F 6F6B2D49 4446332D 53746163 6B30322E 
+  301F0603 551D2304 18301680 14126880 79A8A686 F73BAFF8 399B4E83 8F55A4DE 
+  90301D06 03551D0E 04160414 12688079 A8A686F7 3BAFF839 9B4E838F 55A4DE90 
+  300D0609 2A864886 F70D0101 04050003 8181001E A4B3E7BF CA460A7A 52C43A40 
+  DDEE4CCD 79060DB8 0EAF957F 0DC6815C 4448ACBE D2896136 49FB56F2 50BEB1B9 
+  F3629144 4CFE079A 1E9A077A 634C3AFF C58DDFD6 46FFE9A4 A94B0957 E30F9D17 
+  6268DC27 2E0DF616 D7975E03 E18C0F57 CEADE3D8 B23A4498 B4D30AD2 1B0D8972 
+  F807F857 2C0377D8 AEFAF681 0956B326 9916E7
+  quit
+spanning-tree mode pvst
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ description Estabrook-WAP31
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ description Estabrook-WAP03
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ description Estabrook-WAP16
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ description Estabrook-WAP01
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ description Estabrook-WAP14
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ description Estabrook-WAP15
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ description Estabrook-WAP13
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ description Estabrook-WAP02
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ description Estabrook-WAP05
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ description Estabrook-WAP04
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ description Estabrook-WAP12
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ description Estabrook-WAP11
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ description Estabrook-WAP06
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ description Estabrook-WAP07
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ description Estabrook-WAP08
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ description Estabrook-WAP10
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ description Estabrook-WAP09
+ switchport access vlan 151
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface TenGigabitEthernet1/0/1
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface TenGigabitEthernet1/0/2
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet2/0/1
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/2
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/3
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/4
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/5
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/6
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/7
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/8
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/9
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/10
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/11
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/12
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/13
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/14
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/15
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/16
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/17
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/18
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/19
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/20
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/21
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/22
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/23
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/24
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/25
+!
+interface GigabitEthernet2/0/26
+!
+interface TenGigabitEthernet2/0/1
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface TenGigabitEthernet2/0/2
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet3/0/1
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/2
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/3
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/4
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/5
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/6
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/7
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/8
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/9
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/10
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/11
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/12
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/13
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/14
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/15
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/16
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/17
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/18
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/19
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/20
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/21
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/22
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/23
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/24
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet3/0/25
+!
+interface GigabitEthernet3/0/26
+!
+interface TenGigabitEthernet3/0/1
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface TenGigabitEthernet3/0/2
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet4/0/1
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/2
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/3
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/4
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/5
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/6
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/7
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/8
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/9
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/10
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/11
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/12
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/13
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/14
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/15
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/16
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/17
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/18
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/19
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/20
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/21
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/22
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/23
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/24
+ switchport access vlan 51
+ switchport mode access
+ switchport voice vlan 150
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet4/0/25
+!
+interface GigabitEthernet4/0/26
+!
+interface TenGigabitEthernet4/0/1
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/0/2
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface Vlan1
+ ip address 10.1.51.6 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip http server
+ip http secure-server
+!
+line con 0
+line vty 0 4
+ exec-timeout 0 0
+ login local
+line vty 5 15
+ login
+!
+ntp clock-period 22519000
+ntp server 216.239.35.0
+end
+
+
+###show snmp user
+
+%SNMP agent not enabled
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: Estabrook-WAP12
+Entry address(es): 
+  IP address: 10.151.1.12
+  IPv6 address: FE80::C28C:60FF:FE24:B6CA  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/18,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 145 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 44183, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.12
+
+-------------------------
+Device ID: Estabrook-WAP03
+Entry address(es): 
+  IP address: 10.151.1.3
+  IPv6 address: FE80::7E69:F6FF:FEBC:7EF1  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/9,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 167 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 61653, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.3
+
+-------------------------
+Device ID: Estabrook-WAP02
+Entry address(es): 
+  IP address: 10.151.1.2
+  IPv6 address: FE80::7E69:F6FF:FEBC:7EAF  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/15,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 131 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 50244, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.2
+
+-------------------------
+Device ID: Estabrook-WAP13
+Entry address(es): 
+  IP address: 10.151.1.13
+  IPv6 address: FE80::C28C:60FF:FE24:B64F  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/14,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 166 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 54886, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.13
+
+-------------------------
+Device ID: Estabrook-WAP31
+Entry address(es): 
+  IP address: 10.151.1.31
+  IPv6 address: FE80::C28C:60FF:FE24:B759  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/8,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 142 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 62330, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.31
+
+-------------------------
+Device ID: Estabrook-WAP01
+Entry address(es): 
+  IP address: 10.151.1.1
+  IPv6 address: FE80::C28C:60FF:FE24:B64C  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/11,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 138 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 60354, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.1
+
+-------------------------
+Device ID: Estabrook-WAP10
+Entry address(es): 
+  IP address: 10.151.1.10
+  IPv6 address: FE80::C28C:60FF:FE2C:69ED  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/23,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 141 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 43017, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.10
+
+-------------------------
+Device ID: Estabrook-WAP11
+Entry address(es): 
+  IP address: 10.151.1.11
+  IPv6 address: FE80::7E69:F6FF:FE8D:2CD6  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/19,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 157 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 56860, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.11
+
+-------------------------
+Device ID: Estabrook-WAP07
+Entry address(es): 
+  IP address: 10.151.1.7
+  IPv6 address: FE80::7E69:F6FF:FE8D:2B43  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/21,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 155 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 33270, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.7
+
+-------------------------
+Device ID: Estabrook-WAP16
+Entry address(es): 
+  IP address: 10.151.1.16
+  IPv6 address: FE80::C28C:60FF:FE24:B535  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/10,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 173 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 55239, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.16
+
+-------------------------
+Device ID: Estabrook-WAP06
+Entry address(es): 
+  IP address: 10.151.1.6
+  IPv6 address: FE80::C28C:60FF:FE2C:69E3  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/20,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 165 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 37309, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.6
+
+-------------------------
+Device ID: Estabrook-WAP05
+Entry address(es): 
+  IP address: 10.151.1.5
+  IPv6 address: FE80::7E69:F6FF:FEBC:7E64  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/16,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 147 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 3576, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.5
+
+-------------------------
+Device ID: Estabrook-WAP14
+Entry address(es): 
+  IP address: 10.151.1.14
+  IPv6 address: FE80::C28C:60FF:FE24:B6B9  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/12,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 138 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 9559, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.14
+
+-------------------------
+Device ID: Estabrook-WAP15
+Entry address(es): 
+  IP address: 10.151.1.15
+  IPv6 address: FE80::7E69:F6FF:FEBC:7DC7  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/13,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 179 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 64167, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.15
+
+-------------------------
+Device ID: Estabrook-WAP04
+Entry address(es): 
+  IP address: 10.151.1.4
+  IPv6 address: FE80::7E69:F6FF:FEBC:7E01  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/17,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 140 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 6591, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.4
+
+-------------------------
+Device ID: SEP08000F7F60E2
+Entry address(es): 
+  IP address: 10.150.0.73
+Platform: Mitel 5304IP,DN 62308    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/19,  Port ID (outgoing port): Port 1
+Holdtime : 161 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: Estabrook-WAP09
+Entry address(es): 
+  IP address: 10.151.1.9
+  IPv6 address: FE80::C28C:60FF:FE24:B69C  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/24,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 156 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 51722, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.9
+
+-------------------------
+Device ID: Estabrook-WAP08
+Entry address(es): 
+  IP address: 10.151.1.8
+  IPv6 address: FE80::C28C:60FF:FE2C:6AA3  (link-local)
+Platform: cisco AIR-CAP2602I-A-K9,  Capabilities: Trans-Bridge Source-Route-Bridge IGMP 
+Interface: GigabitEthernet1/0/22,  Port ID (outgoing port): GigabitEthernet0
+Holdtime : 144 sec
+
+Version :
+Cisco IOS Software, C2600 Software (AP3G2-K9W8-M), Version 15.3(3)JF10, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 13-Jun-19 16:36 by prod_rel_team
+
+advertisement version: 2
+Duplex: full
+Power drawn: 15.400 Watts
+Power request id: 15684, Power management id: 2
+Power request levels are:15400 13000 0 0 0 
+Management address(es): 
+  IP address: 10.151.1.8
+
+-------------------------
+Device ID: SEP08000F7F5ECA
+Entry address(es): 
+  IP address: 10.150.0.77
+Platform: Mitel 5304IP,DN 62305    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/14,  Port ID (outgoing port): Port 1
+Holdtime : 159 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F60D5
+Entry address(es): 
+  IP address: 10.150.0.78
+Platform: Mitel 5304IP,DN 62306    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/10,  Port ID (outgoing port): Port 1
+Holdtime : 145 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F61A0
+Entry address(es): 
+  IP address: 10.150.0.71
+Platform: Mitel 5304IP,DN 62320    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/9,  Port ID (outgoing port): Port 1
+Holdtime : 148 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F6182
+Entry address(es): 
+  IP address: 10.150.0.69
+Platform: Mitel 5304IP,DN 62310    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/11,  Port ID (outgoing port): Port 1
+Holdtime : 168 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F80606D
+Entry address(es): 
+  IP address: 10.150.0.88
+Platform: Mitel 5304IP,DN 62327    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/21,  Port ID (outgoing port): Port 1
+Holdtime : 163 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F6192
+Entry address(es): 
+  IP address: 10.150.0.83
+Platform: Mitel 5304IP,DN 62303    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/13,  Port ID (outgoing port): Port 1
+Holdtime : 159 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F6181
+Entry address(es): 
+  IP address: 10.150.0.76
+Platform: Mitel 5304IP,DN 62318    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/7,  Port ID (outgoing port): Port 1
+Holdtime : 163 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F5EE4
+Entry address(es): 
+  IP address: 10.150.0.120
+Platform: Mitel 5304IP,DN 62325    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/6,  Port ID (outgoing port): Port 1
+Holdtime : 165 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7A3BC4
+Entry address(es): 
+  IP address: 10.150.0.85
+Platform: Mitel 5304IP,DN 62326    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/22,  Port ID (outgoing port): Port 1
+Holdtime : 161 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F5EF7
+Entry address(es): 
+  IP address: 10.150.0.70
+Platform: Mitel 5304IP,DN 62309    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/17,  Port ID (outgoing port): Port 1
+Holdtime : 159 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7404A4
+Entry address(es): 
+  IP address: 10.150.0.119
+Platform: Mitel 5304IP,DN 62307    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/15,  Port ID (outgoing port): Port 1
+Holdtime : 158 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7A3C0C
+Entry address(es): 
+  IP address: 10.150.0.87
+Platform: Mitel 5304IP,DN 62301    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/20,  Port ID (outgoing port): Port 1
+Holdtime : 168 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7F5EC7
+Entry address(es): 
+  IP address: 10.150.0.82
+Platform: Mitel 5304IP,DN 62304    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/2,  Port ID (outgoing port): Port 1
+Holdtime : 160 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7A4051
+Entry address(es): 
+  IP address: 10.150.0.86
+Platform: Mitel 5304IP,DN 62302    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/16,  Port ID (outgoing port): Port 1
+Holdtime : 154 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7405C2
+Entry address(es): 
+  IP address: 10.150.0.103
+Platform: Mitel 5304IP,DN 62316    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet3/0/5,  Port ID (outgoing port): Port 1
+Holdtime : 144 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: Estabrook-IDF3-Stack01
+Entry address(es): 
+  IP address: 10.1.51.5
+Platform: cisco WS-C2960S-48TD-L,  Capabilities: Switch IGMP 
+Interface: TenGigabitEthernet1/0/1,  Port ID (outgoing port): TenGigabitEthernet1/0/2
+Holdtime : 138 sec
+
+Version :
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(55)SE7, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Mon 28-Jan-13 10:28 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000D0C78982EF00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.51.5
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:02:57 est Feb 28 1993
+Key name: TP-self-signed-4083873152
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00A0D071 
+  B9BD16AC B1060F01 BA31C967 50868C6F 753F9519 F6DEB0C7 FB436BF1 5C316CE9 
+  FD09D2CA CB7A1FDF 0382270E 1D0499F9 0AC570E8 21B2BE27 D7C86369 5337B66F 
+  68B0BD26 E009F177 C2EE55C3 54B5051A 7F151111 FA017049 D86AB3C8 0640EE52 
+  60951486 6AF8CC7D 647EFEC6 5C1602B9 17E562E6 0F7BC004 103627E8 B5020301 0001
+% Key pair was generated at: 13:24:23 edt Jul 5 2020
+Key name: TP-self-signed-4083873152.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00B5D2F4 A30A947F 
+  64065C55 184E3040 5C792A30 8DD061C8 85C7323F CCFF8E81 CE0387E8 ACBA7702 
+  0FFA4B1B 990B4477 FAFDEDFE C21EA822 DC85BC1C 9B60E58B 79519625 CAA610B6 
+  FBC95A4B 7B26474D 72010EEF E4D5601E 6CBC4343 726C278C 8D020301 0001
+
+###show inventory
+
+NAME: "3", DESCR: "WS-C2960S-24PD-L"
+PID: WS-C2960S-24PD-L  , VID: V04  , SN: FOC1729X2B6
+
+NAME: "1", DESCR: "WS-C2960S-24PD-L"
+PID: WS-C2960S-24PD-L  , VID: V04  , SN: FOC1728Y0Y8
+
+NAME: "TenGigabitEthernet1/0/1", DESCR: "SFP-10GBase-SR"
+PID: SFP-10G-SR          , VID: V03  , SN: FNS17340C26     
+
+NAME: "2", DESCR: "WS-C2960S-24PD-L"
+PID: WS-C2960S-24PD-L  , VID: V04  , SN: FOC1728Y0WV
+
+NAME: "4", DESCR: "WS-C2960S-24PD-L"
+PID: WS-C2960S-24PD-L  , VID: V04  , SN: FOC1728Y0XJ
+
+
+

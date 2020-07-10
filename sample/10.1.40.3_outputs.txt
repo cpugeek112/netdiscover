@@ -1,0 +1,1221 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 15779 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service sequence-numbers
+!
+hostname Bowman-MDF-2960-POE
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$BJwN$UXeNQaEIvVSG2VfxXB4BB.
+!
+username ccs24x7 password 7 0477581E5E2F1A5A2617
+username rjusta privilege 15 password 7 071B70157D0C0F544642
+username unicom privilege 15 password 7 022A01435A505D74
+username phunter password 7 112439091B131908557D
+username pmusto privilege 15 password 7 012314555508031C32
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 133231181D262772617D0C2A26211B
+username Advizex privilege 15 password 7 09604B110B001A221903567A7A7D
+!
+!
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+switch 1 provision ws-c2960s-24ps-l
+switch 2 provision ws-c2960s-24ps-l
+!
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue output cos-map queue 1 threshold 3 5
+mls qos srr-queue output cos-map queue 2 threshold 2 4
+mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1 0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+mls qos srr-queue output dscp-map queue 2 threshold 2 34
+mls qos srr-queue output dscp-map queue 2 threshold 3 24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1 0 10
+mls qos
+!
+crypto pki trustpoint TP-self-signed-58758400
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-58758400
+ revocation-check none
+ rsakeypair TP-self-signed-58758400
+!
+!
+crypto pki certificate chain TP-self-signed-58758400
+ certificate self-signed 01
+  30820248 308201B1 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  2F312D30 2B060355 04031324 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 35383735 38343030 301E170D 39333033 30313030 30323535 
+  5A170D32 30303130 31303030 3030305A 302F312D 302B0603 55040313 24494F53 
+  2D53656C 662D5369 676E6564 2D436572 74696669 63617465 2D353837 35383430 
+  3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 8100B2DB 
+  3ABA9C48 3CFD66EE FC6B8D31 CFEBC504 830DF9A4 89C75BD3 3DC07461 8DBE7D7D 
+  869F8173 E06AACF2 1EC0B55C 5D15F375 A3B84752 3F050F29 AC3FE166 A2FC85BC 
+  C91E9452 ED0C43C0 8C982702 DD9533A4 77B4FBAF 6E0F36F1 AC8D7462 796C99BC 
+  CECEA706 6CC91FA4 3908D20E 92F58615 E9349250 79B94800 EDA65AAC 5D1D0203 
+  010001A3 74307230 0F060355 1D130101 FF040530 030101FF 301F0603 551D1104 
+  18301682 14426F77 6D616E2D 4D44462D 32393630 2D504F45 2E301F06 03551D23 
+  04183016 80146FD8 295B6EB1 8757C100 DDA9029E 63C97B25 CC55301D 0603551D 
+  0E041604 146FD829 5B6EB187 57C100DD A9029E63 C97B25CC 55300D06 092A8648 
+  86F70D01 01040500 03818100 0FBF2FFB 53C8051D C25918F8 C250E5D7 67399B80 
+  659D9DB4 ABC6A3FC 737B5072 D14E3327 D7FD2F89 3C38E9B9 587262F0 53CC1DBE 
+  96D3A162 2EA0F53E 887669BB 9C0205DB 92961320 9E398F01 A3489DC7 9F8AD1AC 
+  EA9EBE2A FCAAFC93 307D3229 874EF448 DC0A54A7 F0E78C1C DEDC10C6 F0DB076C 
+  DB769C14 92BA924E 5E21E315
+  quit
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+no spanning-tree vlan 13,195,198,600,990,998-999
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/7
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/8
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/9
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/10
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/11
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/13
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/15
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/17
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/18
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/19
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/20
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/21
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/25
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/26
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/27
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet1/0/28
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet2/0/1
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/2
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/3
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/4
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/5
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/6
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/7
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/8
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/9
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/10
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/11
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/12
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/13
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/14
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/15
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/16
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/17
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/18
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/19
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/20
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/21
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/22
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/23
+ description Desktops and IP Phones
+ switchport access vlan 40
+ switchport voice vlan 140
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet2/0/24
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet2/0/25
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet2/0/26
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet2/0/27
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet2/0/28
+ description L2 Trunk Port
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface Vlan1
+ ip address 10.1.40.3 255.255.0.0
+!
+ip default-gateway 10.1.254.254
+ip http server
+ip http secure-server
+logging trap notifications
+logging 10.1.254.10
+snmp-server community 20lexccs09$ RO 90
+snmp-server community r3D5ox RO
+snmp-server enable traps license
+!
+line con 0
+ password 7 105D0C09114643
+ login
+line vty 0 4
+ exec-timeout 0 0
+ login local
+ length 0
+line vty 5 15
+ login
+!
+ntp clock-period 22519242
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: Bowman-MDF-2960X-AP
+Entry address(es): 
+  IP address: 10.1.40.7
+Platform: cisco WS-C2960X-24PS-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet2/0/24,  Port ID (outgoing port): GigabitEthernet1/0/25
+Holdtime : 164 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.2(2)E6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Fri 16-Dec-16 21:27 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000009AD2AE7800FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.40.7
+
+-------------------------
+Device ID: SEP08000F740382
+Entry address(es): 
+  IP address: 10.140.0.129
+Platform: Mitel 5304IP,DN 60001    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/5,  Port ID (outgoing port): Port 1
+Holdtime : 131 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73FC93
+Entry address(es): 
+  IP address: 10.140.0.149
+Platform: Mitel 5304IP,DN 60200    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/15,  Port ID (outgoing port): Port 1
+Holdtime : 156 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740384
+Entry address(es): 
+  IP address: 10.140.0.120
+Platform: Mitel 5304IP,DN 60031    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/16,  Port ID (outgoing port): Port 1
+Holdtime : 165 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73C91B
+Entry address(es): 
+  IP address: 10.140.0.130
+Platform: Mitel 5304IP,DN 60002    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/7,  Port ID (outgoing port): Port 1
+Holdtime : 146 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73FC66
+Entry address(es): 
+  IP address: 10.140.0.172
+Platform: Mitel 5304IP,DN 60032    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/22,  Port ID (outgoing port): Port 1
+Holdtime : 121 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7404CE
+Entry address(es): 
+  IP address: 10.140.0.132
+Platform: Mitel 5304IP,DN 60025    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/9,  Port ID (outgoing port): Port 1
+Holdtime : 142 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73FD62
+Entry address(es): 
+  IP address: 10.140.0.118
+Platform: Mitel 5304IP,DN 60029    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/10,  Port ID (outgoing port): Port 1
+Holdtime : 156 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740472
+Entry address(es): 
+  IP address: 10.140.0.167
+Platform: Mitel 5304IP,DN 60110    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/5,  Port ID (outgoing port): Port 1
+Holdtime : 141 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740447
+Entry address(es): 
+  IP address: 10.140.0.128
+Platform: Mitel 5304IP,DN 60028    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/2,  Port ID (outgoing port): Port 1
+Holdtime : 126 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740474
+Entry address(es): 
+  IP address: 10.140.0.126
+Platform: Mitel 5304IP,DN 60026    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/8,  Port ID (outgoing port): Port 1
+Holdtime : 133 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740371
+Entry address(es): 
+  IP address: 10.140.0.125
+Platform: Mitel 5304IP,DN 60007    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/11,  Port ID (outgoing port): Port 1
+Holdtime : 136 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740445
+Entry address(es): 
+  IP address: 10.140.0.161
+Platform: Mitel 5304IP,DN 60035    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/20,  Port ID (outgoing port): Port 1
+Holdtime : 176 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740499
+Entry address(es): 
+  IP address: 10.140.0.131
+Platform: Mitel 5304IP,DN 60024    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/17,  Port ID (outgoing port): Port 1
+Holdtime : 162 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F740370
+Entry address(es): 
+  IP address: 10.140.0.123
+Platform: Mitel 5304IP,DN 60005    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/3,  Port ID (outgoing port): Port 1
+Holdtime : 120 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000FA76976
+Entry address(es): 
+  IP address: 10.140.0.152
+Platform: Mitel 5304IP,DN 60135    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/21,  Port ID (outgoing port): Port 1
+Holdtime : 149 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73E549
+Entry address(es): 
+  IP address: 10.140.0.122
+Platform: Mitel 5304IP,DN 60004    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/2,  Port ID (outgoing port): Port 1
+Holdtime : 167 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F74048F
+Entry address(es): 
+  IP address: 10.140.0.107
+Platform: Mitel 5304IP,DN 60006    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/14,  Port ID (outgoing port): Port 1
+Holdtime : 179 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7C1C9E
+Entry address(es): 
+  IP address: 10.140.0.137
+Platform: Mitel 5330e,DN 60203     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/21,  Port ID (outgoing port): Port 1
+Holdtime : 137 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7C0779
+Entry address(es): 
+  IP address: 10.140.0.139
+Platform: Mitel 5330e,DN 60116     ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/12,  Port ID (outgoing port): Port 1
+Holdtime : 172 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73680D
+Entry address(es): 
+  IP address: 10.140.0.158
+Platform: Mitel 5320IP,DN 60122    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/4,  Port ID (outgoing port): Port 1
+Holdtime : 171 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F888F97
+Entry address(es): 
+  IP address: 10.140.0.163
+Platform: Mitel 5304IP,DN 60038    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/16,  Port ID (outgoing port): Port 1
+Holdtime : 121 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7404C4
+Entry address(es): 
+  IP address: 10.140.0.127
+Platform: Mitel 5304IP,DN 60027    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/3,  Port ID (outgoing port): Port 1
+Holdtime : 170 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F74044C
+Entry address(es): 
+  IP address: 10.140.0.148
+Platform: Mitel 5304IP,DN 60109    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/9,  Port ID (outgoing port): Port 1
+Holdtime : 133 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F767F45
+Entry address(es): 
+  IP address: 10.140.0.147
+Platform: Mitel 5320IP,DN 60106    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/1,  Port ID (outgoing port): Port 1
+Holdtime : 141 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F7405C4
+Entry address(es): 
+  IP address: 10.140.0.121
+Platform: Mitel 5304IP,DN 60003    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/4,  Port ID (outgoing port): Port 1
+Holdtime : 155 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F74057C
+Entry address(es): 
+  IP address: 10.140.0.154
+Platform: Mitel 5304IP,DN 60107    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/6,  Port ID (outgoing port): Port 1
+Holdtime : 138 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73FCE6
+Entry address(es): 
+  IP address: 10.140.0.156
+Platform: Mitel 5304IP,DN 60033    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/19,  Port ID (outgoing port): Port 1
+Holdtime : 142 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F767F47
+Entry address(es): 
+  IP address: 10.140.0.153
+Platform: Mitel 5320IP,DN 60205    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet2/0/1,  Port ID (outgoing port): Port 1
+Holdtime : 170 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73571D
+Entry address(es): 
+  IP address: 10.140.0.141
+Platform: Mitel 5320IP,DN 60202    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/19,  Port ID (outgoing port): Port 1
+Holdtime : 140 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 6.100 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000FBC6D00
+Entry address(es): 
+  IP address: 10.140.0.171
+Platform: Mitel 5304IP,DN 60134    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/23,  Port ID (outgoing port): Port 1
+Holdtime : 130 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: SEP08000F73FD6D
+Entry address(es): 
+  IP address: 10.140.0.133
+Platform: Mitel 5304IP,DN 60201    ,  Capabilities: Host Phone 
+Interface: GigabitEthernet1/0/17,  Port ID (outgoing port): Port 1
+Holdtime : 143 sec
+
+Version :
+M6050011
+
+advertisement version: 2
+Duplex: full
+Power drawn: 5.000 Watts
+Management address(es): 
+
+-------------------------
+Device ID: Bowman-MDF-2960-01
+Entry address(es): 
+  IP address: 10.1.40.2
+Platform: cisco WS-C2960-24TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet2/0/25,  Port ID (outgoing port): GigabitEthernet0/2
+Holdtime : 160 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 20:06 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000000220CD02380FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.40.2
+
+-------------------------
+Device ID: Bowman-MDF-2960-48
+Entry address(es): 
+  IP address: 10.1.40.5
+Platform: cisco WS-C2960-48TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet1/0/25,  Port ID (outgoing port): GigabitEthernet0/2
+Holdtime : 167 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2012 by Cisco Systems, Inc.
+Compiled Thu 09-Feb-12 19:11 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000070105C31A300FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.40.5
+
+
+###show ip ssh
+
+SSH Enabled - version 1.99
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 19:06:39 est Feb 28 1993
+Key name: TP-self-signed-58758400
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00B2DB3A 
+  BA9C483C FD66EEFC 6B8D31CF EBC50483 0DF9A489 C75BD33D C074618D BE7D7D86 
+  9F8173E0 6AACF21E C0B55C5D 15F375A3 B847523F 050F29AC 3FE166A2 FC85BCC9 
+  1E9452ED 0C43C08C 982702DD 9533A477 B4FBAF6E 0F36F1AC 8D746279 6C99BCCE 
+  CEA7066C C91FA439 08D20E92 F58615E9 34925079 B94800ED A65AAC5D 1D020301 0001
+% Key pair was generated at: 13:25:36 edt Jul 5 2020
+Key name: TP-self-signed-58758400.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00D680F6 80A77174 
+  A65D0464 1B43A022 8EE481CE 23061A94 688246AE 805644D2 24EE82E6 E2050EF3 
+  CA17D341 85667668 532ADA40 9C11A41C 6B2F272D 391B032E 8246C67E 552A9F7D 
+  8E77B6CC 875BB0F6 893D2431 4E07CE08 614E7F75 302DE7EC E3020301 0001
+
+###show inventory
+
+NAME: "2", DESCR: "WS-C2960S-24PS-L"
+PID: WS-C2960S-24PS-L  , VID: V04  , SN: FOC1721Z2PB
+
+NAME: "GigabitEthernet2/0/25", DESCR: "10/100/1000BaseTX SFP"
+PID: Unspecified       , VID:      , SN: AGM1714233E     
+
+NAME: "1", DESCR: "WS-C2960S-24PS-L"
+PID: WS-C2960S-24PS-L  , VID: V04  , SN: FOC1721Z2QZ
+
+NAME: "GigabitEthernet1/0/25", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-T               , VID:      , SN: 00000MTC16180B29
+
+
+

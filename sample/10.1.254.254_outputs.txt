@@ -1,0 +1,3820 @@
+method: SSH
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 80047 bytes
+!
+! Last configuration change at 18:10:40 UTC Thu May 21 2020 by support
+! NVRAM config last updated at 02:04:21 UTC Thu Apr 30 2020 by support
+!
+version 12.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service internal
+service counters max age 5
+!
+hostname Lexington-6509Core
+!
+boot-start-marker
+boot system flash sup-bootdisk:s72033-adventerprisek9_wan-mz.122-33.SXJ6.bin
+boot-end-marker
+!
+security passwords min-length 1
+logging buffered informational
+logging console emergencies
+enable secret 5 $1$n6AO$I6inGxxptZmr7CE2VDQkP.
+!
+username pmusto privilege 15 password 7 1522195D0A292E373B
+username dbord privilege 15 password 7 13161E00010D0F2F
+username unicom privilege 15 password 7 062A0A391D185B4C
+username ccs24x7 privilege 15 password 7 013F551C0A05501B0E42
+username rjusta privilege 15 password 7 02125502380319701D1E
+username phunter privilege 15 password 7 106329150916000F5D53
+username EEMScript privilege 15 nopassword
+username support privilege 15 secret 5 $1$wGpS$7CSOxXAiLusF.L1CUGVA3/
+username PresidioNOC privilege 15 password 7 15252D061200087C626A113B
+no aaa new-model
+!
+!
+ip dhcp excluded-address 10.15.0.1 10.15.10.255
+ip dhcp excluded-address 10.15.17.1 10.15.255.255
+ip dhcp excluded-address 192.168.1.1 192.168.1.2
+ip dhcp excluded-address 192.168.1.254
+!
+ip dhcp pool LEX-Secure-Internet
+   network 10.15.0.0 255.255.0.0
+   default-router 10.15.254.254 
+   dns-server 10.8.6.1 10.22.6.10 
+!
+ip dhcp pool LEX-Bypass-Internet
+   network 192.168.1.0 255.255.255.0
+   default-router 192.168.1.1 
+   dns-server 4.2.2.2 8.8.8.8 
+!
+ip vrf school
+ description school VRF instance
+!
+ip vrf town
+ description Town VRF instance
+!
+ip multicast-routing 
+ip ssh version 2
+ip domain-name ci.lexington.ma.us
+ip name-server 10.80.6.3
+ip name-server 10.80.6.25
+ip name-server 10.95.6.4
+mls netflow interface
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos
+!
+!
+!
+!
+!
+!
+!
+!
+!
+archive
+ log config
+  logging enable
+  logging size 1000
+  notify syslog contenttype plaintext
+ path scp://Cisco_SCP_HeadEnd:L3x1n6tOn@10.8.6.125/Switch/Headend/Cfg-$h
+ write-memory
+ time-period 1440
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+spanning-tree vlan 1,3-6,8,10-12,14-26,35,37-41,43-46,48-66,70-71 priority 4096
+spanning-tree vlan 75,80-82,85-88,95-106,110,112,114,122,133,150 priority 4096
+spanning-tree vlan 151,156,160,185-186,191,201,220-223,250,255 priority 4096
+spanning-tree vlan 400,600,990,998-999,4000-4031 priority 4096
+diagnostic bootup level minimal
+access-list 23 remark NAT To CrimeTrack
+access-list 23 permit 10.23.100.0 0.0.0.31
+access-list 50 permit 10.254.155.253
+access-list 50 permit 10.254.185.253
+access-list 50 permit 10.254.200.253
+access-list 50 permit 10.8.16.227
+access-list 50 permit 10.8.16.230
+access-list 50 permit 10.8.16.237
+access-list 50 permit 206.28.209.32 0.0.0.15
+access-list 50 permit 10.1.0.0 0.0.255.255
+access-list 50 permit 208.153.78.0 0.0.0.255
+access-list 50 permit 208.68.226.0 0.0.0.255
+access-list 80 permit 206.28.209.32 0.0.0.15
+access-list 80 permit 208.68.226.0 0.0.0.255
+access-list 85 permit 10.8.7.3
+access-list 85 permit 206.28.209.34
+access-list 90 permit 10.8.6.106
+access-list 90 permit 10.8.6.125
+access-list 90 permit 10.1.254.11
+access-list 90 permit 10.1.254.10
+access-list 100 permit ip any host 10.18.11.1
+access-list 100 permit ip host 10.18.11.1 any
+access-list 100 permit ip host 10.18.11.1 any log
+access-list 100 permit ip any host 10.18.11.1 log
+access-list 101 permit ip any 10.15.0.0 0.0.255.255
+access-list 101 permit ip any 10.254.254.0 0.0.0.255
+access-list 101 permit udp any host 10.8.6.30 eq domain
+access-list 101 permit udp any host 10.8.6.1 eq domain
+access-list 101 permit tcp any host 10.8.6.103 eq www
+access-list 101 permit tcp any host 10.8.6.103 eq 443
+access-list 101 deny   ip any 10.0.0.0 0.255.255.255
+access-list 101 deny   ip any 172.16.0.0 0.0.255.255
+access-list 101 deny   ip any 172.17.0.0 0.0.255.255
+access-list 101 deny   ip any 172.18.0.0 0.0.255.255
+access-list 101 deny   ip any 172.19.0.0 0.0.255.255
+access-list 101 deny   ip any 172.20.0.0 0.0.255.255
+access-list 101 deny   ip any 172.21.0.0 0.0.255.255
+access-list 101 deny   ip any 172.22.0.0 0.0.255.255
+access-list 101 deny   ip any 172.23.0.0 0.0.255.255
+access-list 101 deny   ip any 172.24.0.0 0.0.255.255
+access-list 101 deny   ip any 172.25.0.0 0.0.255.255
+access-list 101 deny   ip any 172.26.0.0 0.0.255.255
+access-list 101 deny   ip any 172.27.0.0 0.0.255.255
+access-list 101 deny   ip any 172.28.0.0 0.0.255.255
+access-list 101 deny   ip any 172.29.0.0 0.0.255.255
+access-list 101 deny   ip any 172.30.0.0 0.0.255.255
+access-list 101 deny   ip any 172.31.0.0 0.0.255.255
+access-list 101 deny   ip any 192.168.0.0 0.0.255.255
+access-list 101 permit ip any any
+access-list 110 permit ip host 10.80.17.4 host 10.80.254.254
+access-list 120 permit tcp any host 10.80.6.4 eq smtp
+access-list 121 permit ip host 10.254.254.254 host 10.254.254.2
+!
+redundancy
+ main-cpu
+  auto-sync running-config
+ mode sso
+!
+ip access-list extended ACL-SCHOOL-TRAFFIC
+ permit ip 10.24.0.0 0.0.255.255 any
+ permit ip 10.37.0.0 0.0.255.255 any
+ permit ip 10.38.0.0 0.0.255.255 any
+ permit ip 10.39.0.0 0.0.255.255 any
+ permit ip 10.40.0.0 0.0.255.255 any
+ permit ip 10.41.0.0 0.0.255.255 any
+ permit ip 10.43.0.0 0.0.255.255 any
+ permit ip 10.44.0.0 0.0.255.255 any
+ permit ip 10.45.0.0 0.0.255.255 any
+ permit ip 10.46.0.0 0.0.255.255 any
+ permit ip 10.48.0.0 0.0.255.255 any
+ permit ip 10.49.0.0 0.0.255.255 any
+ permit ip 10.50.0.0 0.0.255.255 any
+ permit ip 10.51.0.0 0.0.255.255 any
+ permit ip 10.52.0.0 0.0.255.255 any
+ permit ip 10.53.0.0 0.0.255.255 any
+ permit ip 10.54.0.0 0.0.255.255 any
+ permit ip 10.55.0.0 0.0.255.255 any
+ permit ip 10.56.0.0 0.0.255.255 any
+ permit ip 10.57.0.0 0.0.255.255 any
+ permit ip 10.58.0.0 0.0.255.255 any
+ permit ip 10.59.0.0 0.0.255.255 any
+ permit ip 10.60.0.0 0.0.255.255 any
+ permit ip 10.61.0.0 0.0.255.255 any
+ permit ip 10.62.0.0 0.0.255.255 any
+ permit ip 10.63.0.0 0.0.255.255 any
+ permit ip 10.64.0.0 0.0.255.255 any
+ permit ip 10.65.0.0 0.0.255.255 any
+ permit ip 10.66.0.0 0.0.255.255 any
+ permit ip 10.70.0.0 0.0.255.255 any
+ permit ip 10.71.0.0 0.0.255.255 any
+ permit ip 10.75.0.0 0.0.255.255 any
+ permit ip 10.80.0.0 0.0.255.255 any
+ permit ip 10.85.0.0 0.0.255.255 any
+ permit ip 10.86.0.0 0.0.255.255 any
+ permit ip 10.87.0.0 0.0.255.255 any
+ permit ip 10.88.0.0 0.0.255.255 any
+ permit ip 10.90.0.0 0.0.255.255 any
+ permit ip 10.91.0.0 0.0.255.255 any
+ permit ip 10.92.0.0 0.0.255.255 any
+ permit ip 10.93.0.0 0.0.255.255 any
+ permit ip 10.94.0.0 0.0.255.255 any
+ permit ip 10.95.0.0 0.0.255.255 any
+ permit ip 10.96.0.0 0.0.255.255 any
+ permit ip 10.97.0.0 0.0.255.255 any
+ permit ip 10.98.0.0 0.0.255.255 any
+ permit ip 10.99.0.0 0.0.255.255 any
+ permit ip 10.100.0.0 0.0.255.255 any
+ permit ip 10.101.0.0 0.0.255.255 any
+ permit ip 10.102.0.0 0.0.255.255 any
+ permit ip 10.103.0.0 0.0.255.255 any
+ permit ip 10.104.0.0 0.0.255.255 any
+ permit ip 10.160.0.0 0.0.255.255 any
+ permit ip 10.190.0.0 0.0.255.255 any
+ permit ip 10.105.0.0 0.0.255.255 any
+ permit ip 10.207.0.0 0.0.255.255 any
+ permit ip 10.208.0.0 0.0.255.255 any
+ permit ip 10.209.0.0 0.0.255.255 any
+ permit ip 10.210.0.0 0.0.255.255 any
+ permit ip 172.0.0.0 0.255.255.255 any
+ip access-list extended CRIMETRACK-in
+ permit icmp host 10.10.6.25 host 10.8.7.57
+ permit icmp host 10.10.6.25 host 10.8.254.254
+ permit ip host 10.10.6.100 10.10.0.0 0.0.255.255
+ permit ip host 10.10.7.10 10.10.0.0 0.0.255.255
+ permit ip host 10.10.7.10 host 10.250.7.1
+ permit ip host 10.10.6.100 10.23.0.0 0.0.255.255
+ permit ip host 10.10.6.100 host 10.12.2.5
+ permit ip host 10.10.6.100 host 10.12.2.6
+ permit ip host 10.10.6.100 host 10.12.100.1
+ permit ip host 10.10.6.100 host 10.12.100.2
+ permit ip host 10.10.6.100 host 10.12.100.17
+ permit ip host 10.10.6.100 host 10.12.100.50
+ permit ip host 10.10.6.100 host 10.12.100.51
+ permit ip host 10.10.6.100 host 69.74.173.5
+ permit ip host 10.10.6.100 host 71.174.244.170
+ permit ip host 10.10.6.100 host 10.12.100.52
+ permit ip host 10.10.6.100 host 10.12.100.53
+ permit ip host 10.10.6.100 host 10.12.100.54
+ permit ip host 10.10.6.100 host 10.12.100.55
+ permit ip host 10.10.6.100 host 10.12.100.56
+ permit ip host 10.10.6.100 host 10.12.100.57
+ permit ip host 10.10.6.100 host 10.14.2.1
+ permit ip host 10.10.6.100 host 10.14.100.10
+ permit ip host 10.10.6.100 host 10.14.100.105
+ permit ip host 10.10.6.100 host 10.22.100.15
+ permit ip host 10.10.6.100 host 10.22.100.16
+ permit ip host 10.10.6.100 host 10.22.100.17
+ permit ip host 10.10.6.100 host 10.22.100.18
+ permit ip host 10.10.6.100 host 10.22.100.19
+ permit ip host 10.10.6.100 host 10.22.100.20
+ permit ip host 10.10.6.100 host 10.22.6.10
+ deny   ip host 10.10.6.100 any
+ permit ip any any
+ip access-list extended CRIMETRACK-out
+ permit icmp host 10.8.7.57 host 10.10.6.25
+ permit ip 10.10.0.0 0.0.255.255 host 10.10.6.100
+ permit ip 10.10.0.0 0.0.255.255 host 10.10.7.10
+ permit ip 10.23.0.0 0.0.255.255 host 10.10.6.100
+ permit ip host 10.12.2.5 host 10.10.6.100
+ permit ip host 10.12.2.6 host 10.10.6.100
+ permit ip host 10.12.100.1 host 10.10.6.100
+ permit ip host 10.12.100.2 host 10.10.6.100
+ permit ip host 10.12.100.17 host 10.10.6.100
+ permit ip host 10.12.100.50 host 10.10.6.100
+ permit ip host 10.12.100.51 host 10.10.6.100
+ permit ip host 69.74.173.5 host 10.10.6.100
+ permit ip host 71.174.244.170 host 10.10.6.100
+ permit ip host 10.12.100.52 host 10.10.6.100
+ permit ip host 10.12.100.53 host 10.10.6.100
+ permit ip host 10.12.100.54 host 10.10.6.100
+ permit ip host 10.12.100.55 host 10.10.6.100
+ permit ip host 10.12.100.56 host 10.10.6.100
+ permit ip host 10.12.100.57 host 10.10.6.100
+ permit ip host 10.14.2.1 host 10.10.6.100
+ permit ip host 10.14.100.10 host 10.10.6.100
+ permit ip host 10.14.100.105 host 10.10.6.100
+ permit ip host 10.22.100.15 host 10.10.6.100
+ permit ip host 10.22.100.16 host 10.10.6.100
+ permit ip host 10.22.100.17 host 10.10.6.100
+ permit ip host 10.22.100.18 host 10.10.6.100
+ permit ip host 10.22.100.19 host 10.10.6.100
+ permit ip host 10.22.100.20 host 10.10.6.100
+ permit ip host 10.22.6.10 host 10.10.6.100
+ deny   ip any host 10.10.6.100
+ permit ip any any
+ip access-list extended Estabrook-Guests
+ deny   tcp 10.52.0.0 0.0.255.255 host 10.52.254.254 eq telnet
+ permit udp 10.52.0.0 0.0.255.255 host 10.80.6.25 eq bootpc
+ permit udp 10.52.0.0 0.0.255.255 host 10.80.6.25 eq bootps
+ permit udp 10.52.0.0 0.0.255.255 host 10.80.6.3 eq bootpc
+ permit udp 10.52.0.0 0.0.255.255 host 10.80.6.3 eq bootps
+ permit udp 10.52.0.0 0.0.255.255 host 10.80.6.25 eq domain
+ permit udp 10.52.0.0 0.0.255.255 host 10.80.6.3 eq domain
+ deny   ip 10.52.0.0 0.0.255.255 10.0.0.0 0.255.255.255 log
+ permit ip any any
+ip access-list extended FTP-TRAFFIC
+ permit tcp host 10.8.7.57 any eq ftp
+ permit tcp host 10.8.7.57 any eq ftp-data
+ip access-list extended FiskeWirelessGuest
+ permit icmp host 10.88.254.249 host 10.88.254.254
+ deny   tcp 10.88.0.0 0.0.255.255 host 10.88.254.254 eq telnet
+ permit udp 10.88.0.0 0.0.255.255 host 10.80.6.25 eq bootpc
+ permit udp 10.88.0.0 0.0.255.255 host 10.80.6.25 eq bootps
+ permit udp 10.88.0.0 0.0.255.255 host 10.80.6.3 eq bootpc
+ permit udp 10.88.0.0 0.0.255.255 host 10.80.6.3 eq bootps
+ permit udp 10.88.0.0 0.0.255.255 host 10.80.6.25 eq domain
+ permit udp 10.88.0.0 0.0.255.255 host 10.80.6.3 eq domain
+ deny   ip 10.88.0.0 0.0.255.255 10.0.0.0 0.255.255.255 log
+ permit ip any any
+ip access-list extended GUESTS
+ deny   tcp any host 10.15.254.254 eq telnet
+ deny   tcp any host 10.15.254.254 eq 22
+ permit ip any host 10.15.254.254
+ permit ip any host 10.8.6.30
+ permit ip any host 10.8.6.1
+ permit tcp any host 10.8.6.103
+ permit tcp any host 10.250.6.100
+ permit udp any host 10.254.252.2 eq nameserver
+ permit tcp any host 10.8.6.130 eq 443
+ permit tcp any host 10.8.6.130 eq www
+ permit tcp any host 10.8.6.131 eq 443
+ permit tcp any host 10.8.6.131 eq www
+ permit tcp any host 10.8.6.132 eq 443
+ permit tcp any host 10.8.6.132 eq www
+ permit ip any 10.17.0.0 0.0.255.255
+ permit tcp any host 10.8.6.98
+ permit tcp any host 10.8.6.99
+ deny   ip any 10.0.0.0 0.255.255.255
+ deny   ip any 192.168.0.0 0.0.255.255
+ deny   ip any 172.16.0.0 0.0.252.255
+ permit ip any any
+ip access-list extended Guests
+ deny   tcp 10.62.0.0 0.0.255.255 host 10.62.254.254 eq telnet
+ permit udp 10.62.0.0 0.0.255.255 host 10.80.6.25 eq bootpc
+ permit udp 10.62.0.0 0.0.255.255 host 10.80.6.25 eq bootps
+ permit udp 10.62.0.0 0.0.255.255 host 10.80.6.3 eq bootpc
+ permit udp 10.62.0.0 0.0.255.255 host 10.80.6.3 eq bootps
+ permit udp 10.62.0.0 0.0.255.255 host 10.80.6.25 eq domain
+ permit udp 10.62.0.0 0.0.255.255 host 10.80.6.3 eq domain
+ deny   ip 10.62.0.0 0.0.255.255 10.0.0.0 0.255.255.255 log
+ permit ip any any
+ip access-list extended Has_Har_Guest
+ deny   tcp 10.97.0.0 0.0.255.255 host 10.97.254.254 eq telnet
+ permit udp 10.97.0.0 0.0.255.255 host 10.80.6.25 eq bootpc
+ permit udp 10.97.0.0 0.0.255.255 host 10.80.6.25 eq bootps
+ permit udp 10.97.0.0 0.0.255.255 host 10.80.6.3 eq bootpc
+ permit udp 10.97.0.0 0.0.255.255 host 10.80.6.3 eq bootps
+ permit udp 10.97.0.0 0.0.255.255 host 10.80.6.25 eq domain
+ permit udp 10.97.0.0 0.0.255.255 host 10.80.6.3 eq domain
+ deny   ip 10.97.0.0 0.0.255.255 10.0.0.0 0.255.255.255 log
+ permit ip any any
+ip access-list extended LCP_Guest
+ deny   tcp 10.207.0.0 0.0.255.255 host 10.207.254.254 eq telnet
+ permit udp 10.207.0.0 0.0.255.255 host 10.80.6.25 eq bootpc
+ permit udp 10.207.0.0 0.0.255.255 host 10.80.6.25 eq bootps
+ permit udp 10.207.0.0 0.0.255.255 host 10.80.6.3 eq bootpc
+ permit udp 10.207.0.0 0.0.255.255 host 10.80.6.3 eq bootps
+ permit udp 10.207.0.0 0.0.255.255 host 10.80.6.25 eq domain
+ permit udp 10.207.0.0 0.0.255.255 host 10.80.6.3 eq domain
+ deny   ip 10.207.0.0 0.0.255.255 10.0.0.0 0.255.255.255 log
+ permit ip any any
+ip access-list extended LHS-DPW--IN
+ permit tcp host 10.8.6.19 host 10.80.6.8 eq www
+ permit tcp host 10.8.6.19 host 10.80.6.8 eq 5055
+ permit tcp host 10.8.6.19 host 10.80.6.8 range 5048 5051
+ permit tcp host 10.8.6.19 host 10.22.6.50 eq www
+ permit tcp host 10.8.6.19 host 10.22.6.50 eq 5055
+ permit tcp host 10.8.6.19 host 10.22.6.50 range 5048 5051
+ permit tcp host 10.8.6.19 host 10.22.6.51 eq www
+ permit tcp host 10.8.6.19 host 10.22.6.51 eq 5055
+ permit tcp host 10.8.6.19 host 10.22.6.51 range 5048 5051
+ permit udp host 10.8.6.19 host 10.80.6.8 eq 5055
+ permit udp host 10.8.6.19 host 10.80.6.8 range 5048 5051
+ permit udp host 10.8.6.19 host 10.22.6.50 eq 5055
+ permit udp host 10.8.6.19 host 10.22.6.50 range 5048 5051
+ permit udp host 10.8.6.19 host 10.22.6.51 eq 5055
+ permit udp host 10.8.6.19 host 10.22.6.51 range 5048 5051
+ permit ip any any
+ip access-list extended LHS-DPW--OUT
+ permit tcp host 10.80.6.8 host 10.8.6.19 eq www
+ permit tcp host 10.80.6.8 host 10.8.6.19 eq 5055
+ permit tcp host 10.80.6.8 host 10.8.6.19 range 5048 5051
+ permit tcp host 10.22.6.50 host 10.8.6.19 eq www
+ permit tcp host 10.22.6.50 host 10.8.6.19 eq 5055
+ permit tcp host 10.22.6.50 host 10.8.6.19 range 5048 5051
+ permit tcp host 10.22.6.51 host 10.8.6.19 eq www
+ permit tcp host 10.22.6.51 host 10.8.6.19 eq 5055
+ permit tcp host 10.22.6.51 host 10.8.6.19 range 5048 5051
+ permit udp host 10.80.6.8 host 10.8.6.19 eq 5055
+ permit udp host 10.80.6.8 host 10.8.6.19 range 5048 5051
+ permit udp host 10.80.6.50 host 10.8.6.19 eq 5055
+ permit udp host 10.22.6.50 host 10.8.6.19 range 5048 5051
+ permit udp host 10.80.6.51 host 10.8.6.19 eq 5055
+ permit udp host 10.22.6.51 host 10.8.6.19 range 5048 5051
+ permit ip any any
+ip access-list extended LHS-dpw--in
+ permit ip host 10.8.6.19 host 10.80.6.8
+ip access-list extended SCHOOL-TOWN
+ permit ip 10.0.50.0 0.255.0.31 10.8.0.0 0.0.255.255
+ permit ip 10.0.0.0 0.255.255.255 10.8.0.0 0.0.255.255
+ deny   ip 10.32.0.0 0.31.255.255 10.8.0.0 0.7.255.255 log
+ deny   ip 10.32.0.0 0.31.255.255 10.16.0.0 0.7.255.255 log
+ deny   ip 10.64.0.0 0.63.255.255 10.8.0.0 0.7.255.255 log
+ deny   ip 10.64.0.0 0.63.255.255 10.16.0.0 0.7.255.255 log
+ permit ip any any
+ip access-list extended Trust_COS
+ permit ip any any
+ip access-list extended Trust_DSCP
+ permit ip any any
+ip access-list extended Vlan104Restrictedguest
+ deny   tcp 10.104.0.0 0.0.255.255 host 10.104.254.254 eq telnet
+ permit udp 10.104.0.0 0.0.255.255 host 10.80.6.25 eq bootpc
+ permit udp 10.104.0.0 0.0.255.255 host 10.80.6.25 eq bootps
+ permit udp 10.104.0.0 0.0.255.255 host 10.80.6.3 eq bootpc
+ permit udp 10.104.0.0 0.0.255.255 host 10.80.6.3 eq bootps
+ permit udp 10.104.0.0 0.0.255.255 host 10.80.6.25 eq domain
+ permit udp 10.104.0.0 0.0.255.255 host 10.80.6.3 eq domain
+ deny   ip 10.104.0.0 0.0.255.255 10.0.0.0 0.255.255.255 log
+ permit ip any any
+ip access-list extended Vlan57Restrictedguest
+ deny   tcp 10.57.0.0 0.0.255.255 host 10.57.254.254 eq telnet
+ permit udp 10.57.0.0 0.0.255.255 host 10.80.6.25 eq bootpc
+ permit udp 10.57.0.0 0.0.255.255 host 10.80.6.25 eq bootps
+ permit udp 10.57.0.0 0.0.255.255 host 10.80.6.3 eq bootpc
+ permit udp 10.57.0.0 0.0.255.255 host 10.80.6.3 eq bootps
+ permit udp 10.57.0.0 0.0.255.255 host 10.80.6.25 eq domain
+ permit udp 10.57.0.0 0.0.255.255 host 10.80.6.3 eq domain
+ deny   ip 10.57.0.0 0.0.255.255 10.0.0.0 0.255.255.255 log
+ permit ip any any
+ip access-list extended dpw-lhs
+ permit ip any any
+ip access-list extended lhs-dpw--in
+ permit ip any any
+!
+vlan internal allocation policy ascending
+vlan access-log ratelimit 2000
+!
+vlan 4000
+ name School_FW_Transit
+!
+vlan 4001
+ name Town_FW_Transit
+!
+vlan 4002
+ name LhsMain-transit
+!
+vlan 4003
+ name cc-transit
+!
+vlan 4004
+ name ava-transit
+!
+vlan 4005
+ name wt-transit
+!
+vlan 4006
+ name Fire-transit
+!
+vlan 4007
+ name bri-transit
+!
+vlan 4008
+ name har-transit
+!
+vlan 4009
+ name LHS-Fore-transit
+!
+vlan 4010
+ name rcyl-transit
+!
+vlan 4011
+ name eoc-ps-transit
+!
+vlan 4012
+ name fis-transit
+!
+vlan 4013
+ name as-transit
+!
+vlan 4014
+ name dpw-transit
+!
+vlan 4015
+ name lib-transit
+!
+vlan 4016
+ name vc-transit
+!
+vlan 4017
+ name th-transit
+!
+vlan 4018
+ name fireE-transit
+!
+vlan 4019
+ name LHSSci-transit
+!
+vlan 4020
+ name pd-transit
+!
+vlan 4021
+ name LHSMath-transit
+!
+vlan 4022
+ name cnoff-transit
+!
+vlan 4023
+ name bow-transit
+!
+vlan 4024
+ name est-transit
+!
+vlan 4025
+ name has-transit
+!
+vlan 4026
+ name Dia-transit
+!
+vlan 4027
+ name cla-transit
+!
+vlan 4028 
+!
+vlan 4029
+ name wc-transit
+!
+vlan 4030
+ name pool-transit
+!
+vlan 4031
+ name LCP-transit
+!
+vlan 4061 
+lldp run
+!
+class-map match-any Trust_DSCP
+  match access-group name Trust_DSCP
+class-map match-any Trust_COS
+  match access-group name Trust_COS
+!
+!
+policy-map Trust_DSCP
+  class Trust_DSCP
+    trust dscp
+policy-map Trust_COS
+  class Trust_COS
+    trust cos
+!
+!
+! 
+!
+!
+!
+interface Port-channel1
+ description "LAG to DPW HP 5800 Stack"
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,5,8,15,22,108,122,250,4014
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface Port-channel10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/1
+ switchport
+ switchport access vlan 17
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/5
+ description *** Hastings-MDF-3750-01 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/14
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/15
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/16
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/17
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/18
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/19
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/20
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/21
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/22
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/23
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/24
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/25
+ no ip address
+!
+interface GigabitEthernet1/26
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/27
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/28
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/29
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/30
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/31
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/32
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/33
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/34
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/35
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/36
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/37
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/38
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/39
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/40
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/41
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/42
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/43
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/44
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/45
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/46
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/47
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet1/48
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/8
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/13
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/14
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/15
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/16
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/17
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/18
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/19
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/20
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/21
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/22
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/23
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/24
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/25
+ no ip address
+!
+interface GigabitEthernet2/26
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/27
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/28
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/29
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/30
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/31
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/32
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/33
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/34
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/35
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/36
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/37
+ description Temp Link for PD Stack Replcement
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/38
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk pruning vlan 2-7,9-21,23-221,224-249,251-1001
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/39
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/40
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/41
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/42
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/43
+ description Public Safety Building
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,3,10,12,15,108,110,112
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/44
+ description *** LEX-Avalon-2960 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/45
+ description *** East_LEX_FIRE_3560 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/46
+ description *** LEX-WaterTower-2960 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/47
+ description *** LEX_Fire_3560G-24-PoE ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet2/48
+ description *** LEX_Police_3560G ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet3/1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/2
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/3
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/6
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/7
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,15,25,108
+ switchport mode trunk
+ logging event link-status
+ logging event trunk-status
+!
+interface GigabitEthernet3/8
+ description *** LEX_AnimalShelter_2960G ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/9
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/10
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/11
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/12
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/13
+ description *** LEX_EOC_PumpStation-SW1 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/14
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/15
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet3/16
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface TenGigabitEthernet4/1
+ description *** LEX-LHS-Science-3560X ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/2
+ description *** LEX-LHS-J-2960X ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/3
+ description *** LEX-LHS-ForeignLanguage-2960X ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/4
+ description *** Estabrook-MDF-Stack01 ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/5
+ description *** LEX-ClarkMS-MDF-3850 ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/6
+ description *** LEX-DiamondMS-MDF-3850 ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/7
+ description *** Bowman-MDF-3850-01 ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/8
+ description *** FISKE-3850-MDF ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/9
+ description *** Bridge-MDF-3850-01 ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/10
+ description *** LEX_Harrington-3850 ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/11
+ description *** LEX-CO-Annex-3850 ***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/12
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/13
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+ channel-protocol lacp
+ channel-group 10 mode active
+!
+interface TenGigabitEthernet4/14
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+ channel-protocol lacp
+ channel-group 10 mode active
+!
+interface TenGigabitEthernet4/15
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet4/16
+ switchport
+ switchport trunk pruning vlan none
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet5/1
+ no ip address
+!
+interface GigabitEthernet5/2
+ no ip address
+!
+interface GigabitEthernet5/3
+ no ip address
+!
+interface TenGigabitEthernet5/4
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk pruning vlan none
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet5/5
+ description *** LEX_DPW_DellBLSW03 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,5,8,15,22,108,122,250,4014
+ switchport mode trunk
+ mls qos trust dscp
+ channel-group 1 mode active
+!
+interface GigabitEthernet6/1
+ no ip address
+!
+interface GigabitEthernet6/2
+ no ip address
+!
+interface GigabitEthernet6/3
+ no ip address
+!
+interface TenGigabitEthernet6/4
+ description *** Lexington-HS-4506E ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet6/5
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,5,8,15,22,108,122,250,4014
+ switchport mode trunk
+ mls qos trust dscp
+ channel-group 1 mode active
+!
+interface TenGigabitEthernet7/1
+ description ***LCP-10G-Uplink***
+ switchport
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface TenGigabitEthernet7/2
+ description *** HASTINGS-NEW ***
+ switchport
+ switchport trunk allowed vlan 1,64,66,95,96,98,99,195,198
+ switchport mode trunk
+!
+interface TenGigabitEthernet7/3
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet7/4
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet7/5
+ description TOWN_FW1_OUTSIDE
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet7/6
+ description TOWN_FW1_INSIDE
+ switchport
+ switchport access vlan 990
+ switchport trunk native vlan 990
+ switchport mode trunk
+ switchport nonegotiate
+ flowcontrol send on
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet7/7
+ description TOWN_FW1_DMZ1
+ switchport
+ switchport trunk allowed vlan 250,255
+ switchport mode trunk
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet7/8
+ description TOWN_FW1_BYPASS
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ shutdown
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet7/9
+ description SCHOOL_FW1_OUTSIDE
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet7/10
+ description SCHOOL_FW1_INSIDE
+ switchport
+ switchport trunk native vlan 990
+ switchport trunk allowed vlan 990,4000,4001
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface TenGigabitEthernet7/11
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet7/12
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet7/13
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet7/14
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet7/15
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet7/16
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/1
+ description **Connection to Firewall**
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet8/2
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/3
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/4
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/5
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/6
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/7
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/8
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/9
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/10
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet8/11
+ description TOWN_FW2_OUTSIDE
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet8/12
+ description TOWN_FW2_INSIDE
+ switchport
+ switchport trunk native vlan 990
+ switchport mode trunk
+ switchport nonegotiate
+ flowcontrol send on
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet8/13
+ description TOWN_FW2_DMZ
+ switchport
+ switchport trunk allowed vlan 250,255
+ switchport mode trunk
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet8/14
+ description TOWN_FW2_BYPASS
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet8/15
+ description SCHOOL_FW2_OUTSIDE
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface TenGigabitEthernet8/16
+ description SCHOOL_FW2_INSIDE
+ switchport
+ switchport trunk native vlan 990
+ switchport trunk allowed vlan 990,4000,4001
+ switchport mode trunk
+ switchport nonegotiate
+ flowcontrol send on
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/1
+ description *** LEX_DPS_3560G-01-HE ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet9/2
+ switchport
+ switchport access vlan 122
+ wrr-queue bandwidth 40 40 20 
+ wrr-queue random-detect min-threshold 1 60 50 40 100 100 100 100 100 
+ wrr-queue random-detect min-threshold 2 70 60 50 100 100 100 100 100 
+ wrr-queue random-detect min-threshold 3 100 70 60 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 1 90 80 70 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 2 100 90 80 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 3 100 100 90 100 100 100 100 100 
+ mls qos trust cos
+ spanning-tree portfast edge
+ service-policy input Trust_COS
+!
+interface GigabitEthernet9/3
+ switchport
+ switchport access vlan 122
+ wrr-queue bandwidth 40 40 20 
+ wrr-queue random-detect min-threshold 1 60 50 40 100 100 100 100 100 
+ wrr-queue random-detect min-threshold 2 70 60 50 100 100 100 100 100 
+ wrr-queue random-detect min-threshold 3 100 70 60 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 1 90 80 70 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 2 100 90 80 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 3 100 100 90 100 100 100 100 100 
+ mls qos trust cos
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/4
+ switchport
+ switchport access vlan 22
+ switchport voice vlan 122
+ wrr-queue bandwidth 40 40 20 
+ wrr-queue random-detect min-threshold 1 60 50 40 100 100 100 100 100 
+ wrr-queue random-detect min-threshold 2 70 60 50 100 100 100 100 100 
+ wrr-queue random-detect min-threshold 3 100 70 60 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 1 90 80 70 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 2 100 90 80 100 100 100 100 100 
+ wrr-queue random-detect max-threshold 3 100 100 90 100 100 100 100 100 
+ mls qos trust cos
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/5
+ switchport
+ switchport access vlan 122
+!
+interface GigabitEthernet9/6
+ description Media Server
+ switchport
+ switchport access vlan 80
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/7
+ switchport
+!
+interface GigabitEthernet9/8
+ switchport
+!
+interface GigabitEthernet9/9
+ switchport
+!
+interface GigabitEthernet9/10
+ switchport
+!
+interface GigabitEthernet9/11
+ switchport
+ switchport access vlan 108
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/12
+ switchport
+ switchport access vlan 122
+!
+interface GigabitEthernet9/13
+ switchport
+!
+interface GigabitEthernet9/14
+ switchport
+ switchport access vlan 22
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/15
+ switchport
+!
+interface GigabitEthernet9/16
+ switchport
+!
+interface GigabitEthernet9/17
+ switchport
+!
+interface GigabitEthernet9/18
+ switchport
+!
+interface GigabitEthernet9/19
+ switchport
+ switchport access vlan 990
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/20
+ switchport
+!
+interface GigabitEthernet9/21
+ description *** Barracuda WAN ***
+ switchport
+ switchport access vlan 999
+ shutdown
+ no cdp enable
+!
+interface GigabitEthernet9/22
+ switchport
+ switchport access vlan 999
+!
+interface GigabitEthernet9/23
+ description *** Barracuda LAN ***
+ switchport
+ switchport access vlan 990
+ switchport mode access
+ shutdown
+ no cdp enable
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/24
+ switchport
+ switchport access vlan 999
+!
+interface GigabitEthernet9/25
+ description *** ASA Primary Inside Gig0/1 ***
+ switchport
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+ flowcontrol receive on
+ flowcontrol send on
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/26
+ description *** ASA Secondary Inside Gig0/1 ***
+ switchport
+ switchport access vlan 999
+ switchport mode access
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/27
+ description *** ASA Primary Outside Gig0/0 ***
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ shutdown
+ flowcontrol receive on
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/28
+ description *** ASA Secondary Outside Gig0/0 ***
+ switchport
+ switchport access vlan 998
+ shutdown
+!
+interface GigabitEthernet9/29
+ description *** ASA Primary DMZ Gig0/2 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 250,255
+ switchport mode trunk
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/30
+ description *** ASA Secondary DMZ Gig0/2 ***
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 250,255
+ switchport mode trunk
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/31
+ description *** Router ***
+ switchport
+ switchport access vlan 998
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/32
+ description *** External DNS ***
+ switchport
+ switchport access vlan 600
+!
+interface GigabitEthernet9/33
+ description *** M86 Packet Capture ***
+ switchport
+ switchport mode access
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/34
+ description *** M86 Content Filter ***
+ switchport
+ switchport mode access
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/35
+ description *** Barracuda SPAM Gateway ***
+ switchport
+!
+interface GigabitEthernet9/36
+ switchport
+!
+interface GigabitEthernet9/37
+ switchport
+!
+interface GigabitEthernet9/38
+ switchport
+!
+interface GigabitEthernet9/39
+ switchport
+!
+interface GigabitEthernet9/40
+ switchport
+!
+interface GigabitEthernet9/41
+ switchport
+!
+interface GigabitEthernet9/42
+ switchport
+!
+interface GigabitEthernet9/43
+ description LEX-PAN-FW1_MGMT
+ switchport
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/44
+ description LEX-PAN-FW2_MGMT
+ switchport
+ switchport mode access
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/45
+ switchport
+ switchport access vlan 1000
+ switchport mode access
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/46
+ switchport
+ switchport access vlan 1000
+ switchport mode access
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet9/47
+ switchport
+ switchport access vlan 80
+!
+interface GigabitEthernet9/48
+ switchport
+!
+interface Vlan1
+ description ***MGMT + COMP SERVICES***
+ ip address 10.1.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan3
+ ip address 10.3.254.254 255.255.0.0
+ ip pim sparse-dense-mode
+!
+interface Vlan4
+ description ***Animal-Shelter***
+ ip address 10.4.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan5
+ description ***DPW-Voice***
+ ip address 10.5.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.8.6.30
+ ip helper-address 10.8.6.25
+!
+interface Vlan6
+ ip address 10.6.254.254 255.255.0.0
+!
+interface Vlan8
+ description ***TOWN HALL***
+ ip address 10.8.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+ arp timeout 28800
+!
+interface Vlan10
+ description ***POLICE STATION***
+ ip address 10.10.7.10 255.255.0.0 secondary
+ ip address 10.10.254.254 255.255.0.0
+ ip access-group CRIMETRACK-in in
+ ip access-group CRIMETRACK-out out
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+ no ip redirects
+!
+interface Vlan11
+ description ***LEX LEGACY***
+ ip address 198.113.161.186 255.255.255.0 secondary
+ ip address 198.113.160.61 255.255.255.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ no ip redirects
+!
+interface Vlan12
+ description ***FIRE HEADQ***
+ ip address 10.12.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+ shutdown
+!
+interface Vlan14
+ description ***EAST LEX FIRE***
+ ip address 10.14.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+!
+interface Vlan15
+ description ***SECURE GUEST INTERNET***
+ ip address 10.15.254.254 255.255.0.0
+ ip access-group GUESTS in
+!
+interface Vlan16
+ description ***CARY EAST***
+ ip address 10.16.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+!
+interface Vlan17
+ description ***Remote Recreation***
+ ip address 10.17.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+!
+interface Vlan18
+ description ***CARY HALL***
+ ip vrf forwarding town
+ ip address 10.18.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+ shutdown
+!
+interface Vlan19
+ description ***DPW-Recycling***
+ ip address 10.19.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+!
+interface Vlan20
+ description ***WESTVIEW***
+ ip address 10.20.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+ shutdown
+!
+interface Vlan21
+ description ***CARY LIBRARY***
+ ip address 10.21.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+!
+interface Vlan22
+ description ***DPW***
+ ip address 10.22.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.8.6.30
+ ip helper-address 10.8.6.25
+ ip helper-address 10.22.6.10
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+!
+interface Vlan23
+ description ***E.O.C. PUMP STATION***
+ ip address 10.23.254.254 255.255.0.0
+ ip access-group CRIMETRACK out
+ ip helper-address 10.23.6.1
+ ip helper-address 10.22.6.10
+!
+interface Vlan24
+ description ***CENTRAL OFFICE***
+ ip address 10.24.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ arp timeout 28800
+!
+interface Vlan25
+ description ***Visitors Center***
+ ip address 10.25.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.22.6.10
+ shutdown
+!
+interface Vlan26
+ description ***SENIOR***
+ ip address 10.26.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan33
+ description ***Marrett Community Center***
+ ip address 10.33.254.254 255.255.0.0
+ ip helper-address 10.8.6.1
+ ip helper-address 10.80.6.3
+ ip helper-address 10.22.6.10
+ shutdown
+!
+interface Vlan35
+ description ***DATA ROUTE TO CML***
+ ip address 10.35.99.254 255.255.255.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan37
+ description CO1-Wireless
+ ip address 10.37.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan38
+ description CO2-Wireless
+ ip address 10.38.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan39
+ description CO3-Wireless
+ ip address 10.39.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan40
+ description ***BOWMAN SCHOOL MDF***
+ ip address 10.40.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan41
+ description ***BOWMAN SCHOOL IDF***
+ ip address 10.41.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan43
+ description Bowman2-Wireless
+ ip address 10.43.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan44
+ description Bowman3-Wireless
+ ip address 10.44.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan45
+ description ***BRIDGE SCHOOL***
+ ip address 10.45.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan46
+ description ***BRIDGE SCHOOL***
+ ip address 10.46.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan48
+ description Bridge2-Wireless
+ ip address 10.48.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan49
+ description Bridge3-Wireless
+ ip address 10.49.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan50
+ description ***ESTABROOK SCHOOL MDF***
+ ip address 10.50.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan51
+ description ***ESTABROOK SCHOOL IDF***
+ ip address 10.51.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan52
+ description Estabrook-Guests
+ ip address 10.52.254.254 255.255.0.0
+ ip access-group Estabrook-Guests in
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan53
+ description ***ESTABROOK-Wireless2***
+ ip address 10.53.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan54
+ description ***ESTABROOK-Wireless3***
+ ip address 10.54.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan55
+ description Clarke MS MDF
+ ip address 10.55.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan56
+ description Clarke MS IDF1
+ ip address 10.56.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan57
+ description Vlan57Restrictedguest
+ ip address 10.57.254.254 255.255.0.0
+ ip access-group Vlan57Restrictedguest in
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan58
+ ip address 10.58.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan59
+ ip address 10.59.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan60
+ description ***LHS***
+ ip address 10.60.254.254 255.255.0.0
+ ip access-group LHS-DPW--OUT out
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan61
+ description ***WirelessDHCP***
+ ip address 10.61.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan62
+ description ***Guest***
+ ip address 10.62.254.254 255.255.0.0
+ ip access-group Guests in
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan63
+ description ***LABBB***
+ ip address 10.63.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan64
+ description HS-VLAN
+ ip address 10.64.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan65
+ description ***LHS H***
+ ip address 10.65.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan66
+ description ***Wireless  LHS Staff***
+ ip address 10.66.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan70
+ description ***LHS J***
+ ip address 10.70.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan71
+ description ***LHS LABBB***
+ ip address 10.71.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan75
+ description ***LHS Science***
+ ip address 10.75.254.254 255.255.0.0
+ ip helper-address 10.80.6.25
+ ip helper-address 10.80.6.3
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan80
+ description ***LHS ONDS***
+ ip address 10.80.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ no ip redirects
+ no ip proxy-arp
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan81
+ ip address 10.81.254.254 255.255.0.0
+!
+interface Vlan82
+ ip address 10.82.254.254 255.255.0.0
+!
+interface Vlan85
+ description FISKE ES MDF
+ ip address 10.85.0.10 255.255.192.0 secondary
+ ip address 10.85.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ no ip redirects
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan86
+ description FISKE ES IDF
+ ip address 10.86.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan87
+ description FISKE FUTURE1
+ ip address 10.87.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan88
+ description FiskeWirelessGuest 
+ ip address 10.88.254.254 255.255.0.0
+ ip access-group FiskeWirelessGuest in
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan90
+ ip address 10.90.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan91
+ ip address 10.91.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan92
+ ip address 10.92.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan93
+ description ***Harrington_Wireless2***
+ ip address 10.93.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan94
+ description ***Harrington_Wireless3***
+ ip address 10.94.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan95
+ description ***HASTINGS***
+ ip address 10.95.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan96
+ description ***HASTINGS SCHOOL IDF***
+ ip vrf forwarding school
+ ip address 10.96.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan97
+ description Has_Har_Guest
+ ip address 10.97.254.254 255.255.0.0
+ ip access-group Has_Har_Guest in
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan98
+ description ***Hastings_Wireless2***
+ ip vrf forwarding school
+ ip address 10.98.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan99
+ description ***Hastings_Wireless3***
+ ip vrf forwarding school
+ ip address 10.99.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan100
+ ip address 10.100.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan101
+ description Diamond MS IDF1
+ ip address 10.101.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan102
+ description Diamond MS IDF2
+ ip address 10.102.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan103
+ description Diamond MS IDF3
+ ip address 10.103.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan104
+ description Vlan104Restrictedguest
+ ip address 10.104.254.254 255.255.0.0
+ ip access-group Vlan104Restrictedguest in
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan105
+ ip address 10.105.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan106
+ ip address 10.106.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan110
+ ip address 10.110.0.254 255.255.255.0
+!
+interface Vlan112
+ ip address 10.112.0.254 255.255.255.0
+!
+interface Vlan114
+ description Fire_East_Voice
+ ip address 10.114.0.254 255.255.255.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan122
+ description DPW-Voice
+ ip address 10.122.0.254 255.255.255.0
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+!
+interface Vlan133
+ description ***Community Center Voice***
+ ip address 10.133.0.254 255.255.255.0
+ shutdown
+!
+interface Vlan151
+ description ***ESTABROOK-WIRELESS***
+ ip address 10.151.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan156
+ ip address 10.156.1.10 255.255.0.0 secondary
+ ip address 10.156.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ no ip redirects
+!
+interface Vlan160
+ description ***Wireless***
+ ip address 10.160.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan185
+ description ***DATA ROUTE TO FISKE***
+ ip address 10.254.185.254 255.255.255.224
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+!
+interface Vlan186
+ description FISKE Management Vlan
+ ip address 10.186.1.10 255.255.0.0 secondary
+ ip address 10.186.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ no ip redirects
+!
+interface Vlan190
+ description ***DATA ROUTE TO HARRINGTON***
+ ip address 10.190.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan191
+ ip address 10.191.254.254 255.255.0.0
+!
+interface Vlan198
+ description HASTINGS-WIRELESS
+ ip address 10.198.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+!
+interface Vlan201
+ description Diamond Management Vlan
+ ip address 10.201.1.10 255.255.0.0 secondary
+ ip address 10.201.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ no ip redirects
+!
+interface Vlan206
+ description ***LCP_Data***
+ ip address 10.206.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ shutdown
+!
+interface Vlan207
+ description ***LCP_Wireless1***
+ ip address 10.207.254.254 255.255.0.0
+ ip access-group LCP-Guest in
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan208
+ description ***LCP-Wireless2***
+ ip address 10.208.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan209
+ description ***LCP Wireless3***
+ ip address 10.209.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan210
+ description ***LCP-Wifi-Controller***
+ ip address 10.210.254.254 255.255.0.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map MAP-SCHOOL-TRAFFIC
+ shutdown
+!
+interface Vlan220
+ description DPW vMotion
+ ip address 10.220.220.254 255.255.255.0
+!
+interface Vlan221
+ description DPW iSCSI
+ ip address 10.220.221.254 255.255.255.0
+!
+interface Vlan222
+ description City Hall vMotion
+ ip address 10.220.222.254 255.255.255.0
+!
+interface Vlan223
+ description City Hall iSCSI
+ ip address 10.220.223.254 255.255.255.0
+!
+interface Vlan400
+ description ***CACHE***
+ ip address 10.254.253.254 255.255.255.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ load-interval 30
+!
+interface Vlan600
+ description ***DNS_DMZ***
+ ip address 10.254.252.254 255.255.255.0
+!
+interface Vlan990
+ description ***INSIDE INTERNET TO FWALL***
+ ip address 10.254.254.2 255.255.255.0
+ ip helper-address 10.80.6.3
+ ip helper-address 10.80.6.25
+ ip policy route-map Barracuda
+ load-interval 30
+!
+interface Vlan1000
+ ip address 192.168.1.2 255.255.255.0
+ shutdown
+!
+interface Vlan4000
+ description School FW Transit
+ ip vrf forwarding school
+ ip address 172.16.0.1 255.255.255.252
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+!
+interface Vlan4001
+ description Town-Firewall-transit
+ ip vrf forwarding town
+ ip address 172.16.0.5 255.255.255.252
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+!
+interface Vlan4002
+ description LHS Main
+ ip vrf forwarding school
+ ip address 172.16.0.9 255.255.255.252
+ shutdown
+!
+interface Vlan4003
+ description Community Center
+ ip vrf forwarding town
+ ip address 172.16.0.13 255.255.255.252
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+!
+interface Vlan4004
+ description Avalon
+ ip vrf forwarding town
+ ip address 172.16.0.17 255.255.255.252
+ shutdown
+!
+interface Vlan4005
+ description Water Tower
+ ip vrf forwarding town
+ ip address 172.16.0.21 255.255.255.252
+ shutdown
+!
+interface Vlan4006
+ description Lexington Fire
+ ip vrf forwarding town
+ ip address 172.16.0.25 255.255.255.252
+!
+interface Vlan4007
+ description Bridge
+ ip vrf forwarding school
+ ip address 172.16.0.29 255.255.255.252
+!
+interface Vlan4008
+ description Harrington
+ ip vrf forwarding school
+ ip address 172.16.0.33 255.255.255.252
+!
+interface Vlan4009
+ description LHS Foreign Language
+ ip vrf forwarding school
+ ip address 172.16.0.37 255.255.255.252
+ shutdown
+!
+interface Vlan4010
+ description DPW Recycling
+ ip vrf forwarding town
+ ip address 172.16.0.41 255.255.255.252
+ shutdown
+!
+interface Vlan4011
+ description Lexington EOC Pump Station
+ ip vrf forwarding town
+ ip address 172.16.0.45 255.255.255.252
+!
+interface Vlan4012
+ description Fiske
+ ip vrf forwarding school
+ ip address 172.16.0.49 255.255.255.252
+!
+interface Vlan4013
+ description Animal Shelter
+ ip vrf forwarding town
+ ip address 172.16.0.53 255.255.255.252
+!
+interface Vlan4014
+ description DPW MDF Racks
+ ip vrf forwarding town
+ ip address 172.16.0.57 255.255.255.252
+!
+interface Vlan4015
+ description Library
+ ip vrf forwarding town
+ ip address 172.16.0.61 255.255.255.252
+!
+interface Vlan4016
+ description Visitors Center
+ ip vrf forwarding town
+ ip address 172.16.0.65 255.255.255.252
+!
+interface Vlan4017
+ description Town Hall
+ ip vrf forwarding town
+ ip address 172.16.0.69 255.255.255.252
+!
+interface Vlan4018
+ description Lexington Fire East
+ ip vrf forwarding town
+ ip address 172.16.0.73 255.255.255.252
+!
+interface Vlan4019
+ description LHS Science
+ ip vrf forwarding school
+ ip address 172.16.0.77 255.255.255.252
+!
+interface Vlan4020
+ description Police
+ ip vrf forwarding town
+ ip address 172.16.0.81 255.255.255.252
+!
+interface Vlan4021
+ description LHS Math
+ ip vrf forwarding school
+ ip address 172.16.0.85 255.255.255.252
+ shutdown
+!
+interface Vlan4022
+ description CO Annex
+ ip vrf forwarding school
+ ip address 172.16.0.89 255.255.255.252
+!
+interface Vlan4023
+ description Bowman
+ ip vrf forwarding school
+ ip address 172.16.0.93 255.255.255.252
+!
+interface Vlan4024
+ description Estabrook
+ ip vrf forwarding school
+ ip address 172.16.0.97 255.255.255.252
+!
+interface Vlan4025
+ description Hastings
+ ip vrf forwarding school
+ ip address 172.16.0.101 255.255.255.252
+ shutdown
+!
+interface Vlan4026
+ description Diamond Middle School
+ ip vrf forwarding school
+ ip address 172.16.0.105 255.255.255.252
+!
+interface Vlan4027
+ description Clark MS
+ ip vrf forwarding school
+ ip address 172.16.0.109 255.255.255.252
+!
+interface Vlan4028
+ description DPW
+ ip vrf forwarding town
+ ip address 172.16.0.113 255.255.255.252
+!
+interface Vlan4029
+ description Westview Cemetary
+ ip vrf forwarding town
+ ip address 172.16.0.117 255.255.255.252
+!
+interface Vlan4030
+ description Pool
+ ip vrf forwarding town
+ ip address 172.16.0.121 255.255.255.252
+ shutdown
+!
+interface Vlan4031
+ description Lexington Childrens place
+ ip vrf forwarding school
+ ip address 172.16.0.125 255.255.255.252
+!
+interface Vlan4061
+ ip vrf forwarding town
+ ip address 172.16.2.1 255.255.255.0
+!
+router ospf 1 vrf town
+ router-id 10.255.255.1
+ log-adjacency-changes
+ passive-interface default
+ no passive-interface Vlan18
+ no passive-interface Vlan4001
+ no passive-interface Vlan4003
+ no passive-interface Vlan4004
+ no passive-interface Vlan4005
+ no passive-interface Vlan4006
+ no passive-interface Vlan4010
+ no passive-interface Vlan4011
+ no passive-interface Vlan4013
+ no passive-interface Vlan4014
+ no passive-interface Vlan4015
+ no passive-interface Vlan4016
+ no passive-interface Vlan4017
+ no passive-interface Vlan4018
+ no passive-interface Vlan4020
+ no passive-interface Vlan4028
+ no passive-interface Vlan4029
+ no passive-interface Vlan4030
+ no passive-interface Vlan4061
+ network 10.18.254.254 0.0.0.0 area 0.0.0.0
+ network 172.16.0.5 0.0.0.0 area 0.0.0.0
+ network 172.16.0.13 0.0.0.0 area 0.0.0.0
+ network 172.16.0.17 0.0.0.0 area 0.0.0.0
+ network 172.16.0.21 0.0.0.0 area 0.0.0.0
+ network 172.16.0.25 0.0.0.0 area 0.0.0.0
+ network 172.16.0.41 0.0.0.0 area 0.0.0.0
+ network 172.16.0.45 0.0.0.0 area 0.0.0.0
+ network 172.16.0.53 0.0.0.0 area 0.0.0.0
+ network 172.16.0.57 0.0.0.0 area 0.0.0.0
+ network 172.16.0.61 0.0.0.0 area 0.0.0.0
+ network 172.16.0.65 0.0.0.0 area 0.0.0.0
+ network 172.16.0.69 0.0.0.0 area 0.0.0.0
+ network 172.16.0.73 0.0.0.0 area 0.0.0.0
+ network 172.16.0.81 0.0.0.0 area 0.0.0.0
+ network 172.16.0.113 0.0.0.0 area 0.0.0.0
+ network 172.16.0.117 0.0.0.0 area 0.0.0.0
+ network 172.16.0.121 0.0.0.0 area 0.0.0.0
+ network 172.16.2.1 0.0.0.0 area 0.0.0.0
+!
+router ospf 2 vrf school
+ router-id 10.255.255.2
+ log-adjacency-changes
+ passive-interface default
+ no passive-interface Vlan96
+ no passive-interface Vlan98
+ no passive-interface Vlan99
+ no passive-interface Vlan4000
+ no passive-interface Vlan4007
+ no passive-interface Vlan4008
+ no passive-interface Vlan4009
+ no passive-interface Vlan4012
+ no passive-interface Vlan4019
+ no passive-interface Vlan4021
+ no passive-interface Vlan4022
+ no passive-interface Vlan4023
+ no passive-interface Vlan4024
+ no passive-interface Vlan4025
+ no passive-interface Vlan4026
+ no passive-interface Vlan4027
+ no passive-interface Vlan4031
+ network 10.95.254.254 0.0.0.0 area 0.0.0.0
+ network 10.96.254.254 0.0.0.0 area 0.0.0.0
+ network 10.98.254.254 0.0.0.0 area 0.0.0.0
+ network 10.99.254.254 0.0.0.0 area 0.0.0.0
+ network 172.16.0.1 0.0.0.0 area 0.0.0.0
+ network 172.16.0.9 0.0.0.0 area 0.0.0.0
+ network 172.16.0.29 0.0.0.0 area 0.0.0.0
+ network 172.16.0.33 0.0.0.0 area 0.0.0.0
+ network 172.16.0.37 0.0.0.0 area 0.0.0.0
+ network 172.16.0.49 0.0.0.0 area 0.0.0.0
+ network 172.16.0.77 0.0.0.0 area 0.0.0.0
+ network 172.16.0.85 0.0.0.0 area 0.0.0.0
+ network 172.16.0.89 0.0.0.0 area 0.0.0.0
+ network 172.16.0.93 0.0.0.0 area 0.0.0.0
+ network 172.16.0.97 0.0.0.0 area 0.0.0.0
+ network 172.16.0.101 0.0.0.0 area 0.0.0.0
+ network 172.16.0.105 0.0.0.0 area 0.0.0.0
+ network 172.16.0.109 0.0.0.0 area 0.0.0.0
+ network 172.16.0.125 0.0.0.0 area 0.0.0.0
+!
+ip classless
+ip forward-protocol nd
+ip route 0.0.0.0 0.0.0.0 10.254.254.1
+ip route 10.1.40.10 255.255.255.255 10.254.254.250 name Bowman-MDF-3850-01
+ip route 10.1.45.10 255.255.255.255 10.254.254.250 name Bridge_MDF_3850-01
+ip route 10.1.206.10 255.255.255.255 10.254.254.250 name LCP-3850-Core
+ip route 10.33.0.0 255.255.0.0 10.254.254.1 name CommunityCtr_data_33
+ip route 10.35.0.0 255.255.0.0 10.35.99.253
+ip route 10.55.0.0 255.255.0.0 10.254.155.253
+ip route 10.56.0.0 255.255.0.0 10.254.155.253
+ip route 10.57.0.0 255.255.0.0 10.254.155.253
+ip route 10.58.0.0 255.255.0.0 10.254.155.253
+ip route 10.59.0.0 255.255.0.0 10.254.155.253
+ip route 10.100.0.0 255.255.0.0 10.254.200.253
+ip route 10.101.0.0 255.255.0.0 10.254.200.253
+ip route 10.102.0.0 255.255.0.0 10.254.200.253
+ip route 10.103.0.0 255.255.0.0 10.254.200.253
+ip route 10.104.0.0 255.255.0.0 10.254.200.253
+ip route 10.105.0.0 255.255.0.0 10.254.200.253
+ip route 10.106.0.0 255.255.0.0 10.254.200.253
+ip route 10.108.0.0 255.255.0.0 10.1.8.1
+ip route 10.108.0.0 255.255.255.0 10.1.8.1
+ip route 10.121.0.0 255.255.0.0 10.1.21.1
+ip route 10.122.0.0 255.255.0.0 10.1.22.101
+ip route 10.124.0.0 255.255.0.0 10.1.24.10
+ip route 10.133.0.0 255.255.255.0 10.254.254.1
+ip route 10.140.0.0 255.255.0.0 10.1.40.1
+ip route 10.145.0.0 255.255.0.0 10.1.45.1
+ip route 10.150.0.0 255.255.255.0 10.1.50.4
+ip route 10.156.0.0 255.255.0.0 10.254.155.253
+ip route 10.157.0.0 255.255.255.0 10.1.55.10
+ip route 10.161.0.0 255.255.0.0 10.1.60.1
+ip route 10.165.0.0 255.255.0.0 10.1.65.8
+ip route 10.170.0.0 255.255.0.0 10.1.70.7
+ip route 10.175.0.0 255.255.0.0 10.1.75.1
+ip route 10.180.0.0 255.255.0.0 10.1.80.1
+ip route 10.187.0.0 255.255.0.0 10.1.85.16
+ip route 10.191.0.0 255.255.0.0 10.254.190.253
+ip route 10.192.0.0 255.255.0.0 10.1.90.16
+ip route 10.195.0.0 255.255.0.0 10.1.95.10
+ip route 10.201.0.0 255.255.0.0 10.254.200.253
+ip route 10.202.0.0 255.255.255.0 10.1.100.10
+ip route 10.210.2.254 255.255.255.255 10.254.254.250 name LCP-WLAN
+ip route 10.250.0.32 255.255.255.224 10.122.0.1
+ip route 170.154.128.0 255.255.128.0 10.10.6.25
+ip route 172.16.1.0 255.255.255.0 10.254.254.250
+ip route 172.16.100.24 255.255.255.248 10.254.254.1
+ip route 192.168.255.128 255.255.255.128 10.254.254.250
+ip route vrf town 10.33.0.0 255.255.0.0 172.16.0.14
+!
+!
+no ip http server
+no ip http secure-server
+!
+logging facility local6
+logging 10.80.7.4
+logging 10.8.7.3
+logging 10.1.254.10
+arp 10.254.254.254 0018.199e.9c7d ARPA
+!
+route-map MAP-SCHOOL-TRAFFIC permit 10
+ match ip address ACL-SCHOOL-TRAFFIC
+ set ip default next-hop 10.254.254.250
+!
+route-map Barracuda permit 10
+ match ip address 120
+ set ip next-hop 10.1.1.100
+!
+snmp-server community !tol# RO 85
+snmp-server community !atr3tol RO
+snmp-server community 20lexccs09$ RO 90
+snmp-server community s3ntryTOL RO
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps chassis
+snmp-server enable traps module
+snmp-server enable traps transceiver all
+snmp-server enable traps ds1
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps eigrp
+snmp-server enable traps casa
+snmp-server enable traps tty
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps atm subif
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps dhcp-snooping bindings
+snmp-server enable traps dlsw
+snmp-server enable traps event-manager
+snmp-server enable traps frame-relay
+snmp-server enable traps frame-relay subif
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps MAC-Notification change move threshold
+snmp-server enable traps msdp
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps rf
+snmp-server enable traps slb real virtual csrp
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps memory bufferpeak
+snmp-server enable traps flex-links status
+snmp-server enable traps csg agent quota-server database
+snmp-server enable traps sonet
+snmp-server enable traps dial
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps energywise
+snmp-server enable traps fru-ctrl ps-output-change status
+snmp-server enable traps entity
+snmp-server enable traps l2tc threshold sys-threshold
+snmp-server enable traps module-auto-shutdown sys-action auto-shutdown
+snmp-server enable traps cpu threshold
+snmp-server enable traps rsvp
+snmp-server enable traps srp
+snmp-server enable traps udld link-fail-rpt
+snmp-server enable traps udld status-change
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps c6kxbar intbus-crcexcd intbus-crcrcvrd swbus tm-channel tm-swbus
+snmp-server enable traps entity-diag boot-up-fail hm-test-recover hm-thresh-reached scheduled-test-fail
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps port-security
+snmp-server enable traps mvpn
+snmp-server enable traps mpls traffic-eng
+snmp-server enable traps mpls fast-reroute protected
+snmp-server enable traps mpls rfc ldp
+snmp-server enable traps mpls ldp
+snmp-server enable traps pw vc
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps alarms informational
+snmp-server enable traps vlan-mac-limit
+snmp-server enable traps errdisable
+snmp-server enable traps voice poor-qov
+snmp-server enable traps mpls vpn
+snmp-server host 10.1.1.105 version 2c s3ntryTOL 
+!
+!
+control-plane
+!
+!
+dial-peer cor custom
+!
+!
+!
+!
+line con 0
+line vty 0
+ login local
+ length 0
+ transport input all
+line vty 1 4
+ login local
+ transport input all
+!
+!
+monitor session 1 source vlan 990
+monitor session 1 destination interface Gi9/33
+monitor session 5 source vlan 8 , 10 , 12 , 14 - 15 , 18
+monitor session 5 source vlan 20 , 22 , 25 , 33 , 990
+monitor session 5 source vlan 999
+monitor session 5 destination interface Gi9/24
+process cpu threshold type total rising 75 interval 5 falling 20 interval 5
+ntp master
+ntp server time.nist.gov
+event manager session cli username "EEMScript"
+no event manager policy Mandatory.go_switchbus.tcl type system
+event manager applet cpu_stats 
+ event snmp oid 1.3.6.1.4.1.9.9.109.1.1.1.1.3.1 get-type exact entry-op gt entry-val "80" exit-op lt exit-val "70" poll-interval 5
+ action 010 syslog msg "------HIGH CPU DETECTED----, CPU: $_snmp_oid_val %"
+ action 020 cli command "enable"
+ action 030 cli command "show clock | redirect sup-bootdisk:clock.txt"
+ action 040 cli command "debug netdr capture rx"
+ action 050 cli command "show netdr captured-packets | redirect sup-bootdisk:netdr.txt"
+ action 060 cli command "show proc cpu sort | redirect sup-bootdisk:cpu_stats.txt"
+ action 070 cli command "sho process cpu history | redirect sup-bootdisk:hist_stats.txt"
+ action 080 cli command "sho log | redirect sup-bootdisk:log_stats.txt"
+ action 090 cli command "show ip cef switching stat | redirect sup-bootdisk:show_ip_cef_switching_stat1.txt"
+ action 100 cli command "show ip cef switching stat | redirect sup-bootdisk:show_ip_cef_switching_stat2.txt"
+ action 110 cli command "show ip cef switching stat | redirect sup-bootdisk:show_ip_cef_switching_stat3.txt"
+ action 120 cli command "show ip traffic | redirect sup-bootdisk:show_ip_traffic1.txt"
+ action 130 cli command "show ip traffic | redirect sup-bootdisk:show_ip_traffic2.txt"
+ action 140 cli command "show ip traffic | redirect sup-bootdisk:show_ip_traffic3.txt"
+ action 150 cli command "u all"
+!
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX_LHS_LIBMDF_2960X
+Entry address(es): 
+  IP address: 10.1.60.10
+Platform: cisco WS-C2960X-48FPD-L,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/15,  Port ID (outgoing port): TenGigabitEthernet1/0/1
+Holdtime : 154 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.2(4)E7, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Tue 18-Sep-18 13:07 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000C4B36A4D2100FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.60.10
+
+-------------------------
+Device ID: LEX-LHS-ForeignLanguage-2960X
+Entry address(es): 
+  IP address: 10.1.65.1
+Platform: cisco WS-C2960X-48FPD-L,  Capabilities: Switch IGMP 
+Interface: TenGigabitEthernet4/3,  Port ID (outgoing port): TenGigabitEthernet1/0/1
+Holdtime : 121 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.0(2)EX5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Fri 21-Feb-14 05:54 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000040A6E8454A80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.65.1
+
+-------------------------
+Device ID: FISKE-3850-MDF
+Entry address(es): 
+  IP address: 10.1.85.16
+Platform: cisco WS-C3850-48P,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/8,  Port ID (outgoing port): TenGigabitEthernet1/1/4
+Holdtime : 144 sec
+
+Version :
+Cisco IOS Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 15.2(2)E4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Sat 13-Feb-16 03:45 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.85.16
+
+-------------------------
+Device ID: LEX_DPW_10GIG_Sw2
+Entry address(es): 
+  IP address: 10.1.22.109
+Platform: PCM8024-k,  Capabilities: Router 
+Interface: TenGigabitEthernet6/5,  Port ID (outgoing port): Te1/0/20
+Holdtime : 155 sec
+
+Version :
+5.1.3.7
+
+advertisement version: 2
+Management address(es): 
+
+-------------------------
+Device ID: LEX_DPW_10GIG_Sw2
+Entry address(es): 
+  IP address: 10.1.22.109
+Platform: PCM8024-k,  Capabilities: Router 
+Interface: TenGigabitEthernet6/5,  Port ID (outgoing port): Te1/0/19
+Holdtime : 155 sec
+
+Version :
+5.1.3.7
+
+advertisement version: 2
+Management address(es): 
+
+-------------------------
+Device ID: LEX_DPW_DellBlSW03
+Entry address(es): 
+  IP address: 10.1.22.106
+Platform: cisco WS-CBS3130X-S,  Capabilities: Switch IGMP 
+Interface: TenGigabitEthernet5/5,  Port ID (outgoing port): GigabitEthernet2/0/18
+Holdtime : 141 sec
+
+Version :
+Cisco IOS Software, CBS31X0 Software (CBS31X0-UNIVERSAL-M), Version 12.2(58)SE1, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2011 by Cisco Systems, Inc.
+Compiled Thu 05-May-11 11:00 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF0102250100000000000044E4D94A8F00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.22.106
+
+-------------------------
+Device ID: LEX_DPW_DellBlSW03
+Entry address(es): 
+  IP address: 10.1.22.106
+Platform: cisco WS-CBS3130X-S,  Capabilities: Switch IGMP 
+Interface: TenGigabitEthernet5/5,  Port ID (outgoing port): GigabitEthernet1/0/18
+Holdtime : 141 sec
+
+Version :
+Cisco IOS Software, CBS31X0 Software (CBS31X0-UNIVERSAL-M), Version 12.2(58)SE1, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2011 by Cisco Systems, Inc.
+Compiled Thu 05-May-11 11:00 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF0102250100000000000044E4D94A8F00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.22.106
+
+-------------------------
+Device ID: LEX-AnimalShelter_2960G
+Entry address(es): 
+  IP address: 10.1.4.1
+Platform: cisco WS-C2960G-8TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet3/8,  Port ID (outgoing port): GigabitEthernet0/8
+Holdtime : 121 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(50)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2010 by Cisco Systems, Inc.
+Compiled Tue 28-Sep-10 13:44 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000E8BA7087D200FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.4.1
+Unidirectional Mode: off
+
+-------------------------
+Device ID: LEX-CO-Annex-3850
+Entry address(es): 
+  IP address: 10.1.24.13
+Platform: cisco WS-C3850-48P,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/11,  Port ID (outgoing port): TenGigabitEthernet1/1/4
+Holdtime : 144 sec
+
+Version :
+Cisco IOS Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 15.2(2)E4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Sat 13-Feb-16 03:45 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.24.13
+
+-------------------------
+Device ID: LEX-LHS-Science-3560X
+Entry address(es): 
+  IP address: 10.1.75.1
+Platform: cisco WS-C3560X-48,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/1,  Port ID (outgoing port): TenGigabitEthernet1/1
+Holdtime : 154 sec
+
+Version :
+Cisco IOS Software, C3560E Software (C3560E-UNIVERSALK9-M), Version 12.2(55)SE8, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 10:58 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000DCEB94F75180FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.75.1
+
+-------------------------
+Device ID: HASTINGS-9300-CORE.c1.lexington.ma.us
+Entry address(es): 
+  IP address: 10.1.95.10
+Platform: cisco C9300-48P,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet7/2,  Port ID (outgoing port): TenGigabitEthernet1/1/8
+Holdtime : 131 sec
+
+Version :
+Cisco IOS Software [Fuji], Catalyst L3 Switch Software (CAT9K_IOSXE), Version 16.9.4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 22-Aug-19 18:14 by mcpre
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.95.10
+
+-------------------------
+Device ID: LEX_DPW_10GIG_SW1
+Entry address(es): 
+  IP address: 10.1.22.108
+Platform: PCM8024-k,  Capabilities: Router 
+Interface: TenGigabitEthernet5/5,  Port ID (outgoing port): Te1/0/20
+Holdtime : 153 sec
+
+Version :
+5.1.3.7
+
+advertisement version: 2
+Management address(es): 
+
+-------------------------
+Device ID: LEX_DPW_10GIG_SW1
+Entry address(es): 
+  IP address: 10.1.22.108
+Platform: PCM8024-k,  Capabilities: Router 
+Interface: TenGigabitEthernet5/5,  Port ID (outgoing port): Te1/0/19
+Holdtime : 153 sec
+
+Version :
+5.1.3.7
+
+advertisement version: 2
+Management address(es): 
+
+-------------------------
+Device ID: LEX-LHS-J-2960X
+Entry address(es): 
+  IP address: 10.1.70.1
+Platform: cisco WS-C2960X-48FPD-L,  Capabilities: Switch IGMP 
+Interface: TenGigabitEthernet4/2,  Port ID (outgoing port): TenGigabitEthernet1/0/1
+Holdtime : 177 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.0(2)EX5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Fri 21-Feb-14 05:54 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000040A6E8454600FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.70.1
+
+-------------------------
+Device ID: Lex_EOC_PumpStation-Sw1
+Entry address(es): 
+  IP address: 10.1.23.1
+Platform: cisco WS-C3560-24TS,  Capabilities: Router Switch IGMP 
+Interface: GigabitEthernet3/13,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 133 sec
+
+Version :
+Cisco IOS Software, C3560 Software (C3560-IPBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:24 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001795F80300FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.23.1
+Unidirectional Mode: off
+
+-------------------------
+Device ID: LEX-HARRINGTON-3850
+Entry address(es): 
+  IP address: 10.1.90.16
+Platform: cisco WS-C3850-48P,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/10,  Port ID (outgoing port): TenGigabitEthernet1/1/4
+Holdtime : 149 sec
+
+Version :
+Cisco IOS Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 15.2(2)E4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Sat 13-Feb-16 03:45 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.90.16
+
+-------------------------
+Device ID: LEX_TH_10GIG_Sw2
+Entry address(es): 
+  IP address: 10.1.8.107
+Platform: PCM8024-k,  Capabilities: Router 
+Interface: TenGigabitEthernet5/4,  Port ID (outgoing port): Te1/0/20
+Holdtime : 176 sec
+
+Version :
+5.1.3.7
+
+advertisement version: 2
+Management address(es): 
+
+-------------------------
+Device ID: LEX_TH_10GIG_Sw2
+Entry address(es): 
+  IP address: 10.1.8.107
+Platform: PCM8024-k,  Capabilities: Router 
+Interface: TenGigabitEthernet5/4,  Port ID (outgoing port): Te1/0/19
+Holdtime : 176 sec
+
+Version :
+5.1.3.7
+
+advertisement version: 2
+Management address(es): 
+
+-------------------------
+Device ID: Bridge-MDF-3850-01
+Entry address(es): 
+  IP address: 10.45.254.254
+Platform: cisco WS-C3850-48P,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/9,  Port ID (outgoing port): TenGigabitEthernet1/1/4
+Holdtime : 179 sec
+
+Version :
+Cisco IOS Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 15.2(2)E4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Sat 13-Feb-16 03:45 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.45.254.254
+
+-------------------------
+Device ID: LEX-WaterTower-2960
+Entry address(es): 
+  IP address: 10.1.3.2
+Platform: cisco WS-C2960-8TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet2/46,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 120 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(50)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2010 by Cisco Systems, Inc.
+Compiled Tue 28-Sep-10 13:44 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000E84040ABC500FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.3.2
+
+-------------------------
+Device ID: Bowman-MDF-3850-01
+Entry address(es): 
+  IP address: 10.40.254.254
+Platform: cisco WS-C3850-48P,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/7,  Port ID (outgoing port): TenGigabitEthernet1/1/4
+Holdtime : 168 sec
+
+Version :
+Cisco IOS Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 15.2(2)E4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Sat 13-Feb-16 03:45 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.40.254.254
+
+-------------------------
+Device ID: Estabrook-MDF-Stack01
+Entry address(es): 
+  IP address: 10.1.50.4
+Platform: cisco WS-C3750X-48,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/4,  Port ID (outgoing port): TenGigabitEthernet1/1/2
+Holdtime : 168 sec
+
+Version :
+Cisco IOS Software, C3750E Software (C3750E-UNIVERSALK9-M), Version 12.2(55)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2012 by Cisco Systems, Inc.
+Compiled Thu 09-Feb-12 18:14 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF0000000000004C00824B8F00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.50.4
+
+-------------------------
+Device ID: LEX_DPW_3560G-01-HE
+Entry address(es): 
+  IP address: 10.1.22.121
+Platform: cisco WS-C3560G-48TS,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet9/1,  Port ID (outgoing port): GigabitEthernet0/52
+Holdtime : 130 sec
+
+Version :
+Cisco IOS Software, C3560 Software (C3560-IPBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:24 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF0000000000000024F9359580FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.22.121
+
+-------------------------
+Device ID: LEX-DiamondMS-MDF-3850
+Entry address(es): 
+  IP address: 10.1.100.15
+Platform: cisco WS-C3850-12XS,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/6,  Port ID (outgoing port): TenGigabitEthernet1/0/11
+Holdtime : 176 sec
+
+Version :
+Cisco IOS Software, IOS-XE Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 03.07.03E RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Wed 13-Jan-16 23:40 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.100.15
+
+-------------------------
+Device ID: LEX-Avalon-2960
+Entry address(es): 
+  IP address: 10.1.3.1
+Platform: cisco WS-C2960-8TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet2/44,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 130 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(50)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2010 by Cisco Systems, Inc.
+Compiled Tue 28-Sep-10 13:44 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000E84040F44F00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.3.1
+
+-------------------------
+Device ID: LCP-3850-Core
+Entry address(es): 
+  IP address: 10.206.254.254
+Platform: cisco C9300-48P,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet7/1,  Port ID (outgoing port): TenGigabitEthernet1/1/8
+Holdtime : 153 sec
+
+Version :
+Cisco IOS Software [Everest], Catalyst L3 Switch Software (CAT9K_IOSXE), Version 16.6.6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 11-Apr-19 03:51 by mcpre
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.206.254.254
+
+-------------------------
+Device ID: LEX-ClarkMS-MDF-3850
+Entry address(es): 
+  IP address: 10.1.55.16
+Platform: cisco WS-C3850-12XS,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet4/5,  Port ID (outgoing port): TenGigabitEthernet1/0/11
+Holdtime : 131 sec
+
+Version :
+Cisco IOS Software, IOS-XE Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 03.07.03E RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Wed 13-Jan-16 23:40 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.55.16
+
+
+###show ip ssh
+
+SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+
+###show crypto key mypubkey rsa
+
+% Key pair was generated at: 22:38:49 UTC Oct 22 2019
+Key name: Lexington-6509Core.ci.lexington.ma.us
+ Storage Device: not specified
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+  30820122 300D0609 2A864886 F70D0101 01050003 82010F00 3082010A 02820101 
+  00ADB179 E4C36EBF EAA076DC B696A057 3D9F5F5B 113B7997 8A452586 3F099E18 
+  2A8A3581 BDF78532 B6FC17D3 6167AD02 17EE1D89 D5E993B2 7D7EE182 823ADE6D 
+  D62A4564 C482712B E0E8B87A A9F600B0 7FA8455A 473C467F 2CD20489 6544970F 
+  46CA1850 38C5AD93 4EE442C3 B38FA49F 6DA20B61 7B2DAE92 6A0DCF7A 1BCF54AF 
+  5704E4CF 9F8F115D 8037E3D8 E16092A9 9C482BEB 10EDB538 BC6BF918 36AB11C1 
+  87CE3FAA 48A4F0B6 D28D8193 B35AF50D 95C4157F DF19EB18 D4005B54 2F774A12 
+  B98B2608 95EE5F15 0C87AB45 B1E79AFB E9B6EF5E 62D7C979 BFF21812 BBCEE1C9 
+  D9507A77 25135DB8 D3537E95 B5172A65 E677D52B BB02AD86 38E1407E 955F8BD9 
+  2B020301 0001
+% Key pair was generated at: 00:29:49 UTC Jun 16 2020
+Key name: Lexington-6509Core.ci.lexington.ma.us.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00A4EEC0 F2657E10 
+  5EC84AEF 086FAA0E 5CD37154 C8D338D1 AAFF2E3F 81B903A2 D7250DEF 0517A541 
+  39ED9DEF 0C55DCCD EE9A93ED BCC49EE7 8D40E64A 9D51A635 CA0B8B23 B16CCA32 
+  50D02AA9 7E9EDEA8 3AA9AE40 9562EA6D 3C85115B 3D00A1CD 9D020301 0001
+
+###show inventory
+
+NAME: "WS-C6509-E", DESCR: "Cisco Systems, Inc. Catalyst 6500 9-slot Chassis System"
+PID: WS-C6509-E        ,                     VID: V06, SN: SMG1733N06V
+
+NAME: "WS-C6K-VTT-E 1", DESCR: "VTT-E FRU 1"
+PID: WS-C6K-VTT-E      ,                     VID:    , SN: SMT1725C696
+
+NAME: "WS-C6K-VTT-E 2", DESCR: "VTT-E FRU 2"
+PID: WS-C6K-VTT-E      ,                     VID:    , SN: SMT1725C553
+
+NAME: "WS-C6K-VTT-E 3", DESCR: "VTT-E FRU 3"
+PID: WS-C6K-VTT-E      ,                     VID:    , SN: SMT1725C699
+
+NAME: "CLK-7600 1", DESCR: "OSR-7600 Clock FRU 1"
+PID: CLK-7600          ,                     VID:    , SN: SMT1718C719
+
+NAME: "CLK-7600 2", DESCR: "OSR-7600 Clock FRU 2"
+PID: CLK-7600          ,                     VID:    , SN: SMT1718C719
+
+NAME: "1", DESCR: "WS-X6748-SFP CEF720 48 port 1000mb SFP Rev. 3.0"
+PID: WS-X6748-SFP      ,                     VID: V06, SN: SAL1732B0AZ
+
+NAME: "WS-F6700-CFC Centralized Forwarding Card sub-module of 1", DESCR: "WS-F6700-CFC Centralized Forwarding Card Rev. 4.1"
+PID: WS-F6700-CFC      ,                     VID: V06, SN: SAL1731ARFR
+
+NAME: "2", DESCR: "WS-X6748-SFP CEF720 48 port 1000mb SFP Rev. 3.0"
+PID: WS-X6748-SFP      ,                     VID: V06, SN: SAL1731AYFR
+
+NAME: "WS-F6700-CFC Centralized Forwarding Card sub-module of 2", DESCR: "WS-F6700-CFC Centralized Forwarding Card Rev. 4.1"
+PID: WS-F6700-CFC      ,                     VID: V06, SN: SAL1732B0YN
+
+NAME: "3", DESCR: "WS-X6516A-GBIC SFM-capable 16 port 1000mb GBIC Rev. 4.7"
+PID: WS-X6516A-GBIC    ,                     VID: V02, SN: SAL15066TEK
+
+NAME: "4", DESCR: "WS-X6716-10GE CEF720 16 port 10GE Rev. 2.3"
+PID: WS-X6716-10GE     ,                     VID: V05, SN: SAL19017G2V
+
+NAME: "WS-F6700-DFC3CXL Distributed Forwarding Card 3 sub-module of 4", DESCR: "WS-F6700-DFC3CXL Distributed Forwarding Card 3 Rev. 1.10"
+PID: WS-F6700-DFC3CXL  ,                     VID: V04, SN: SAL19058RMN
+
+NAME: "Transceiver Te4/1", DESCR: "X2 Transceiver 10Gbase-LR Te4/1"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: ONT184600ZG
+
+NAME: "Transceiver Te4/2", DESCR: "X2 Transceiver 10Gbase-LR Te4/2"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: ONT1846009M
+
+NAME: "Transceiver Te4/3", DESCR: "X2 Transceiver 10Gbase-LR Te4/3"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: ONT1844002U
+
+NAME: "Transceiver Te4/4", DESCR: "X2 Transceiver 10Gbase-LR Te4/4"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: FNS1628190M
+
+NAME: "Transceiver Te4/5", DESCR: "X2 Transceiver 10Gbase-LR Te4/5"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: ONT1844005M
+
+NAME: "Transceiver Te4/6", DESCR: "X2 Transceiver 10Gbase-LR Te4/6"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: ONT184400JN
+
+NAME: "Transceiver Te4/7", DESCR: "X2 Transceiver 10Gbase-ER Te4/7"
+PID: X2-10GB-ER        ,                     VID: V05 , SN: ECL1924000B
+
+NAME: "Transceiver Te4/8", DESCR: "X2 Transceiver 10Gbase-ER Te4/8"
+PID: X2-10GB-ER        ,                     VID: V05 , SN: ECL19240007
+
+NAME: "Transceiver Te4/9", DESCR: "X2 Transceiver 10Gbase-ER Te4/9"
+PID: X2-10GB-ER        ,                     VID: V05 , SN: ECL1943008G
+
+NAME: "Transceiver Te4/10", DESCR: "X2 Transceiver 10Gbase-ER Te4/10"
+PID: X2-10GB-ER        ,                     VID: V05 , SN: ECL1924000A
+
+NAME: "Transceiver Te4/11", DESCR: "X2 Transceiver 10Gbase-ER Te4/11"
+PID: X2-10GB-ER        ,                     VID: V05 , SN: ECL19240006
+
+NAME: "Transceiver Te4/13", DESCR: "X2 Transceiver 10Gbase-LRM Te4/13"
+PID: X2-10GB-LRM       ,                     VID: V03 , SN: OPB15021301
+
+NAME: "Transceiver Te4/14", DESCR: "X2 Transceiver 10Gbase-LRM Te4/14"
+PID: X2-10GB-LRM       ,                     VID: V03 , SN: FNS16220J7N
+
+NAME: "Transceiver Te4/15", DESCR: "X2 Transceiver 10Gbase-LR Te4/15"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: AGA1728X1MH
+
+NAME: "Transceiver Te4/16", DESCR: "X2 Transceiver 10Gbase-LR Te4/16"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: ONT183102NX
+
+NAME: "5", DESCR: "VS-S720-10G 5 ports Supervisor Engine 720 10GE Rev. 4.1"
+PID: VS-S720-10G       ,                     VID: V06, SN: SAL1734BRCA
+
+NAME: "msfc sub-module of 5", DESCR: "VS-F6K-MSFC3 MSFC3 Daughterboard Rev. 5.1"
+PID: VS-F6K-MSFC3      ,                     VID: V06, SN: SAL1734BN0U
+
+NAME: "VS-F6K-PFC3C Policy Feature Card 3 sub-module of 5", DESCR: "VS-F6K-PFC3C Policy Feature Card 3 Rev. 1.2"
+PID: VS-F6K-PFC3C      ,                     VID: V02, SN: SAL1734BJ8P
+
+NAME: "Transceiver Te5/4", DESCR: "X2 Transceiver 10Gbase-LR Te5/4"
+PID: X2-10GB-LR        ,                     VID: V01 , SN: GTAW0355   
+
+NAME: "Transceiver Te5/5", DESCR: "X2 Transceiver 10Gbase-SR Te5/5"
+PID: X2-10GB-SR        ,                     VID: V03 , SN: AGA1302XTKC
+
+NAME: "6", DESCR: "VS-S720-10G 5 ports Supervisor Engine 720 10GE Rev. 3.4"
+PID: VS-S720-10G       ,                     VID: V05, SN: SAL1421JG7U
+
+NAME: "msfc sub-module of 6", DESCR: "VS-F6K-MSFC3 MSFC3 Daughterboard Rev. 5.2"
+PID: VS-F6K-MSFC3      ,                     VID: V06, SN: SAL1421JBHK
+
+NAME: "VS-F6K-PFC3C Policy Feature Card 3 sub-module of 6", DESCR: "VS-F6K-PFC3C Policy Feature Card 3 Rev. 1.2"
+PID: VS-F6K-PFC3C      ,                     VID: V02, SN: SAL1424KJGU
+
+NAME: "Transceiver Te6/5", DESCR: "X2 Transceiver 10Gbase-SR Te6/5"
+PID: X2-10GB-SR        ,                     VID: V03 , SN: AGA1302XTKJ
+
+NAME: "7", DESCR: "WS-X6716-10GE CEF720 16 port 10GE Rev. 1.1"
+PID: WS-X6716-10GE     ,                     VID: V03, SN: SAL1619CFUC
+
+NAME: "WS-F6700-DFC3C Distributed Forwarding Card 3 sub-module of 7", DESCR: "WS-F6700-DFC3C Distributed Forwarding Card 3 Rev. 1.5"
+PID: WS-F6700-DFC3C    ,                     VID: V03, SN: SAL1620CYTZ
+
+NAME: "Transceiver Te7/1", DESCR: "X2 Transceiver 10Gbase-LR Te7/1"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: FNS23160R0P
+
+NAME: "Transceiver Te7/2", DESCR: "X2 Transceiver 10Gbase-LR Te7/2"
+PID: X2-10GB-LR        ,                     VID: V05 , SN: FNS231511D3
+
+NAME: "Interface Adapter Module Te7/5", DESCR: "Interface Adapter Module Te7/5"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2204XYW6
+
+NAME: "Transceiver Te7/5", DESCR: "Transceiver 10Gbase-SR Te7/5"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM2203061K     
+
+NAME: "Interface Adapter Module Te7/6", DESCR: "Interface Adapter Module Te7/6"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2204XYSU
+
+NAME: "Transceiver Te7/6", DESCR: "Transceiver 10Gbase-SR Te7/6"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM2203061H     
+
+NAME: "Interface Adapter Module Te7/7", DESCR: "Interface Adapter Module Te7/7"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2204XYBQ
+
+NAME: "Transceiver Te7/7", DESCR: "Transceiver 10Gbase-SR Te7/7"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM2203062A     
+
+NAME: "Interface Adapter Module Te7/8", DESCR: "Interface Adapter Module Te7/8"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2204XYPY
+
+NAME: "Transceiver Te7/8", DESCR: "Transceiver 10Gbase-SR Te7/8"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM2203061N     
+
+NAME: "Interface Adapter Module Te7/9", DESCR: "Interface Adapter Module Te7/9"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2203XY8Q
+
+NAME: "Transceiver Te7/9", DESCR: "Transceiver 10Gbase-SR Te7/9"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM220308QN     
+
+NAME: "Interface Adapter Module Te7/10", DESCR: "Interface Adapter Module Te7/10"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2204XY25
+
+NAME: "Transceiver Te7/10", DESCR: "Transceiver 10Gbase-SR Te7/10"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM22030678     
+
+NAME: "8", DESCR: "WS-X6716-10GE CEF720 16 port 10GE Rev. 1.0"
+PID: WS-X6716-10GE     ,                     VID: V01, SN: SAD121802B1
+
+NAME: "WS-F6700-DFC3C Distributed Forwarding Card 3 sub-module of 8", DESCR: "WS-F6700-DFC3C Distributed Forwarding Card 3 Rev. 1.0"
+PID: WS-F6700-DFC3C    ,                     VID: V01, SN: SAL1221RGD5
+
+NAME: "Transceiver Te8/1", DESCR: "X2 Transceiver 10Gbase-SR Te8/1"
+PID: X2-10GB-SR        ,                     VID: V06 , SN: FNS17261UXC
+
+NAME: "Transceiver Te8/2", DESCR: "X2 Transceiver 10Gbase-SR Te8/2"
+PID: X2-10GB-SR        ,                     VID: V06 , SN: FNS161703XN
+
+NAME: "Transceiver Te8/3", DESCR: "X2 Transceiver 10Gbase-SR Te8/3"
+PID: X2-10GB-SR        ,                     VID: V06 , SN: FNS161703XR
+
+NAME: "Interface Adapter Module Te8/11", DESCR: "Interface Adapter Module Te8/11"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2203XYA0
+
+NAME: "Transceiver Te8/11", DESCR: "Transceiver 10Gbase-SR Te8/11"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM2203061J     
+
+NAME: "Interface Adapter Module Te8/12", DESCR: "Interface Adapter Module Te8/12"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2203XYGR
+
+NAME: "Transceiver Te8/12", DESCR: "Transceiver 10Gbase-SR Te8/12"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM2203066Z     
+
+NAME: "Interface Adapter Module Te8/13", DESCR: "Interface Adapter Module Te8/13"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2204XYVK
+
+NAME: "Transceiver Te8/13", DESCR: "Transceiver 10Gbase-SR Te8/13"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM220305XZ     
+
+NAME: "Interface Adapter Module Te8/14", DESCR: "Interface Adapter Module Te8/14"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2203XYGW
+
+NAME: "Transceiver Te8/14", DESCR: "Transceiver 10Gbase-SR Te8/14"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM220308BA     
+
+NAME: "Interface Adapter Module Te8/15", DESCR: "Interface Adapter Module Te8/15"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2204XYVH
+
+NAME: "Transceiver Te8/15", DESCR: "Transceiver 10Gbase-SR Te8/15"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM22030679     
+
+NAME: "Interface Adapter Module Te8/16", DESCR: "Interface Adapter Module Te8/16"
+PID: CVR-X2-SFP10G     ,                     VID: V03 , SN: FOX2203XY2G
+
+NAME: "Transceiver Te8/16", DESCR: "Transceiver 10Gbase-SR Te8/16"
+PID: SFP-10G-SR         ,                     VID: V03 , SN: OPM220308N9     
+
+NAME: "9", DESCR: "WS-X6748-GE-TX CEF720 48 port 10/100/1000mb Ethernet Rev. 4.3"
+PID: WS-X6748-GE-TX    ,                     VID: V06, SN: SAL17299RUN
+
+NAME: "WS-F6700-CFC Centralized Forwarding Card sub-module of 9", DESCR: "WS-F6700-CFC Centralized Forwarding Card Rev. 4.1"
+PID: WS-F6700-CFC      ,                     VID: V06, SN: SAL1732B0ZP
+
+NAME: "WS-C6509-E-FAN 1", DESCR: "Enhanced 9-slot Fan Tray 1"
+PID: WS-C6509-E-FAN    ,                     VID: V05, SN: DCH172600M2
+
+NAME: "PS 1 WS-CAC-4000W-US", DESCR: "220v AC power supply, 4000 watt 1"
+PID: WS-CAC-4000W-US   ,                     VID: V03, SN: SNI1724CE3E
+
+NAME: "PS 2 WS-CAC-4000W-US", DESCR: "220v AC power supply, 4000 watt 2"
+PID: WS-CAC-4000W-US   ,                     VID: V03, SN: SNI1724CE4K
+
+
+

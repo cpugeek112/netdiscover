@@ -1,0 +1,541 @@
+method: TELNET
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 9738 bytes
+!
+! Last configuration change at 08:38:35 edt Fri Sep 27 2019 by pmusto
+! NVRAM config last updated at 12:06:44 est Tue Feb 18 2020
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+service sequence-numbers
+!
+hostname LEX_LHS_ONDS-3560-24-SW01
+!
+logging buffered 24000 debugging
+enable secret 5 $1$ZArr$.r6aTAvcpMQ0yOb/zHf3u0
+!
+username ccs24x7 password 7 153E581455247D30073D
+username rjusta privilege 15 password 7 0010425F375E1D575E71
+username unicom privilege 15 password 7 09604B1148534547
+username phunter password 7 062B2F2D404F1B1D5440
+username pmusto privilege 15 password 7 11390B5419110E1F17
+username eborden password 7 013D55145A1F155D711D19
+username PresideoNOC privilege 15 password 7 15252D061200087C626A113B
+username PresidioNOC privilege 15 password 7 03337D011025021404503D1C041103
+username Advizex privilege 15 password 7 05270317334943390B0A45425A55
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+ip subnet-zero
+ip routing
+!
+!
+mls qos map cos-dscp 0 10 18 26 34 46 48 56
+mls qos srr-queue input priority-queue 2 bandwidth 20
+mls qos srr-queue input cos-map queue 1 threshold 2  3 6 7
+mls qos srr-queue input cos-map queue 2 threshold 3  5
+mls qos srr-queue output cos-map queue 1 threshold 3  5
+mls qos srr-queue output cos-map queue 2 threshold 2  4
+mls qos srr-queue output cos-map queue 2 threshold 3  3 6 7
+mls qos srr-queue output cos-map queue 4 threshold 1  0 1
+mls qos srr-queue output dscp-map queue 1 threshold 3  46
+mls qos srr-queue output dscp-map queue 2 threshold 2  34
+mls qos srr-queue output dscp-map queue 2 threshold 3  24 26 48 56
+mls qos srr-queue output dscp-map queue 4 threshold 1  0 10
+mls qos
+!
+!
+port-channel load-balance src-dst-ip
+archive
+ log config
+  logging enable
+  logging size 1000
+  notify syslog
+ path tftp://10.8.6.125/Switch/School/HighSchool/Cfg-$h
+ write-memory
+ time-period 1440
+no file verify auto
+!
+spanning-tree mode pvst
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+no spanning-tree vlan 13,110,195,198,208-210
+spanning-tree vlan 180 priority 4096
+!
+vlan internal allocation policy ascending
+!
+interface Port-channel2
+!
+interface Port-channel3
+ description Ether-Channel connection to CR
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ description Ether-Channel connection to CR
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+ channel-group 3 mode on
+!
+interface GigabitEthernet0/18
+ description Ether-Channel connection to CR
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+ channel-group 3 mode on
+!
+interface GigabitEthernet0/19
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ switchport access vlan 60
+ switchport mode access
+ switchport voice vlan 161
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust cos
+ spanning-tree portfast
+!
+interface GigabitEthernet0/22
+ description Link to Switch # 2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ load-interval 30
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet0/23
+ description Link to Switch # 3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet0/24
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet0/25
+ description Connection to 10GB 2960X
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ mls qos trust dscp
+!
+interface GigabitEthernet0/26
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/27
+ description Fiber to 4506
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ shutdown
+ srr-queue bandwidth share 1 40 40 20
+ priority-queue out 
+ mls qos trust dscp
+!
+interface GigabitEthernet0/28
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Vlan1
+ ip address 10.1.80.1 255.255.0.0
+!
+interface Vlan180
+ ip address 10.180.0.254 255.255.255.0
+ ip helper-address 10.161.0.2
+!
+ip default-gateway 10.1.254.254
+ip classless
+ip route 0.0.0.0 0.0.0.0 10.1.254.254
+ip http server
+!
+logging 10.1.254.10
+access-list 90 permit 10.8.6.106
+access-list 90 permit 10.8.6.125
+access-list 90 permit 10.1.254.11
+access-list 90 permit 10.1.254.10
+snmp-server community !atr3tol RO
+snmp-server community 20lexccs09$ RO 90
+snmp-server community r3D5ox RO
+snmp-server community s3ntryschool RO
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps cluster
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps cpu threshold
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon
+snmp-server enable traps MAC-Notification
+snmp-server enable traps copy-config
+snmp-server enable traps config
+snmp-server enable traps hsrp
+snmp-server enable traps rtr
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vlan-membership
+snmp-server host 10.1.1.105 version 2c s3ntryschool 
+!
+control-plane
+!
+!
+line con 0
+ password 7 03175E1B125E70
+ login
+line vty 0 4
+ login local
+line vty 5 15
+ no login
+!
+!
+monitor session 1 source interface Gi0/2
+monitor session 1 destination interface Gi0/14
+ntp clock-period 36029589
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+!
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX-LHS-CR
+Entry address(es): 
+  IP address: 10.1.80.5
+Platform: cisco WS-C2960G-48TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/17,  Port ID (outgoing port): GigabitEthernet0/48
+Holdtime : 149 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(44)SE6, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2009 by Cisco Systems, Inc.
+Compiled Mon 09-Mar-09 18:10 by gereddy
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010225030000000000000024984FDA80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.80.5
+
+-------------------------
+Device ID: LEX-LHS-CR
+Entry address(es): 
+  IP address: 10.1.80.5
+Platform: cisco WS-C2960G-48TC-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/18,  Port ID (outgoing port): GigabitEthernet0/47
+Holdtime : 144 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(44)SE6, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2009 by Cisco Systems, Inc.
+Compiled Mon 09-Mar-09 18:10 by gereddy
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010225030000000000000024984FDA80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.80.5
+
+-------------------------
+Device ID: LEX_LHS_ONDS_2960X
+Entry address(es): 
+  IP address: 10.1.80.12
+Platform: cisco WS-C2960X-48FPD-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/25,  Port ID (outgoing port): GigabitEthernet1/0/48
+Holdtime : 158 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.0(2a)EX5, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2015 by Cisco Systems, Inc.
+Compiled Mon 16-Feb-15 08:16 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000038ED18300200FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.80.12
+
+-------------------------
+Device ID: LEX_LHS_ONDS-2950T-SW02
+Entry address(es): 
+  IP address: 10.1.80.2
+Platform: cisco WS-C2950T-48-SI,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/22,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 164 sec
+
+Version :
+Cisco Internetwork Operating System Software 
+IOS (tm) C2950 Software (C2950-I6Q4L2-M), Version 12.1(22)EA4, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2005 by cisco Systems, Inc.
+Compiled Wed 23-Mar-05 15:33 by yenanh
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF00000000000000152B324E00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.80.2
+
+-------------------------
+Device ID: LEX_LHS_ONDS_2960-SW03
+Entry address(es): 
+  IP address: 10.1.80.3
+Platform: cisco WS-C2960-48TT-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/23,  Port ID (outgoing port): GigabitEthernet0/1
+Holdtime : 156 sec
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASE-M), Version 12.2(25)SEE3, RELEASE SOFTWARE (fc2)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 22-Feb-07 13:57 by myl
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001C0E0AA700FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.80.3
+
+-------------------------
+Device ID: LEX_LHS_ONDS-3560PoE24-SW06
+Entry address(es): 
+  IP address: 10.1.80.6
+Platform: cisco WS-C3560G-24PS,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/26,  Port ID (outgoing port): GigabitEthernet0/25
+Holdtime : 151 sec
+
+Version :
+Cisco IOS Software, C3560 Software (C3560-IPBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 18:15 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000081FF366DF00FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.80.6
+
+
+###show ip ssh
+
+^
+% Invalid input detected at '^' marker.
+
+
+###show crypto key mypubkey rsa
+
+^
+% Invalid input detected at '^' marker.
+
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C3560G-24TS"
+PID: WS-C3560G-24TS-S  , VID: 02 , SN: FOC0931U0U0
+
+NAME: "GigabitEthernet0/25", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-T               , VID: 00 , SN: MTC18200BUP     
+
+NAME: "GigabitEthernet0/27", DESCR: "1000BaseSX SFP"
+PID: , VID: 255, SN: FNS0931D2PQ     
+
+
+

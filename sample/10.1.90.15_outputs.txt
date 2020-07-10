@@ -1,0 +1,392 @@
+method: TELNET
+
+###show running-config
+
+Building configuration...
+
+Current configuration : 5595 bytes
+!
+! Last configuration change at 10:39:52 edt Mon Jun 15 2020 by unicom
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname LEX-HARRINGTON-MDF-PoE-SW06
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$uevl$/dQsI5xbjZnR9d0uiitLZ.
+!
+username custom password 7 082F435A01100B10460D1E012F
+username rjusta privilege 15 password 7 15065A55372F3D757963
+username unicom privilege 15 password 7 05270317701A1C5C
+username ccs24x7 privilege 15 password 7 143B41135D0A7C3F0B26
+username phunter password 7 112439091B131908557D
+username pmusto privilege 15 password 7 012314555508031C32
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 023122511D2C2C7906172D0016141A
+username Advizex privilege 15 password 7 04770E1E1D24417E1B1657474352
+no aaa new-model
+clock timezone est -5
+clock summer-time edt recurring
+system mtu routing 1500
+ip subnet-zero
+no ip domain-lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+no spanning-tree vlan 13,110,208-210,998-999
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface Port-channel1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+ description WAP33
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/2
+ description WAP34
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/3
+ description WAP35
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/4
+ description WAP36
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/5
+ description WAP37
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/6
+ description WAP38
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/7
+ description WAP39
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/8
+ description WAP40
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/9
+ description WAP41
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/10
+ description WAP42
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/11
+ description WAP43
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/12
+ description WAP13
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/13
+ description WAP10
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/14
+ description WAP11
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/15
+ description WAP16
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/16
+ description WAP15
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/17
+ description WAP14
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/18
+ switchport access vlan 93
+ switchport mode access
+!
+interface GigabitEthernet0/19
+ switchport access vlan 190
+ switchport mode access
+!
+interface GigabitEthernet0/20
+ switchport access vlan 90
+ switchport mode access
+!
+interface GigabitEthernet0/21
+ switchport access vlan 93
+!
+interface GigabitEthernet0/22
+ description Lexington_WLC5508
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet0/23
+ description Lexington_WLC5508
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet0/24
+ description Lexington_WLC5508
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet0/25
+ description Lexington_WLC5508
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet0/26
+ description Lexington_WLC5508
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet0/27
+ description MDF-SW05
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/28
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Vlan1
+ ip address 10.1.90.15 255.255.0.0
+ no ip route-cache
+ no ip mroute-cache
+!
+ip default-gateway 10.1.254.254
+ip classless
+ip http server
+!
+logging trap warnings
+logging facility local6
+logging 10.8.7.3
+access-list 50 permit 10.254.190.254
+access-list 50 permit 10.8.16.227
+access-list 50 permit 10.8.16.230
+access-list 50 permit 10.8.16.237
+access-list 50 permit 206.28.209.32 0.0.0.15
+access-list 50 permit 10.1.0.0 0.0.255.255
+access-list 50 permit 10.8.254.0 0.0.0.255
+access-list 50 permit 10.191.0.0 0.0.255.255
+access-list 80 permit 206.28.209.32 0.0.0.15
+access-list 85 permit 10.8.7.3
+snmp-server engineID local 0000000902000004DDE6AD80
+snmp-server community !tol# RO 85
+snmp-server community !atr3tol RO 80
+snmp-server community r3D5ox RO
+snmp-server community 20lexccs09$ RO 90
+!
+control-plane
+!
+banner motd ^CCC
+
+
+                *** YOU ARE ATTEMPTING TO ACCESS A   ***
+                *** SECURE AREA.  ALL UNAUTHORIZED   ***
+                *** USERS MUST LOG OFF NOW.          ***
+                *** TOWN OF LEXINGTON MIS STAFF ONLY ***
+
+^C
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ exec-timeout 15 0
+ login local
+line vty 5 15
+ access-class 50 in
+ exec-timeout 15 0
+ login
+!
+ntp clock-period 36028980
+ntp server 216.239.35.0
+ntp server 10.80.6.25
+end
+
+
+###show snmp user
+
+
+
+###show cdp neighbors detail
+
+-------------------------
+Device ID: LEX-HARRINGTON-MDF-SW04
+Entry address(es): 
+  IP address: 10.1.90.13
+Platform: cisco WS-C2950T-48-SI,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet0/27,  Port ID (outgoing port): GigabitEthernet0/2
+Holdtime : 142 sec
+
+Version :
+Cisco Internetwork Operating System Software 
+IOS (tm) C2950 Software (C2950-I6Q4L2-M), Version 12.1(22)EA1b, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2004 by cisco Systems, Inc.
+Compiled Tue 24-Aug-04 00:12 by yenanh
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF000000000000001319533740FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.90.13
+
+-------------------------
+Device ID: Lexington_WLC5508
+Entry address(es): 
+  IP address: 10.190.2.254
+  IPv6 address: FE80::A693:4CFF:FEFB:79CF  (link-local)
+Platform: AIR-CT5508-K9,  Capabilities: Host 
+Interface: GigabitEthernet0/22,  Port ID (outgoing port): GigabitEthernet0/0/1
+Holdtime : 128 sec
+
+Version :
+Manufacturer's Name: Cisco Systems Inc.  Product Name: Cisco Controller  Product Version: 8.3.112.0  RTOS Version: Erro  Bootloader Version: 1.0.1  Build Type: DATA + WPS
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+
+-------------------------
+Device ID: Lexington_WLC5508
+Entry address(es): 
+  IP address: 10.190.2.254
+  IPv6 address: FE80::A693:4CFF:FEFB:79CF  (link-local)
+Platform: AIR-CT5508-K9,  Capabilities: Host 
+Interface: GigabitEthernet0/26,  Port ID (outgoing port): GigabitEthernet0/0/2
+Holdtime : 128 sec
+
+Version :
+Manufacturer's Name: Cisco Systems Inc.  Product Name: Cisco Controller  Product Version: 8.3.112.0  RTOS Version: Erro  Bootloader Version: 1.0.1  Build Type: DATA + WPS
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+
+-------------------------
+Device ID: Lexington_WLC5508
+Entry address(es): 
+  IP address: 10.190.2.254
+  IPv6 address: FE80::A693:4CFF:FEFB:79CF  (link-local)
+Platform: AIR-CT5508-K9,  Capabilities: Host 
+Interface: GigabitEthernet0/25,  Port ID (outgoing port): GigabitEthernet0/0/3
+Holdtime : 128 sec
+
+Version :
+Manufacturer's Name: Cisco Systems Inc.  Product Name: Cisco Controller  Product Version: 8.3.112.0  RTOS Version: Erro  Bootloader Version: 1.0.1  Build Type: DATA + WPS
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+
+-------------------------
+Device ID: Lexington_WLC5508
+Entry address(es): 
+  IP address: 10.190.2.254
+  IPv6 address: FE80::A693:4CFF:FEFB:79CF  (link-local)
+Platform: AIR-CT5508-K9,  Capabilities: Host 
+Interface: GigabitEthernet0/24,  Port ID (outgoing port): GigabitEthernet0/0/4
+Holdtime : 128 sec
+
+Version :
+Manufacturer's Name: Cisco Systems Inc.  Product Name: Cisco Controller  Product Version: 8.3.112.0  RTOS Version: Erro  Bootloader Version: 1.0.1  Build Type: DATA + WPS
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+
+-------------------------
+Device ID: Lexington_WLC5508
+Entry address(es): 
+  IP address: 10.190.2.254
+  IPv6 address: FE80::A693:4CFF:FEFB:79CF  (link-local)
+Platform: AIR-CT5508-K9,  Capabilities: Host 
+Interface: GigabitEthernet0/23,  Port ID (outgoing port): GigabitEthernet0/0/5
+Holdtime : 128 sec
+
+Version :
+Manufacturer's Name: Cisco Systems Inc.  Product Name: Cisco Controller  Product Version: 8.3.112.0  RTOS Version: Erro  Bootloader Version: 1.0.1  Build Type: DATA + WPS
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+
+
+###show ip ssh
+
+^
+% Invalid input detected at '^' marker.
+
+
+###show crypto key mypubkey rsa
+
+^
+% Invalid input detected at '^' marker.
+
+
+###show inventory
+
+NAME: "1", DESCR: "WS-C3560G-24PS"
+PID: WS-C3560G-24PS-S  , VID: V09, SN: FOC1617Y5VD
+
+NAME: "GigabitEthernet0/25", DESCR: "10/100/1000BaseTX SFP"
+PID:                     , VID:     , SN: AGM161020U0     
+
+NAME: "GigabitEthernet0/26", DESCR: "10/100/1000BaseTX SFP"
+PID:                     , VID:     , SN: AGM161022LV     
+
+NAME: "GigabitEthernet0/27", DESCR: "10/100/1000BaseTX SFP"
+PID:                     , VID:     , SN: AGM16102268     
+
+
+

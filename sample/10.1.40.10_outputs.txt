@@ -1,0 +1,5731 @@
+Bowman-MDF-3850-01#show running-config all
+Building configuration...
+
+Current configuration with default configurations exposed : 159636 bytes
+!
+! Last configuration change at 12:44:39 edt Sun Mar 29 2020
+!
+version 15.2
+parser cache
+parser config partition
+parser command serializer
+parser maximum utilization 100
+parser maximum latency 40
+downward-compatible-config 15.2
+no service log backtrace
+no service config
+no service exec-callback
+no service nagle
+service slave-log
+no service slave-coredump
+no service pad to-xot
+no service pad from-xot
+no service pad cmns
+no service pad
+no service telnet-zeroidle
+no service tcp-keepalives-in
+no service tcp-keepalives-out
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+no service exec-wait
+no service linenumber
+no service internal
+no service scripting
+service compress-config
+service prompt config
+no service old-slip-prompts
+no service pt-vty-logging
+no service disable-ip-fast-frag
+service sequence-numbers
+service counters max age 0
+service dhcp
+no service call-home
+!
+hostname Bowman-MDF-3850-01
+!
+boot-start-marker
+boot-end-marker
+!
+shell processing
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no logging discriminator
+logging exception 4096
+no logging count
+no logging message-counter log
+no logging message-counter debug
+logging message-counter syslog
+no logging snmp-authfail
+no logging userinfo
+logging buginf
+logging queue-limit 100
+logging queue-limit esm 0
+logging queue-limit trap 100
+logging buffered 16384 debugging
+logging reload message-limit 1000 notifications
+no logging persistent
+logging rate-limit console 10 except errors
+no logging console guaranteed
+logging console debugging
+logging monitor debugging
+logging cns-events informational
+logging on
+enable secret 5 $1$BJwN$UXeNQaEIvVSG2VfxXB4BB.
+!
+username ccs24x7 password 7 09601D11480B41062402
+username rjusta privilege 15 password 7 051F5756124958584855
+username unicom privilege 15 password 7 09604B1148534547
+username phunter password 7 0029330A085A19025E76
+username pmusto privilege 15 password 7 122917461C08091739
+username eborden password 7 013D55145A1F155D711D19
+username PresidioNOC privilege 15 password 7 0124200E4D2125576B156A100A061F
+username Advizex privilege 15 password 7 09604B110B001A221903567A7A7D
+!
+no software auto-upgrade source url 
+!
+no software auto-upgrade enable
+!
+spd extended-headroom 10
+spd headroom 100
+spd enable
+no aaa new-model
+ipc holdq threshold upper 20
+ipc holdq threshold lower 1
+ipc header-cache permanent 6000 100
+ipc buffers max-free 1200
+ipc buffers min-free 400
+ipc buffers permanent 1200
+clock timezone est -5 0
+clock summer-time edt recurring 60
+cpp
+cef table consistency-check IPv4 type lc-detect count 71 period 60
+cef table consistency-check IPv4 type scan-lc-rp count 71 period 60
+cef table consistency-check IPv4 type scan-rp-lc count 71 period 60
+cef table consistency-check IPv4 type scan-rib-ios count 1000 period 60
+cef table consistency-check IPv4 type scan-ios-rib count 1000 period 60
+no cef table consistency-check IPv4 data-checking
+no cef table consistency-check IPv4 error-message
+cef table consistency-check IPv4 auto-repair delay 10 holddown 300
+cef table consistency-check IPv6 type lc-detect count 26 period 60
+cef table consistency-check IPv6 type scan-lc-rp count 26 period 60
+cef table consistency-check IPv6 type scan-rp-lc count 26 period 60
+cef table consistency-check IPv6 type scan-ios-rib count 1000 period 60
+no cef table consistency-check IPv6 data-checking
+no cef table consistency-check IPv6 error-message
+cef table consistency-check IPv6 auto-repair delay 10 holddown 300
+cef table vrf tree IPv4 type MTRIE short-mask-protection 4 stride-pattern 8-8-8-8 hardware-api-notify off
+cef table vrf tree IPv6 type RTREE
+cef table output-chain build favor default
+cef table rate-monitor-period 5
+cef table download recursive-dependents priority 1
+cef table download default-route priority 1
+cef table download connected-route priority 2
+cef table download receive-route priority 2
+cef table download route-in-vrf priority 3
+cef table download catch-all priority 4
+switch 1 provision ws-c3850-48p
+device-sensor notify new-tlvs
+location algorithm rssi-average
+location expiry calibrating-client 5
+location expiry client 5
+location expiry rogue-aps 5
+location expiry tags 5
+location notify-threshold client 0
+location notify-threshold rogue-aps 0
+location notify-threshold tags 5
+location rssi-half-life calibrating-client 0
+location rssi-half-life client 0
+location rssi-half-life rogue-aps 0
+location rssi-half-life tags 0
+location rfid status
+location rfid timeout 1200
+no location rfid vendor-name pango
+location prefer static weight 0
+location prefer lldp-med weight 2
+!
+!
+!
+!
+!
+nmsp notification interval attachment 30
+nmsp notification interval location 30
+nmsp notification interval rssi clients 2
+nmsp notification interval rssi rogues ap 2
+nmsp notification interval rssi rogues client 2
+nmsp notification interval rssi rfid 2
+passwd encryption on
+passwd key obfuscate
+no cisp enable
+ip subnet-zero
+ip source-route
+ip routing protocol purge interface
+ip routing
+ip arp poll queue 1000
+ip arp poll rate 1000
+no ip arp proxy disable
+ip arp gleaning tftp
+ip arp gleaning udp
+ip arp incomplete retry 20
+ip arp incomplete entries 5000
+ip arp incomplete enable
+ip arp inspection log-buffer entries 32
+ip arp inspection log-buffer logs 5 interval 1
+ip sticky-arp
+ip gratuitous-arps non-local
+ip icmp redirect subnet
+ip spd queue max-threshold 74
+ip spd queue min-threshold 73
+ip verify drop-rate compute window 300
+ip verify drop-rate compute interval 30
+ip verify drop-rate notify hold-down 300
+ip cef optimize neighbor resolution
+no ip cef accounting 
+ip cef load-sharing algorithm universal B598C5CC
+!
+ip sap cache-timeout 1440
+ip multicast redundancy routeflush maxtime 30
+ip multicast route-limit 2147483647
+ip mfib
+no  ip domain round-robin
+ip domain multicast in-addr.arpa
+ip domain-lookup
+ip domain-lookup nsap
+no ip hostname strict
+ip accounting-threshold 512
+ip admission ratelimit 100
+no ip admission watch-list enable
+ip admission watch-list expiry-time 10
+ip admission max-login-attempts 5
+ip admission init-state-time 2
+no ip admission auth-proxy-audit
+ip admission inactivity-timer 60
+ip admission absolute-timer 0
+ip dhcp relay information policy replace
+ip dhcp relay information check
+ip dhcp relay override giaddr link-selection
+ip dhcp use class
+ip dhcp use vrf connected
+ip dhcp binding cleanup interval 120
+no ip dhcp snooping information option allow-untrusted
+ip dhcp snooping information option
+no ip dhcp snooping database 
+ip dhcp snooping database write-delay 300
+ip dhcp snooping database timeout 300
+ip dhcp snooping verify mac-address
+ip dhcp snooping verify no-relay-agent-address
+no ip dhcp snooping wireless bootp-broadcast enable
+ip dhcp conflict logging
+ip dhcp ping packets 2
+ip dhcp ping timeout 500
+!
+!
+ ip dhcp-client broadcast-flag
+ip dhcp-client default-router distance 254
+ip device tracking probe count 3
+ip device tracking probe interval 30
+ip device tracking probe delay 0
+ip device tracking trace-buffer
+ip igmp ssm-map query dns
+ip igmp snooping report-suppression
+no ip igmp snooping tcn query solicit
+ip igmp snooping tcn flood query count 2
+ip igmp snooping robustness-variable 2
+ip igmp snooping last-member-query-count 2
+ip igmp snooping last-member-query-interval 1000
+ip igmp snooping querier version 2
+ip igmp snooping querier query-interval 60
+ip igmp snooping querier max-response-time 10
+ip igmp snooping querier timer expiry 120
+ip igmp snooping querier tcn query count 2
+ip igmp snooping querier tcn query interval 10
+no ip igmp snooping querier
+ip igmp snooping
+ipv6 hop-limit 64
+ipv6 icmp error-interval 100 10
+ipv6 nd cache expire
+no ipv6 nd ra solicited unicast
+ipv6 nd nsf convergence 120
+ipv6 nd nsf throttle 512
+ipv6 nd nsf dad suppress 60
+ipv6 nd nud limit 256 refresh 10
+ipv6 nd reachable-time 0
+ipv6 nd ns-interval 0
+ipv6 nd resolution data limit 16
+ipv6 nd dad time 0
+ipv6 nsf-converge 10
+ipv6 traffic interface-statistics
+ipv6 cef optimize neighbor resolution
+ipv6 cef load-sharing algorithm universal B598C5CC
+ipv6 mld snooping listener-message-suppression
+no ipv6 mld snooping tcn query solicit
+ipv6 mld snooping tcn flood query count 2
+ipv6 mld snooping robustness-variable 2
+ipv6 mld snooping last-listener-query-count 2
+ipv6 mld snooping last-listener-query-interval 1000
+no ipv6 mld snooping
+no ipv6 snooping logging packet drop
+no ipv6 snooping logging resolution-veto
+ipv6 mfib
+ipv6 dhcp ping packets 0
+ipv6 dhcp iapd-route-add
+ipv6 dhcp server join all-dhcp-servers
+ipv6 rip vrf-mode enable
+ipv6 multicast multipath
+ipv6 multicast rpf use-bgp
+ntp max-associations 100
+qos queue-softmax-multiplier 100
+vtp domain Lexington
+vtp mode transparent
+call-home
+ alert-group configuration
+ alert-group diagnostic
+ alert-group environment
+ alert-group inventory
+ alert-group syslog
+ rate-limit 20
+ profile "CiscoTAC-1"
+  no active
+  destination preferred-msg-format xml
+  destination message-size-limit 3145728
+  no destination transport-method http
+  destination transport-method email
+  destination address email callhome@cisco.com 
+  destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService 
+  subscribe-to-alert-group diagnostic severity minor 
+  subscribe-to-alert-group environment severity warning 
+  subscribe-to-alert-group inventory
+  subscribe-to-alert-group syslog severity major pattern ".*"
+  subscribe-to-alert-group configuration periodic monthly 1 9:15
+  subscribe-to-alert-group inventory periodic monthly 1 9:00
+authentication mac-move deny
+no authentication logging verbose
+authentication critical recovery delay 100
+authentication command bounce-port ignore
+authentication command disable-port ignore
+no access-session interface-template sticky
+access-session vlan-assignment ignore-errors
+no mab request format attribute 1
+no mab request format attribute 2
+no mab request format attribute 32
+no mab logging verbose
+xdr multicast-group mode individual
+xdr multicast-group internal split threshold 7000
+xdr multicast-group internal issu-slots-split
+l2 traceroute
+profile flow source limit 10
+media-proxy services rate-limit 500
+clns configuration-time 60
+clns holding-time 300
+clns packet-lifetime 64
+clns security pass-through
+no clns want-erpdu
+isis display delimiter return 1
+!
+table-map AutoQos-4.0-Trust-Cos-Table
+ default copy
+!
+no metadata flow transmit
+setup express
+scripting tcl low-memory 102886033
+cts server deadtime 20
+cts server test all enable
+cts server test all idle-time 60
+cts server test all deadtime 20
+no cts server key-wrap enable
+no cts cache enable
+cts dot1x-server-timeout 30
+cts dot1x-supp-timeout 30
+no cts logging verbose
+no cts sxp enable
+cts sxp retry period 120
+cts sxp reconciliation period 120
+no cts sxp log binding-changes
+cts sxp mapping network-map 0
+
+cts sxp speaker hold-time 120
+
+
+cts sxp listener hold-time 90 180
+
+cts sxp node-id 0
+!
+crypto pki trustpoint TP-self-signed-874621394
+ enrollment retry count 999
+ enrollment retry period 1
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-874621394
+ revocation-check none
+ rsakeypair TP-self-signed-874621394
+ hash sha1
+!
+crypto pki crl cache size 64
+!
+crypto pki certificate chain TP-self-signed-874621394
+ certificate self-signed 01
+  30820229 30820192 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 38373436 32313339 34301E17 0D313630 39303730 37333132 
+  345A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3837 34363231 
+  33393430 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  B3AC9E14 B8D5467D 596EAE2F 00D5E6C0 470DD8A5 DFFC4E7C 6505B8EA C1894AF9 
+  5D7A7112 D5B04E3D 801463A9 6399EF88 000965E1 E5A7229F ACB8DFCA 15DB91E6 
+  4CD91188 7CF6B354 6F5F5B7C 6543941F 7F8BB988 D3D2C5A1 08FC96FB 2DD93BD9 
+  2F556E1C E2D64F86 53AD433A BF45598B A4C19AE7 F09B6DA4 05BBDADF A42CF94D 
+  02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 0603551D 
+  23041830 1680149E 198976E3 611296F6 2F884A90 5F2B42CB E256DF30 1D060355 
+  1D0E0416 04149E19 8976E361 1296F62F 884A905F 2B42CBE2 56DF300D 06092A86 
+  4886F70D 01010505 00038181 0070545E 22B1FEF0 E4312875 CDDF50BF 1810F875 
+  3DC10E72 EF2FE0E6 B111B3E2 1AA8A288 5291FCC0 29D5F8EC 7588AD1C DCD40859 
+  701EBB40 16D03C18 7A6DB8F1 15B3B676 EFB15540 ECB151A5 98E5885C 48DB6E80 
+  C979661E B6590BD4 CF73DD29 A668596C 075798B7 E452E828 19BEB75E 89F8478E 
+  BB1637B6 DEE48972 E007F160 A0
+  quit
+dot1x system-auth-control
+no dot1x logging verbose
+dot1x auth-fail eapol
+dot1x guest-vlan supplicant
+dot1x supplicant force-multicast
+dot1x supplicant controlled transient
+no dot1x critical eapol
+system fnf bytes-count layer2
+diagnostic event-log size 500
+diagnostic bootup level minimal
+no diagnostic monitor syslog
+diagnostic monitor interval switch 1 test DiagThermalTest 00:01:30 0 0 cardindex 4
+diagnostic monitor interval switch 1 test DiagFanTest 00:01:30 0 0 cardindex 4
+diagnostic monitor interval switch 1 test DiagScratchRegisterTest 00:01:30 0 0 cardindex 4
+diagnostic monitor threshold switch 1 test DiagThermalTest failure count 5 cardindex 4
+diagnostic monitor threshold switch 1 test DiagFanTest failure count 5 cardindex 4
+diagnostic monitor threshold switch 1 test DiagScratchRegisterTest failure count 5 cardindex 4
+diagnostic monitor switch 1 test DiagThermalTest cardindex 4
+diagnostic monitor switch 1 test DiagFanTest cardindex 4
+diagnostic monitor switch 1 test DiagScratchRegisterTest cardindex 4
+port-channel load-balance src-mac
+lacp system-priority 32768
+memory check-interval 60
+memory statistics history table 24
+memory validate-checksum 60
+memory lite
+memory chunk siblings threshold 10000
+archive
+ log config
+  no record rc
+  logging enable
+  no logging persistent reload
+  no logging persistent 
+  logging size 1000
+  notify syslog contenttype plaintext
+  no notify syslog contenttype xml
+  no hidekeys
+ path scp://Cisco_SCP_HeadEnd:L3x1n6tOn@10.8.6.125/Switch/School/Bowman/Cfg-$h
+ maximum 10
+ no rollback filter adaptive
+ rollback retry timeout 0
+ write-memory
+ time-period 1440
+no file verify auto
+!
+spanning-tree mode pvst
+no spanning-tree dispute
+spanning-tree transmit hold-count 6
+no spanning-tree optimize bpdu transmission
+spanning-tree queue maxsize 12288
+spanning-tree etherchannel guard misconfig
+spanning-tree extend system-id
+spanning-tree uplinkfast max-update-rate 262
+spanning-tree pathcost method short
+no spanning-tree vlan 110,208-210,4023
+no device classifier
+issu set rollback-timer 2700
+hw-switch switch 1 logging onboard message level 3
+!
+redundancy
+ mode sso
+ no policy config-sync lbl prc reload
+ no policy config-sync bulk prc reload
+crypto engine software ipsec
+no crypto engine software isakmp
+!
+process-max-time 50
+!
+!
+vlan 3
+ name Public-Safety
+!
+vlan 4
+ name Animal-Shelter
+!
+vlan 5
+ name DPW-LegacyVoice
+!
+vlan 6
+ name Storage
+!
+vlan 8
+ name TownHall
+!
+vlan 10
+ name Police
+!
+vlan 11
+ name lexdefault
+!
+vlan 12
+ name FireHQ
+!
+vlan 14
+ name EastLexFire
+!
+vlan 15
+ name Sec-Guest-Int
+!
+vlan 16
+ name CaryEast
+!
+vlan 17
+ name RemoteRecreation
+!
+vlan 18
+ name CaryHall
+!
+vlan 19
+ name DPW-Recycling
+!
+vlan 20
+ name Westview
+!
+vlan 21
+ name CaryLibrary
+!
+vlan 22
+ name DPW
+!
+vlan 23
+ name EOC
+!
+vlan 24
+ name CO
+!
+vlan 25
+ name Visitors-Center
+!
+vlan 26
+ name Senior
+!
+vlan 33
+ name Marrett-CommunityCtr
+!
+vlan 35
+ name CML_DATA_ROUTE
+!
+vlan 37
+ name CO1-Wireless
+!
+vlan 38
+ name CO2-Wireless
+!
+vlan 39
+ name CO3-Wireless
+!
+vlan 40
+ name Bowman40
+!
+vlan 41
+ name Bowman41
+!
+vlan 43
+ name Bowman2-Wireless
+!
+vlan 44
+ name Bowman3-Wireless
+!
+vlan 45
+ name Bridge45
+!
+vlan 46
+ name Bridge46
+!
+vlan 48
+ name Bridge2-Wireless
+!
+vlan 49
+ name Bridge3-Wireless
+!
+vlan 50
+ name Estabrook50
+!
+vlan 51
+ name Estabrook51
+!
+vlan 52
+ name Estabrook-Guest
+!
+vlan 53
+ name Estabrook2
+!
+vlan 54
+ name Estabrook3
+!
+vlan 55
+ name Clarke-MDF
+!
+vlan 56
+ name Clarke-IDF
+!
+vlan 57
+ name Clarke-Wireless1
+!
+vlan 58
+ name Clarke-Wireless2
+!
+vlan 59
+ name Clarke-Wireless3
+!
+vlan 60
+ name LHS
+!
+vlan 61
+ name WirelessDHCP
+!
+vlan 62
+ name Guest
+!
+vlan 63
+ name LABBB
+!
+vlan 64
+ name HS-VLAN
+!
+vlan 65
+ name LHS_H
+!
+vlan 66
+ name Wireless_LHS_Staff
+ said 10066
+!
+vlan 70
+ name LHS_J
+!
+vlan 71
+ name LHS_J-STUDENTS
+!
+vlan 75
+ name LHS_Sci
+!
+vlan 80
+ name ONDS
+!
+vlan 81
+ name MGMT
+!
+vlan 82
+ name VMOTION
+!
+vlan 85
+ name Fiske-MDF
+!
+vlan 86
+ name Fiske-IDF
+!
+vlan 87
+ name Fiske-Wireless
+!
+vlan 88
+ name Fiske-Wireless-Guest
+!
+vlan 90
+ name Harrington
+!
+vlan 91
+ name Harrington-IDF1
+!
+vlan 92
+ name Harrington-IDF2
+!
+vlan 93
+ name Harrington_Wireless2
+!
+vlan 94
+ name Harrington_Wireless3
+!
+vlan 95
+ name Hastings95
+!
+vlan 96
+ name Hastings96
+!
+vlan 97
+ name Has_Har_Guest
+!
+vlan 98
+ name Hastings_Wireless2
+!
+vlan 99
+ name Hastings_Wireless3
+!
+vlan 100
+ name Diamond-MDF
+!
+vlan 101
+ name Diamond-IDF1
+!
+vlan 102
+ name Diamond-IDF2
+!
+vlan 103
+ name Diamond-IDF3
+!
+vlan 104
+ name diamond1
+!
+vlan 105
+ name diamond2
+!
+vlan 106
+ name diamond3
+!
+vlan 108
+ name TownHall-VOIP
+!
+vlan 110
+ name Police-Voice
+!
+vlan 112
+ name LEX-Fire
+!
+vlan 114
+ name Fire_East_Voice
+!
+vlan 122
+ name DPW-Voice
+!
+vlan 124
+ name CO-VOIP
+!
+vlan 133 
+!
+vlan 140
+ name Bowman-VOIP
+!
+vlan 145
+ name Bridge-VOIP
+!
+vlan 150
+ name Estabrook-Voice
+!
+vlan 151
+ name Estabrook-Wireless
+!
+vlan 156
+ name Clarke-Wireless
+!
+vlan 157
+ name Clarke-VOIP
+!
+vlan 160
+ name Wireless
+!
+vlan 161
+ name LHS-VOIP
+!
+vlan 165
+ name LHS-HVOICE
+!
+vlan 170
+ name LHS-JVOICE
+!
+vlan 175
+ name LHS-SciVoice
+!
+vlan 180
+ name LHS-ONDSVoice
+!
+vlan 185
+ name FISKE_ROUTE
+!
+vlan 186
+ name Fiske-Management
+!
+vlan 187
+ name Fiske-Voip
+!
+vlan 190
+ name Harrington-Wireless
+!
+vlan 191 
+!
+vlan 192
+ name Harrington-VOIP
+!
+vlan 200
+ name Diamond
+!
+vlan 201
+ name Diamond-Wireless
+!
+vlan 202
+ name Diamond-VOIP
+!
+vlan 206
+ name LCP_Data
+!
+vlan 207
+ name LCP_Wireless1
+!
+vlan 208
+ name LCP_Wireless2
+!
+vlan 209
+ name LCP_Wireless3
+!
+vlan 210
+ name LCP-Wifi-Controller
+!
+vlan 220
+ name DPW vMotion
+!
+vlan 221
+ name DPW iSCSI
+!
+vlan 222
+ name City Hall vMotion
+!
+vlan 223
+ name City Hall iSCSI
+!
+vlan 250
+ name DMZ01
+!
+vlan 255
+ name DMZ02
+!
+vlan 310
+ name LHS_Old
+ said 310
+!
+vlan 400
+ name CACHE
+!
+vlan 500
+ name MLN
+!
+vlan 501
+ name CML_SWCH_MGT
+!
+vlan 510
+ name CML_WIFI_LAPTOP
+!
+vlan 511
+ name CML_SERVICES
+!
+vlan 512
+ name CML_VOIP
+!
+vlan 535
+ name CML_STAFF
+!
+vlan 536
+ name CML_PUBLIC
+!
+vlan 566
+ name CML_L2_ONLY
+!
+vlan 600
+ name DNS_DMZ
+!
+vlan 990
+ name ASA-INSIDE
+!
+vlan 998
+ name ASA-OUTSIDE
+!
+vlan 999
+ name Barracuda
+!
+vlan 4023
+ name bowman-transit
+cdp advertise-v2
+cdp timer 60
+cdp holdtime 180
+cdp run
+cdp tlv location
+cdp tlv app
+!
+no ip finger 
+no ip tcp ecn
+no ip tcp selective-ack
+no ip tcp timestamp
+ip tcp delayed-ack
+ip tcp chunk-size 0
+ip tcp mss 0
+ip tcp keepalive retries 4
+ip tcp keepalive interval 60
+ip tcp window-size 4128
+ip tcp queuemax 20
+ip tcp synwait-time 30
+no ip tcp path-mtu-discovery
+no ip tcp async-mobility server
+ip tcp RST-count 10 RST-window 5000
+ip telnet tos C0
+no ip telnet quiet
+no ip telnet hidden hostnames
+no ip telnet hidden addresses
+ip telnet comport enable
+ip telnet comport flow level 16
+ip telnet comport receive window 4128
+ip telnet comport disconnect delay 0
+ip ftp passive
+ip tftp min-timeout 4
+no ip tftp claim-netascii
+ip tftp blocksize 512
+!
+class-map match-any AutoQos-4.0-Output-Multimedia-Conf-Queue
+ match dscp af41  af42  af43 
+ match cos  4 
+class-map match-any AutoQos-4.0-Output-Bulk-Data-Queue
+ match dscp af11  af12  af13 
+ match cos  1 
+class-map match-any AutoQos-4.0-Output-Priority-Queue
+ match dscp cs4  cs5  ef 
+ match cos  5 
+class-map match-any AutoQos-4.0-Output-Multimedia-Strm-Queue
+ match dscp af31  af32  af33 
+class-map match-any non-client-nrt-class
+class-map match-any AutoQos-4.0-Output-Trans-Data-Queue
+ match dscp af21  af22  af23 
+ match cos  2 
+class-map match-any AutoQos-4.0-Output-Scavenger-Queue
+ match dscp cs1 
+class-map match-any AutoQos-4.0-Output-Control-Mgmt-Queue
+ match dscp cs2  cs3  cs6  cs7 
+ match cos  3 
+!
+policy-map port_child_policy
+ class non-client-nrt-class
+  bandwidth remaining ratio 10
+policy-map AutoQos-4.0-Output-Policy
+ class AutoQos-4.0-Output-Priority-Queue
+  priority level 1 percent 30
+ class AutoQos-4.0-Output-Control-Mgmt-Queue
+  bandwidth remaining percent 10 
+  queue-limit dscp cs2 percent 80
+  queue-limit dscp cs3 percent 90
+  queue-limit dscp cs6 percent 100
+  queue-limit dscp cs7 percent 100
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Multimedia-Conf-Queue
+  bandwidth remaining percent 10 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Trans-Data-Queue
+  bandwidth remaining percent 10 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Bulk-Data-Queue
+  bandwidth remaining percent 4 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Scavenger-Queue
+  bandwidth remaining percent 1 
+  queue-buffers ratio 10
+ class AutoQos-4.0-Output-Multimedia-Strm-Queue
+  bandwidth remaining percent 10 
+  queue-buffers ratio 10
+ class class-default
+  bandwidth remaining percent 25 
+  queue-buffers ratio 25
+policy-map AutoQos-4.0-Trust-Cos-Input-Policy
+ class class-default
+  set cos cos table AutoQos-4.0-Trust-Cos-Table
+!
+! 
+crypto ikev2 authorization policy default
+ route set interface
+ route accept any
+!
+crypto ikev2 proposal default
+ encryption aes-cbc-256 aes-cbc-192 aes-cbc-128
+ integrity sha512 sha384 sha256 sha1 md5
+ group 5 2
+!
+crypto ikev2 policy default
+ match fvrf any
+ proposal default
+!
+crypto ikev2 nat keepalive 0
+crypto ikev2 diagnose error 50
+crypto ikev2 dpd 0 0 periodic
+crypto ikev2 limit max-in-negotation-sa 40
+crypto ikev2 limit max-sa 0
+crypto ikev2 window 5
+crypto ikev2 fragmentation mtu 576
+crypto isakmp aggressive-mode disable
+crypto isakmp diagnose error 50
+crypto ipsec optional retry 300
+!
+crypto ipsec security-association lifetime kilobytes 4608000
+crypto ipsec security-association lifetime seconds 3600
+no crypto ipsec security-association replay disable
+crypto ipsec security-association replay window-size 64
+crypto ipsec security-association dummy
+!
+crypto ipsec transform-set default esp-aes esp-sha-hmac 
+ mode transport
+crypto ipsec nat-transparency udp-encapsulation
+!
+crypto ipsec profile default
+ set security-association lifetime kilobytes 4608000
+ set security-association lifetime seconds 3600
+ no set security-association idle-time
+ no set security-association replay window-size 
+ set security-association dummy
+!
+!
+crypto call admission limit ike sa 0
+crypto call admission limit ike in-negotiation-sa 1000
+crypto call admission limit ipsec sa 0
+crypto mib ipsec flowmib history tunnel size 200
+crypto mib ipsec flowmib history failure size 200
+buffers element permanent 1000
+buffers element minimum 100
+buffers fastswitching permanent 384
+buffers fastswitching max-free 1024
+buffers fastswitching min-free 128
+buffers fastswitching initial 0
+buffers small permanent 600
+buffers small max-free 1250
+buffers small min-free 100
+buffers small initial 0
+buffers middle permanent 450
+buffers middle max-free 1000
+buffers middle min-free 50
+buffers middle initial 0
+buffers big permanent 450
+buffers big max-free 1500
+buffers big min-free 25
+buffers big initial 0
+buffers verybig permanent 10
+buffers verybig max-free 300
+buffers verybig min-free 0
+buffers verybig initial 0
+buffers large permanent 10
+buffers large max-free 30
+buffers large min-free 0
+buffers large initial 0
+buffers huge permanent 5
+buffers huge max-free 13
+buffers huge min-free 0
+buffers huge size 18024
+buffers huge initial 0
+no buffers tune automatic
+!
+!
+no autoconf enable
+!
+!
+!
+interface Loopback0
+ ip address 10.1.40.10 255.255.255.255
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1514
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ ip ospf resync-timeout 40
+ ip ospf dead-interval 40
+ ip ospf hello-interval 10
+ ip ospf retransmit-interval 5
+ ip ospf transmit-delay 1
+ no ip ospf flood-reduction
+ no ip ospf demand-circuit
+ no ip ospf mtu-ignore
+ no ip ospf database-filter all out
+ ip ospf 1 area 0.0.0.0
+ ip ospf cost 1
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ no arp arpa
+ arp timeout 0
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ negotiation auto
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ cts role-based enforcement
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/1
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/2
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/3
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/4
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/5
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/6
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/7
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/8
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/9
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/10
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/11
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/12
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/13
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/14
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/15
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/16
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/17
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/18
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/19
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/20
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/21
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/22
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/23
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/24
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/25
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/26
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/27
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/28
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/29
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/30
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/31
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/32
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/33
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/34
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/35
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/36
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/37
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/38
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/39
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/40
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/41
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/42
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/43
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/44
+ switchport
+ switchport access vlan 40
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/45
+ description Cache Server
+ switchport
+ switchport access vlan 43
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/46
+ switchport
+ switchport access vlan 43
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/47
+ switchport
+ switchport access vlan 43
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport voice vlan 140
+ switchport port-security maximum 65535 vlan voice
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust cos
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/0/48
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ power inline port priority low
+ power inline auto max 30000
+ power inline static
+ power inline never
+ power inline police
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/1/1
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/1/2
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/1/3
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface GigabitEthernet1/1/4
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface TenGigabitEthernet1/1/1
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface TenGigabitEthernet1/1/2
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface TenGigabitEthernet1/1/3
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface TenGigabitEthernet1/1/4
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ no switchport port-security mac-address sticky
+ no ip arp inspection trust
+ ip arp inspection limit rate 15 burst interval 1
+ ip arp inspection limit rate 15
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 mld snooping tcn flood
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cts role-based enforcement
+ auto qos trust 
+ cdp tlv location
+ cdp tlv server-location 
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ service-policy input AutoQos-4.0-Trust-Cos-Input-Policy
+ service-policy output AutoQos-4.0-Output-Policy
+ hold-queue 2000 in
+ hold-queue 40 out
+ ip igmp snooping tcn flood
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface Vlan1
+ no ip address
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface Vlan40
+ description ***BOWMAN SCHOOL MDF***
+ ip address 10.40.254.254 255.255.0.0
+ ip helper-address global 10.80.6.3
+ ip helper-address global 10.80.6.25
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ ip ospf network broadcast
+ ip ospf resync-timeout 40
+ ip ospf dead-interval 40
+ ip ospf hello-interval 10
+ ip ospf priority 1
+ ip ospf retransmit-interval 5
+ ip ospf transmit-delay 1
+ no ip ospf flood-reduction
+ no ip ospf demand-circuit
+ no ip ospf mtu-ignore
+ no ip ospf database-filter all out
+ ip ospf 1 area 0.0.0.23
+ ip ospf cost 1
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface Vlan41
+ description ***BOWMAN SCHOOL IDF***
+ ip address 10.41.254.254 255.255.0.0
+ ip helper-address global 10.80.6.3
+ ip helper-address global 10.80.6.25
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ ip ospf network broadcast
+ ip ospf resync-timeout 40
+ ip ospf dead-interval 40
+ ip ospf hello-interval 10
+ ip ospf priority 1
+ ip ospf retransmit-interval 5
+ ip ospf transmit-delay 1
+ no ip ospf flood-reduction
+ no ip ospf demand-circuit
+ no ip ospf mtu-ignore
+ no ip ospf database-filter all out
+ ip ospf 1 area 0.0.0.23
+ ip ospf cost 1
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface Vlan43
+ description Bowman2-Wireless
+ ip address 10.43.254.254 255.255.0.0
+ ip helper-address global 10.80.6.3
+ ip helper-address global 10.80.6.25
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ ip ospf network broadcast
+ ip ospf resync-timeout 40
+ ip ospf dead-interval 40
+ ip ospf hello-interval 10
+ ip ospf priority 1
+ ip ospf retransmit-interval 5
+ ip ospf transmit-delay 1
+ no ip ospf flood-reduction
+ no ip ospf demand-circuit
+ no ip ospf mtu-ignore
+ no ip ospf database-filter all out
+ ip ospf 1 area 0.0.0.23
+ ip ospf cost 1
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface Vlan44
+ description Bowman3-Wireless
+ ip address 10.44.254.254 255.255.0.0
+ ip helper-address global 10.80.6.3
+ ip helper-address global 10.80.6.25
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ ip ospf network broadcast
+ ip ospf resync-timeout 40
+ ip ospf dead-interval 40
+ ip ospf hello-interval 10
+ ip ospf priority 1
+ ip ospf retransmit-interval 5
+ ip ospf transmit-delay 1
+ no ip ospf flood-reduction
+ no ip ospf demand-circuit
+ no ip ospf mtu-ignore
+ no ip ospf database-filter all out
+ ip ospf 1 area 0.0.0.23
+ ip ospf cost 1
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+interface Vlan4023
+ description Bowman Transit
+ ip address 172.16.0.94 255.255.255.252
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ ip load-sharing per-destination
+ ip cef accounting non-recursive internal
+ ip pim dr-priority 1
+ ip pim query-interval 30
+ ip pim join-prune-interval 60
+ ip mfib forwarding input
+ ip mfib forwarding output
+ ip mfib cef input
+ ip mfib cef output
+ ip route-cache cef
+ ip route-cache
+ ip split-horizon
+ ip igmp last-member-query-interval 1000
+ ip igmp last-member-query-count 2
+ ip igmp query-max-response-time 10
+ ip igmp v3-query-max-response-time 10
+ ip igmp version 2
+ ip igmp query-interval 60
+ ip igmp tcn query count 2
+ ip igmp tcn query interval 10
+ ip ospf network broadcast
+ ip ospf resync-timeout 40
+ ip ospf dead-interval 40
+ ip ospf hello-interval 10
+ ip ospf priority 1
+ ip ospf retransmit-interval 5
+ ip ospf transmit-delay 1
+ no ip ospf flood-reduction
+ no ip ospf demand-circuit
+ no ip ospf mtu-ignore
+ no ip ospf database-filter all out
+ ip ospf 1 area 0.0.0.0
+ ip ospf cost 1
+ load-interval 300
+ carrier-delay 2
+ no shutdown
+ ipv6 nd reachable-time 0
+ ipv6 nd ns-interval 0
+ ipv6 nd dad attempts 1
+ ipv6 nd prefix framed-ipv6-prefix
+ ipv6 nd nud igp
+ no ipv6 nd ra solicited unicast
+ ipv6 nd ra lifetime 1800
+ ipv6 nd ra interval 200
+  ipv6 redirects
+  ipv6 unreachables
+ ipv6 mfib forwarding input
+ ipv6 mfib forwarding output
+ ipv6 mfib cef input
+ ipv6 mfib cef output
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+   clns route-cache
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 40 out
+ no bgp-policy accounting input
+ no bgp-policy accounting output
+ no bgp-policy accounting input source
+ no bgp-policy accounting output source
+ no bgp-policy source ip-prec-map
+ no bgp-policy source ip-qos-map
+ no bgp-policy destination ip-prec-map
+ no bgp-policy destination ip-qos-map
+!
+router ospf 1
+ router-id 172.16.0.94
+ priority 64
+ queue-depth update 200
+ queue-depth hello unlimited
+ compatible rfc1583
+ no compatible rfc1587
+ no interface-id snmp-if-index
+ no ignore lsa mospf
+ no ispf
+ event-log size 1000
+ log-adjacency-changes
+ discard-route external 254 internal 110
+ no local-rib-criteria
+ auto-cost reference-bandwidth 100
+ limit retransmissions dc 24 non-dc 24
+ no shutdown
+ no prefix-suppression
+ no nsr
+ nsf cisco helper
+ nsf ietf helper
+ capability opaque
+ capability lls
+ capability transit
+ no area 0.0.0.0 authentication
+ area 0.0.0.0 default-cost 1
+ no area 0.0.0.23 authentication
+ area 0.0.0.23 default-cost 1
+ timers throttle spf 5000 10000 10000
+ timers throttle lsa 0 5000 5000
+ timers lsa arrival 1000
+ timers pacing lsa-group 240
+ timers pacing flood 33
+ timers pacing retransmission 66
+ passive-interface default
+ passive-interface Vlan1
+ passive-interface Vlan40
+ passive-interface Vlan41
+ passive-interface Vlan43
+ passive-interface Vlan44
+ no passive-interface Vlan4023
+ passive-interface GigabitEthernet1/0/1
+ passive-interface GigabitEthernet1/0/2
+ passive-interface GigabitEthernet1/0/3
+ passive-interface GigabitEthernet1/0/4
+ passive-interface GigabitEthernet1/0/5
+ passive-interface GigabitEthernet1/0/6
+ passive-interface GigabitEthernet1/0/7
+ passive-interface GigabitEthernet1/0/8
+ passive-interface GigabitEthernet1/0/9
+ passive-interface GigabitEthernet1/0/10
+ passive-interface GigabitEthernet1/0/11
+ passive-interface GigabitEthernet1/0/12
+ passive-interface GigabitEthernet1/0/13
+ passive-interface GigabitEthernet1/0/14
+ passive-interface GigabitEthernet1/0/15
+ passive-interface GigabitEthernet1/0/16
+ passive-interface GigabitEthernet1/0/17
+ passive-interface GigabitEthernet1/0/18
+ passive-interface GigabitEthernet1/0/19
+ passive-interface GigabitEthernet1/0/20
+ passive-interface GigabitEthernet1/0/21
+ passive-interface GigabitEthernet1/0/22
+ passive-interface GigabitEthernet1/0/23
+ passive-interface GigabitEthernet1/0/24
+ passive-interface GigabitEthernet1/0/25
+ passive-interface GigabitEthernet1/0/26
+ passive-interface GigabitEthernet1/0/27
+ passive-interface GigabitEthernet1/0/28
+ passive-interface GigabitEthernet1/0/29
+ passive-interface GigabitEthernet1/0/30
+ passive-interface GigabitEthernet1/0/31
+ passive-interface GigabitEthernet1/0/32
+ passive-interface GigabitEthernet1/0/33
+ passive-interface GigabitEthernet1/0/34
+ passive-interface GigabitEthernet1/0/35
+ passive-interface GigabitEthernet1/0/36
+ passive-interface GigabitEthernet1/0/37
+ passive-interface GigabitEthernet1/0/38
+ passive-interface GigabitEthernet1/0/39
+ passive-interface GigabitEthernet1/0/40
+ passive-interface GigabitEthernet1/0/41
+ passive-interface GigabitEthernet1/0/42
+ passive-interface GigabitEthernet1/0/43
+ passive-interface GigabitEthernet1/0/44
+ passive-interface GigabitEthernet1/0/45
+ passive-interface GigabitEthernet1/0/46
+ passive-interface GigabitEthernet1/0/47
+ passive-interface GigabitEthernet1/0/48
+ passive-interface GigabitEthernet1/1/1
+ passive-interface GigabitEthernet1/1/2
+ passive-interface GigabitEthernet1/1/3
+ passive-interface GigabitEthernet1/1/4
+ passive-interface TenGigabitEthernet1/1/1
+ passive-interface TenGigabitEthernet1/1/2
+ passive-interface TenGigabitEthernet1/1/3
+ passive-interface TenGigabitEthernet1/1/4
+ passive-interface Loopback0
+ maximum-paths 4
+ default-metric 20
+ distance 110
+!
+ip classless
+ip nsf-converge 10
+ip forward-protocol nd
+ip pim dm-fallback
+ip pim autorp
+ip pim bidir-offer-interval 100 msec
+ip pim bidir-offer-limit 3
+ip pim v1-rp-reachability
+ip pim log-neighbor-changes
+ip msdp timer 30
+ip http server
+ip http port 80
+ip http authentication local
+ip http secure-server
+ip http secure-port 443
+ip http secure-active-session-modules all
+ip http max-connections 100
+ip http timeout-policy idle 180 life 180 requests 25 
+ip http session-idle-timeout 180 
+ip http active-session-modules all
+ip http client cache memory pool 100
+ip http client cache memory file 2
+ip http client cache ager interval 5
+ip http client connection timeout 10
+ip http client connection retry 1
+ip http client connection idle timeout 30
+ip http client response timeout 30
+ip http path webui:/express
+!
+ip route static adjust-time 60
+ip route static inter-vrf
+ip route 0.0.0.0 0.0.0.0 10.1.254.254
+no ip ospf name-lookup
+ip ssh time-out 120
+ip ssh authentication-retries 3
+ip ssh break-string ~break
+ip ssh dh min size 1024
+no ip ssh rekey time
+no ip ssh rekey volume
+ip ssh server authenticate user publickey
+ip ssh server authenticate user keyboard
+ip ssh server authenticate user password
+ip ssh server algorithm mac hmac-sha1 hmac-sha1-96
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr aes128-cbc 3des-cbc aes192-cbc aes256-cbc
+ip ssh client algorithm mac hmac-sha1 hmac-sha1-96
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr aes128-cbc 3des-cbc aes192-cbc aes256-cbc
+!
+no ip access-list helper egress check
+!
+ ip prefix-list sequence-number
+ip sla low-memory 90778419
+service-routing capabilities-manager
+logging esm config
+logging history size 1
+logging history warnings
+logging trap informational
+logging delimiter tcp
+no logging origin-id
+logging facility local7
+no logging source-interface
+logging server-arp
+!
+ ipv6 prefix-list sequence-number
+ipv6 neighbor binding reachable-lifetime 300 stale-lifetime  86400 down-lifetime 86400
+no ipv6 neighbor binding logging
+no route-tag notation dotted-decimal
+snmp-server view v1default iso included
+snmp-server view v1default internet included
+snmp-server view v1default snmpUsmMIB excluded
+snmp-server view v1default snmpVacmMIB excluded
+snmp-server view v1default snmpCommunityMIB excluded
+snmp-server view v1default ciscoMgmt.252 excluded
+snmp-server view *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF7F iso included
+snmp-server view *tv.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF.FFFFFFFF7F iso.2.840.10036 included
+snmp-server community 20lexccs09$v1default RO 90
+snmp-server community s3ntryschoolv1default RO
+snmp-server priority normal
+no snmp-server trap link ietf
+no snmp-server trap link switchover
+snmp-server trap authentication vrf
+snmp-server trap authentication acl-failure
+snmp-server trap authentication unknown-context
+snmp-server trap retry 3
+snmp-server trap timeout 30
+snmp-server packetsize 1500
+snmp-server queue-length 10
+snmp-server spi get timeout 10000
+snmp-server spi set timeout 10000
+snmp-server chassis-id FCW2012C0V3
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps flowmon
+snmp-server enable traps transceiver all
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps rf
+snmp-server enable traps memory
+snmp-server enable traps cpu threshold
+snmp-server enable traps wireless bsnMobileStation bsnAccessPoint bsnRogue bsn80211Security bsnAutoRF bsnGeneral SI mobility mfp RRM AP rogue client
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change if-state-change neighbor-state-change virtif-state-change virtneighbor-state-change
+snmp-server enable traps ospf errors authentication-failure bad-packet config-error virt-authentication-failure virt-bad-packet virt-config-error
+snmp-server enable traps ospf retransmit packets virt-packets
+snmp-server enable traps ospf lsa lsa-originate lsa-maxage
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors config-error
+snmp-server enable traps ospf cisco-specific errors virt-config-error
+snmp-server enable traps ospf cisco-specific errors shamlink config authentication bad-packet
+snmp-server enable traps ospf cisco-specific retransmit packets virt-packets shamlink
+snmp-server enable traps ospf cisco-specific lsa lsa-originate lsa-maxage
+snmp-server enable traps ospf rate-limit 10 7
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps flash insertion removal
+snmp-server enable traps power-ethernet group 1
+snmp-server enable traps power-ethernet police
+snmp-server enable traps energywise
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps license
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps stackwise
+snmp-server enable traps port-security
+snmp-server enable traps port-security trap-rate 0
+no snmp-server enable traps storm-control
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps trustsec-sxp conn-srcaddr-err msg-parse-err conn-config-err binding-err conn-up conn-down binding-expn-fail oper-nodeid-change binding-conflict
+snmp-server enable traps trustsec-server radius-server provision-secret
+snmp-server enable traps trustsec authz-file-error cache-file-error keystore-file-error keystore-sync-fail random-number-fail src-entropy-fail
+snmp-server enable traps trustsec-interface unauthorized sap-fail authc-fail supplicant-fail authz-fail
+snmp-server enable traps trustsec-policy peer-policy-updated authz-sgacl-fail
+snmp-server enable traps bgp cbgp2
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps isis
+snmp-server enable traps local-auth
+snmp-server enable traps msdp
+snmp-server enable traps ospfv3 state-change if-state-change neighbor-restart-helper-status-change neighbor-state-change nssa-translator-status-change restart-status-change virtif-state-change virtneighbor-state-change virtneighbor-restart-helper-status-change
+snmp-server enable traps ospfv3 errors bad-packet config-error virt-bad-packet virt-config-error
+snmp-server enable traps ospfv3 rate-limit 10 7
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps vstack
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps ipsla
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps errdisable
+snmp-server enable traps errdisable notification-rate 0
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server host 10.1.1.105 traps version 2c s3ntryschool udp-port 162 
+snmp-server inform retries 3 timeout 15 pending 25
+snmp mib flowmon alarmhistorysize 500
+snmp mib notification-log globalsize 500
+snmp mib notification-log globalageout 15
+snmp mib community-map 20lexccs09$ engineid 800000090300042AE23FCD00
+snmp mib community-map s3ntryschool engineid 800000090300042AE23FCD00
+!
+tacacs-server cache expiry 24 enforce hours
+ipv6 access-list log-update threshold 2147483647
+cts role-based monitor enable
+!
+vstack join-window mode auto
+alias exec h help
+alias exec lo logout
+alias exec p ping
+alias exec r resume
+alias exec s show
+alias exec u undebug
+alias exec un undebug
+alias exec w where
+no configuration mode exclusive
+default-value exec-character-bits 7
+default-value special-character-bits 7
+default-value data-character-bits 8
+!
+line con 0
+ motd-banner
+ exec-banner
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ password 7 105D0C09114643
+ no media-type rj45 switch 1
+ no media-type rj45 switch 2
+ no media-type rj45 switch 3
+ no media-type rj45 switch 4
+ no media-type rj45 switch 5
+ no media-type rj45 switch 6
+ no media-type rj45 switch 7
+ no media-type rj45 switch 8
+ no media-type rj45 switch 9
+ login
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ exec
+ length 24
+ width 80
+ history size 20
+ history
+  editing
+ monitor
+ escape-character soft DEFAULT
+ escape-character DEFAULT
+ databits 8
+ stopbits 1
+ start-character 17
+ stop-character 19
+ speed 9600
+line aux 0
+ motd-banner
+ exec-banner
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ exec
+ length 24
+ width 80
+ history size 20
+ history
+  editing
+ monitor
+ escape-character soft DEFAULT
+ escape-character DEFAULT
+ databits 8
+ stopbits 1
+ start-character 17
+ stop-character 19
+ speed 9600
+line vty 0 4
+ motd-banner
+ exec-banner
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ login local
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ exec
+ length 0
+ width 80
+ history size 20
+ history
+  editing
+ monitor
+ escape-character soft DEFAULT
+ escape-character DEFAULT
+ start-character 17
+ stop-character 19
+line vty 5 15
+ motd-banner
+ exec-banner
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ login
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ exec
+ length 24
+ width 80
+ history size 20
+ history
+  editing
+ monitor
+ escape-character soft DEFAULT
+ escape-character DEFAULT
+ start-character 17
+ stop-character 19
+!
+exception data-corruption buffer truncate
+exception data-corruption buffer log
+monitor event-trace stacktrace
+no monitor event-trace sequence-number
+monitor event-trace timestamps datetime msec
+monitor event-trace eigrp perf-events rate-limiting 1
+scheduler max-task-time 2000
+scheduler process-watchdog normal
+ntp allow mode control 3
+ntp mindistance 1
+ntp maxdistance 8
+ntp server 216.239.35.0 maxpoll 10 minpoll 6 version 4 burst iburst
+ntp server 10.80.6.25 maxpoll 10 minpoll 6 version 4 burst iburst
+cns id hostname 
+cns id hostname event
+cns id hostname image
+cns image retry 60
+wsma id hostname
+wsma agent exec
+ profile httplistener
+ profile httpslistener
+!
+wsma agent config
+ profile httplistener
+ profile httpslistener
+!
+wsma agent filesys
+ profile httplistener
+ profile httpslistener
+!
+wsma agent notify
+ profile httplistener
+ profile httpslistener
+!
+!
+wsma profile listener httplistener
+ encap soap11
+ wsse
+ transport http path /wsma
+ max-message 50
+ no keepalive
+!
+wsma profile listener httpslistener
+ encap soap11
+ wsse
+ transport https path /wsma
+ max-message 50
+ no keepalive
+mac address-table notification change interval 1
+mac address-table notification change history-size 1
+mac address-table notification change
+netconf max-sessions 4
+netconf lock-time 10
+netconf max-message 0
+xmpp id hostname
+bulkstat resource limit memory 95
+event manager scheduler script thread class default number 1
+event manager scheduler applet thread class default number 5
+event manager scheduler call-home thread class default number 32
+event manager scheduler shell thread class default number 1
+event manager scheduler shell thread class Z number 1
+!
+event manager history size events 10
+event manager history size traps 10
+event manager detector rpc max-sessions 4
+event manager detector routing bootup-delay 0
+wireless mobility controller ip 0.0.0.0 public-ip 0.0.0.0
+wireless mobility group keepalive count 3
+wireless mobility group keepalive interval 10
+wireless mobility group name default
+wireless mobility oracle ip 0.0.0.0
+wireless mobility load-balance
+wireless mobility load-balance threshold 1000
+wireless mobility dscp 48
+wireless mobility multicast ip 0.0.0.0
+wireless ipv6 nd ns-forward
+wireless management interface 
+wireless wps rogue adhoc
+wireless wps rogue ap rldp retries 1
+wireless wps rogue ap timeout 1200
+wireless wps rogue auto-contain level 1
+wireless wps ap-authentication threshold 1
+wireless wps client-exclusion all
+wireless wps client-exclusion dot11-assoc
+wireless wps client-exclusion dot11-auth
+wireless wps client-exclusion dot1x-auth
+wireless wps client-exclusion ip-theft
+wireless wps client-exclusion web-auth
+wireless linktest frame-size 500
+wireless linktest number-of-frames 20
+wireless load-balancing denial 3
+wireless load-balancing window 5
+wireless assisted-roaming denial-maximum 5
+wireless assisted-roaming floor-bias 15
+wireless assisted-roaming prediction-minimum 3
+wireless client band-select client-rssi -80
+wireless client band-select cycle-count 2
+wireless client band-select cycle-threshold 200
+wireless client band-select expire dual-band 60
+wireless client band-select expire suppression 20
+wireless client max-user-login 0
+wireless client timers auth-timeout 10
+wireless client user-timeout 300
+wireless peer-blocking forward-upstream 
+wireless probe filter
+wireless probe limit 2 500
+wireless rf-network default
+no wireless security certificate force-sha1-cert
+wireless security dot1x eapol-key retries 2
+wireless security dot1x eapol-key timeout 1000
+wireless security dot1x group-key interval 3600
+wireless security dot1x identity-request retries 2
+wireless security dot1x identity-request timeout 30
+wireless security dot1x radius accounting call-station-id ipaddress
+wireless security dot1x radius accounting mac-delimiter colon
+wireless security dot1x radius accounting username-delimiter none
+wireless security dot1x radius callStationIdCase lower
+wireless security dot1x radius mac-authentication call-station-id ipaddress
+wireless security dot1x radius mac-authentication mac-delimiter colon
+wireless security dot1x request retries 2
+wireless security dot1x request timeout 30
+wireless security dot1x wep key index 0
+wireless security web-auth retries 3
+wireless wgb client-macfilter 
+no wireless wlancc
+wireless wps rogue detection min-rssi -128
+wireless wps rogue detection min-transient-time 0
+wireless wps rogue detection report-interval 10
+wireless media-stream message Email 
+wireless media-stream message Notes 
+wireless media-stream message URL 
+wireless media-stream message phone 
+wireless mdns-bridging
+no wireless mgmt-via-wireless
+ap capwap retransmit count 5
+ap capwap retransmit interval 3
+ap dot1x username  password clear 
+ap ethernet duplex auto speed auto
+ap mgmtuser username  password clear  secret clear 
+ap packet-dump buffer-size 2048
+ap packet-dump capture-time 10
+no ap packet-dump classifier arp
+no ap packet-dump classifier broadcast
+no ap packet-dump classifier control
+no ap packet-dump classifier data
+no ap packet-dump classifier dot1x
+no ap packet-dump classifier iapp
+no ap packet-dump classifier ip
+no ap packet-dump classifier management
+no ap packet-dump classifier multicast
+ap packet-dump ftp serverip 0.0.0.0 path  username  password 
+ap packet-dump truncate 0
+ap reporting-period 120
+ap static-ip domain default
+ap static-ip name-server 0.0.0.0
+ap syslog host 255.255.255.255
+ap syslog level information
+ap tftp-downgrade 0.0.0.0 default
+no ap auth-list ap-policy authorize-ap
+ap auth-list ap-policy mic
+no ap auth-list ap-policy ssc
+ap capwap timers discovery-timeout 10
+ap capwap timers heartbeat-timeout 30
+no ap dot11 24ghz edca-parameters custom-voice
+no ap dot11 24ghz edca-parameters optimized-video-voice
+no ap dot11 24ghz edca-parameters optimized-voice
+no ap dot11 24ghz edca-parameters svp-voice
+no ap dot11 24ghz edca-parameters wmm-default
+ap dot11 24ghz edca-parameters wmm-default
+no ap dot11 5ghz edca-parameters custom-voice
+no ap dot11 5ghz edca-parameters optimized-video-voice
+no ap dot11 5ghz edca-parameters optimized-voice
+no ap dot11 5ghz edca-parameters svp-voice
+no ap dot11 5ghz edca-parameters wmm-default
+ap dot11 5ghz edca-parameters wmm-default
+ap country US
+ap dot1x max-sessions 0
+ap dot11 24ghz rrm group-mode auto
+ap dot11 24ghz rrm channel dca anchor-time 0
+ap dot11 24ghz rrm channel dca global auto
+no ap dot11 24ghz rrm channel dca global once
+ap dot11 24ghz rrm channel dca interval 0
+ap dot11 24ghz rrm channel dca min-metric -95
+ap dot11 24ghz rrm channel dca sensitivity medium
+ap dot11 24ghz rrm channel foreign
+no ap dot11 24ghz rrm channel load
+ap dot11 24ghz rrm channel noise
+ap dot11 24ghz rrm coverage
+ap dot11 24ghz rrm coverage data fail-percentage 50
+ap dot11 24ghz rrm coverage data packet-count 50
+ap dot11 24ghz rrm coverage data rssi-threshold -80
+ap dot11 24ghz rrm coverage exception global 25
+ap dot11 24ghz rrm coverage level global 3
+ap dot11 24ghz rrm coverage voice fail-percentage 50
+ap dot11 24ghz rrm coverage voice packet-count 100
+ap dot11 24ghz rrm coverage voice rssi-threshold -80
+no ap dot11 24ghz rrm logging channel
+no ap dot11 24ghz rrm logging coverage
+no ap dot11 24ghz rrm logging foreign
+no ap dot11 24ghz rrm logging load
+no ap dot11 24ghz rrm logging noise
+no ap dot11 24ghz rrm logging performance
+no ap dot11 24ghz rrm logging txpower
+ap dot11 24ghz rrm monitor
+ap dot11 24ghz rrm monitor channel-list country
+ap dot11 24ghz rrm monitor coverage 180
+ap dot11 24ghz rrm monitor load 60
+ap dot11 24ghz rrm monitor noise 180
+ap dot11 24ghz rrm monitor rssi-normalization
+ap dot11 24ghz rrm monitor signal 60
+ap dot11 24ghz rrm ndp-type transparent
+ap dot11 24ghz rrm profile clients 12
+ap dot11 24ghz rrm profile foreign 10
+ap dot11 24ghz rrm profile noise -70
+ap dot11 24ghz rrm profile throughput 1000000
+ap dot11 24ghz rrm profile utilization 80
+ap dot11 24ghz rrm txpower auto
+ap dot11 24ghz rrm txpower max 30
+ap dot11 24ghz rrm txpower min -10
+ap dot11 24ghz rrm channel cleanair-event sensitivity low
+no ap dot11 24ghz rrm channel pda-prop
+ap dot11 24ghz cleanair alarm air-quality
+ap dot11 24ghz cleanair alarm air-quality threshold 10
+ap dot11 24ghz cleanair alarm device
+no ap dot11 24ghz cleanair alarm device bt-discovery
+no ap dot11 24ghz cleanair alarm device bt-link
+no ap dot11 24ghz cleanair alarm device canopy
+no ap dot11 24ghz cleanair alarm device cont-tx
+no ap dot11 24ghz cleanair alarm device dect-like
+no ap dot11 24ghz cleanair alarm device fh
+ap dot11 24ghz cleanair alarm device inv
+no ap dot11 24ghz cleanair alarm device jammer
+no ap dot11 24ghz cleanair alarm device mw-oven
+ap dot11 24ghz cleanair alarm device nonstd
+no ap dot11 24ghz cleanair alarm device superag
+no ap dot11 24ghz cleanair alarm device tdd-tx
+no ap dot11 24ghz cleanair alarm device video
+no ap dot11 24ghz cleanair alarm device wimax-fixed
+no ap dot11 24ghz cleanair alarm device wimax-mobile
+no ap dot11 24ghz cleanair alarm device xbox
+no ap dot11 24ghz cleanair alarm device zigbee
+ap dot11 24ghz cleanair device bt-discovery
+ap dot11 24ghz cleanair device bt-link
+ap dot11 24ghz cleanair device canopy
+ap dot11 24ghz cleanair device cont-tx
+ap dot11 24ghz cleanair device dect-like
+ap dot11 24ghz cleanair device fh
+ap dot11 24ghz cleanair device inv
+ap dot11 24ghz cleanair device jammer
+ap dot11 24ghz cleanair device mw-oven
+ap dot11 24ghz cleanair device nonstd
+ap dot11 24ghz cleanair device report
+ap dot11 24ghz cleanair device superag
+ap dot11 24ghz cleanair device tdd-tx
+ap dot11 24ghz cleanair device video
+ap dot11 24ghz cleanair device wimax-fixed
+ap dot11 24ghz cleanair device wimax-mobile
+ap dot11 24ghz cleanair device xbox
+ap dot11 24ghz cleanair device zigbee
+ap dot11 24ghz rrm tpc-threshold -70
+ap dot11 24ghz rrm txpower 1
+ap dot11 24ghz beaconperiod 100
+ap dot11 24ghz cac media-stream multicast-direct max-retry-percent 80
+ap dot11 24ghz cac media-stream multicast-direct min-client-rate six
+ap dot11 24ghz cac multimedia max-bandwidth 85
+ap dot11 24ghz media-stream multicast-direct client-maximum 0
+ap dot11 24ghz media-stream multicast-direct radio-maximum 0
+ap dot11 24ghz cac video max-bandwidth 0
+ap dot11 24ghz cac video roam-bandwidth 0
+ap dot11 24ghz cac voice max-bandwidth 75
+ap dot11 24ghz cac voice load-based
+ap dot11 24ghz cac voice roam-bandwidth 6
+ap dot11 24ghz cac voice sip bandwidth 64 sample-interval 20
+ap dot11 24ghz cac voice stream-size 84000 max-streams 2
+ap dot11 24ghz cac voice tspec-inactivity-timeout ignore
+ap dot11 24ghz dot11g
+ap dot11 24ghz dot11n
+ap dot11 24ghz dot11n a-mpdu tx scheduler
+ap dot11 24ghz dot11n a-mpdu tx scheduler timeout rt 10
+ap dot11 24ghz dot11n guard-interval any
+no ap dot11 24ghz dot11n guard-interval long
+ap dot11 24ghz dot11n rifs rx
+ap dot11 24ghz dtpc
+no ap dot11 24ghz exp-bwreq
+ap dot11 24ghz fragmentation 2346
+ap dot11 24ghz preamble short
+ap dot11 24ghz service-policy rate 200000000
+no ap dot11 24ghz shutdown
+no ap dot11 24ghz tsm
+ap dot11 24ghz world-mode
+ap dot11 5ghz rrm group-mode auto
+no ap dot11 5ghz rrm ccx location-measurement
+ap dot11 5ghz rrm channel dca anchor-time 0
+ap dot11 5ghz rrm channel dca chan-width 20
+ap dot11 5ghz rrm channel dca global auto
+no ap dot11 5ghz rrm channel dca global once
+ap dot11 5ghz rrm channel dca interval 0
+ap dot11 5ghz rrm channel dca min-metric -95
+ap dot11 5ghz rrm channel dca sensitivity medium
+ap dot11 5ghz rrm channel foreign
+no ap dot11 5ghz rrm channel load
+ap dot11 5ghz rrm channel noise
+ap dot11 5ghz rrm coverage
+ap dot11 5ghz rrm coverage data fail-percentage 50
+ap dot11 5ghz rrm coverage data packet-count 50
+ap dot11 5ghz rrm coverage data rssi-threshold -80
+ap dot11 5ghz rrm coverage exception global 25
+ap dot11 5ghz rrm coverage level global 3
+ap dot11 5ghz rrm coverage voice fail-percentage 50
+ap dot11 5ghz rrm coverage voice packet-count 100
+ap dot11 5ghz rrm coverage voice rssi-threshold -80
+no ap dot11 5ghz rrm logging channel
+no ap dot11 5ghz rrm logging foreign
+no ap dot11 5ghz rrm logging load
+no ap dot11 5ghz rrm logging performance
+no ap dot11 5ghz rrm logging txpower
+ap dot11 5ghz rrm monitor
+ap dot11 5ghz rrm monitor channel-list country
+ap dot11 5ghz rrm monitor coverage 180
+ap dot11 5ghz rrm monitor load 60
+ap dot11 5ghz rrm monitor noise 180
+ap dot11 5ghz rrm monitor rssi-normalization
+ap dot11 5ghz rrm monitor signal 60
+ap dot11 5ghz rrm ndp-type transparent
+ap dot11 5ghz rrm profile clients 12
+ap dot11 5ghz rrm profile foreign 10
+ap dot11 5ghz rrm profile noise -70
+ap dot11 5ghz rrm profile throughput 1000000
+ap dot11 5ghz rrm profile utilization 80
+ap dot11 5ghz rrm txpower auto
+ap dot11 5ghz rrm txpower max 30
+ap dot11 5ghz rrm txpower min -10
+ap dot11 5ghz rrm channel cleanair-event sensitivity low
+no ap dot11 5ghz rrm channel pda-prop
+ap dot11 5ghz cleanair alarm air-quality
+ap dot11 5ghz cleanair alarm air-quality threshold 10
+ap dot11 5ghz cleanair alarm device
+no ap dot11 5ghz cleanair alarm device canopy
+no ap dot11 5ghz cleanair alarm device cont-tx
+no ap dot11 5ghz cleanair alarm device dect-like
+ap dot11 5ghz cleanair alarm device inv
+no ap dot11 5ghz cleanair alarm device jammer
+ap dot11 5ghz cleanair alarm device nonstd
+no ap dot11 5ghz cleanair alarm device radar
+no ap dot11 5ghz cleanair alarm device superag
+no ap dot11 5ghz cleanair alarm device tdd-tx
+no ap dot11 5ghz cleanair alarm device video
+no ap dot11 5ghz cleanair alarm device wimax-fixed
+no ap dot11 5ghz cleanair alarm device wimax-mobile
+ap dot11 5ghz cleanair device canopy
+ap dot11 5ghz cleanair device cont-tx
+ap dot11 5ghz cleanair device dect-like
+ap dot11 5ghz cleanair device inv
+ap dot11 5ghz cleanair device jammer
+ap dot11 5ghz cleanair device nonstd
+ap dot11 5ghz cleanair device radar
+ap dot11 5ghz cleanair device report
+ap dot11 5ghz cleanair device superag
+ap dot11 5ghz cleanair device tdd-tx
+ap dot11 5ghz cleanair device video
+ap dot11 5ghz cleanair device wimax-fixed
+ap dot11 5ghz cleanair device wimax-mobile
+ap dot11 5ghz rrm tpc-threshold -70
+ap dot11 5ghz rrm txpower 1
+ap dot11 5ghz beaconperiod 100
+ap dot11 5ghz cac media-stream multicast-direct max-retry-percent 80
+ap dot11 5ghz cac media-stream multicast-direct min-client-rate six
+ap dot11 5ghz cac multimedia max-bandwidth 85
+ap dot11 5ghz media-stream multicast-direct client-maximum 0
+ap dot11 5ghz media-stream multicast-direct radio-maximum 0
+ap dot11 5ghz cac video load-based
+ap dot11 5ghz cac video max-bandwidth 0
+ap dot11 5ghz cac video roam-bandwidth 0
+ap dot11 5ghz cac voice max-bandwidth 75
+ap dot11 5ghz cac voice load-based
+ap dot11 5ghz cac voice roam-bandwidth 6
+ap dot11 5ghz cac voice sip bandwidth 64 sample-interval 20
+ap dot11 5ghz cac voice stream-size 84000 max-streams 2
+ap dot11 5ghz cac voice tspec-inactivity-timeout ignore
+ap dot11 5ghz dot11ac
+ap dot11 5ghz dot11ac frame-burst automatic
+ap dot11 5ghz dot11n a-mpdu tx scheduler
+ap dot11 5ghz dot11n a-mpdu tx scheduler timeout rt 10
+ap dot11 5ghz dot11n
+ap dot11 5ghz dot11n guard-interval any
+no ap dot11 5ghz dot11n guard-interval long
+ap dot11 5ghz dot11n rifs rx
+ap dot11 5ghz dtpc
+no ap dot11 5ghz exp-bwreq
+ap dot11 5ghz fragmentation 2346
+ap dot11 5ghz service-policy rate 11ac 1000000000
+ap dot11 5ghz service-policy rate 11n 400000000
+no ap dot11 5ghz shutdown
+no ap dot11 5ghz tsm
+ap dot11 5ghz world-mode
+ap dot11 5ghz power-constraint 0
+ap group default-group
+ description 
+end
+
+Bowman-MDF-3850-01#show ip    snmp user
+
+Bowman-MDF-3850-01#show cdp neighbors detail
+-------------------------
+Device ID: Lexington-6509Core.ci.lexington.ma.us
+Entry address(es): 
+  IP address: 10.1.254.254
+Platform: cisco WS-C6509-E,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet1/1/4,  Port ID (outgoing port): TenGigabitEthernet4/7
+Holdtime : 131 sec
+
+Version :
+Cisco IOS Software, s72033_rp Software (s72033_rp-ADVENTERPRISEK9_WAN-M), Version 12.2(33)SXJ6, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Fri 19-Jul-13 03:29 by prod_rel_team
+
+advertisement version: 2
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.254.254
+
+-------------------------
+Device ID: Bowman-MDF-3750-01
+Entry address(es): 
+  IP address: 10.1.40.1
+Platform: cisco WS-C3750-48TS,  Capabilities: Router Switch IGMP 
+Interface: TenGigabitEthernet1/1/3,  Port ID (outgoing port): GigabitEthernet1/0/3
+Holdtime : 158 sec
+
+Version :
+Cisco IOS Software, C3750 Software (C3750-IPBASE-M), Version 12.2(35)SE5, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Thu 19-Jul-07 19:15 by nachen
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF0000000000000021D8A3CA80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.40.1
+
+-------------------------
+Device ID: Bowman-MDF-SW06
+Entry address(es): 
+  IP address: 10.1.40.6
+Platform: cisco WS-C2960X-48FPS-L,  Capabilities: Switch IGMP 
+Interface: GigabitEthernet1/0/48,  Port ID (outgoing port): GigabitEthernet1/0/49
+Holdtime : 148 sec
+
+Version :
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.2(2)E6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Fri 16-Dec-16 21:27 by prod_rel_team
+
+advertisement version: 2
+Protocol Hello:  OUI=0x00000C, Protocol ID=0x0112; payload len=27, value=00000000FFFFFFFF010221FF0000000000002C3124E16A80FF0000
+VTP Management Domain: 'Lexington'
+Native VLAN: 1
+Duplex: full
+Management address(es): 
+  IP address: 10.1.40.6
+
+
+Total cdp entries displayed : 3
+Bowman-MDF-3850-01#show ip ssh
+SSH Enabled - version 1.99
+Authentication methods:publickey,keyboard-interactive,password
+Encryption Algorithms:aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc
+MAC Algorithms:hmac-sha1,hmac-sha1-96
+Authentication timeout: 120 secs; Authentication retries: 3
+Minimum expected Diffie Hellman key size : 1024 bits
+IOS Keys in SECSH format(ssh-rsa, base64 encoded):
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCzrJ4UuNVGfVluri8A1ebARw3Ypd/8TnxlBbjqwYlK
++V16cRLVsE49gBRjqWOZ74gACWXh5acin6y438oV25HmTNkRiHz2s1RvX1t8ZUOUH3+LuYjT0sWhCPyW
++y3ZO9kvVW4c4tZPhlOtQzq/RVmLpMGa5/CbbaQFu9rfpCz5TQ==                            
+Bowman-MDF-3850-01#show cryptop  key mypub
+Bowman-MDF-3850-01#show crypto key mypubkey rsa
+Bowman-MDF-3850-01#show crypto key mypubkey rsa 
+% Key pair was generated at: 03:31:24 edt Sep 7 2016
+Key name: TP-self-signed-874621394
+Key type: RSA KEYS
+ Storage Device: private-config
+ Usage: General Purpose Key
+ Key is not exportable. Redundancy enabled.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00B3AC9E 
+  14B8D546 7D596EAE 2F00D5E6 C0470DD8 A5DFFC4E 7C6505B8 EAC1894A F95D7A71 
+  12D5B04E 3D801463 A96399EF 88000965 E1E5A722 9FACB8DF CA15DB91 E64CD911 
+  887CF6B3 546F5F5B 7C654394 1F7F8BB9 88D3D2C5 A108FC96 FB2DD93B D92F556E 
+  1CE2D64F 8653AD43 3ABF4559 8BA4C19A E7F09B6D A405BBDA DFA42CF9 4D020301 0001
+% Key pair was generated at: 12:44:58 edt Mar 29 2020
+Key name: CISCO_IDEVID_SUDI_LEGACY
+Key type: RSA KEYS
+ Storage Device: not specified
+ Usage: General Purpose Key
+ Key is not exportable. Redundancy enabled.
+ Key Data:
+  30819F30 0D06092A 864886F7 0D010101 05000381 8D003081 89028181 00D1C523 
+  D5779D55 C0EBB62A D08D7E6F F1B4DB55 E3EB82F9 5B83E614 2C3F2D9A 97F3E122 
+  BA350860 8D63C227 260B969B C4FF9F44 2EC152F2 8C7AD60C 4C764079 676EA60B 
+  5A003116 59E5212C 442AEE8D CF41D0CF BFF752D6 4A3DD8EA 0D3C5CE6 A56D1472 
+  6C6C13DE B9115DA9 C9A5F329 35A689C6 0EBF2EAC 8328FD93 25F37C3B 2B020301 0001
+% Key pair was generated at: 12:44:59 edt Mar 29 2020
+Key name: CISCO_IDEVID_SUDI
+Key type: RSA KEYS
+ Storage Device: not specified
+ Usage: General Purpose Key
+ Key is not exportable. Redundancy enabled.
+ Key Data:
+  30820122 300D0609 2A864886 F70D0101 01050003 82010F00 3082010A 02820101 
+  00A0D4BB 2577B112 148ACCB2 09CD0C75 1008A2DB 29C4DEB9 09C061CB 95009501 
+  5D7E8FE4 A62DC20F 2E75329E 7D22D922 56CCFD59 BAC02C56 854ADC06 F7E46942 
+  B2B9C6A6 440D9FB7 D52330AF 39EE12D4 D4D7D071 1434C645 99195E2A EF8FC77A 
+  2F763ADD F27DE6C5 53C857AB 52EA131C 9AE8748B C9AEE103 5EBEFF99 FF340629 
+  99DC7B96 234398E2 65D2BB92 DE55A075 619AC59D BACA3653 02781180 40BC9950 
+  2D34CEFD 89E781A3 B8F4ADD7 7EBF4741 35DE512D 9C7E8C46 260C78B5 F8B51FCF 
+  5F89FD78 AA2B5764 461D8BE8 D7638A2B 36190516 FC47E2B2 DA112966 DB9940FE 
+  9DFAEE17 AAD44807 27F5B87A BE00E994 1001C445 DF2AB158 829F1D1E 0A22734B 
+  AB020301 0001
+% Key pair was generated at: 20:04:13 edt Jun 15 2020
+Key name: TP-self-signed-874621394.server
+Key type: RSA KEYS
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable. Redundancy enabled.
+ Key Data:
+  307C300D 06092A86 4886F70D 01010105 00036B00 30680261 00D36B50 0C7E059A 
+  B2469554 5BF0F8B5 EE0EDBAF F41E668A 01FDF423 A4BB1855 1FF40927 E91335BF 
+  C03FA25E 19CB7C17 B986E33A 35B98820 25967383 9B50A510 FF1E210B 17351CAD 
+  727A332A 4E7C3681 3AB8F3D7 688AB458 B7221291 39E454E3 41020301 0001
+Bowman-MDF-3850-01#
+Bowman-MDF-3850-01#
+Bowman-MDF-3850-01#
+Bowman-MDF-3850-01#show inv
+Bowman-MDF-3850-01#show inventory 
+NAME: "c38xx Stack", DESCR: "c38xx Stack"
+PID: WS-C3850-48P      , VID: V06  , SN: FCW2012C0V3
+
+NAME: "Switch 1", DESCR: "WS-C3850-48P"
+PID: WS-C3850-48P      , VID: V06  , SN: FCW2012C0V3
+
+NAME: "Switch 1 - Power Supply A", DESCR: "Switch 1 - Power Supply A"
+PID: PWR-C1-1100WAC    , VID: V01  , SN: DTN1950V0LX
+
+NAME: "Switch 1 FRU Uplink Module 1", DESCR: "4x10G Uplink Module"
+PID: C3850-NM-4-10G    , VID: V01  , SN: FOC20042SEJ
+
+NAME: "TenGigabitEthernet1/1/3", DESCR: "10/100/1000BaseTX SFP"
+PID: GLC-T              , VID: V04  , SN: MTC2017010Z    
+
+NAME: "TenGigabitEthernet1/1/4", DESCR: "SFP-10GBase-ER"
+PID: SFP-10G-ER         , VID: V02  , SN: ONT194600RF    
+
+
+Bowman-MDF-3850-01#exit
+
+[Connection to 10.1.40.10 closed by foreign host]
+Lexington-6509Core#
